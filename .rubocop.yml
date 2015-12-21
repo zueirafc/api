@@ -1,0 +1,19 @@
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 80
+
+AllCops:
+  Exclude:
+    - 'Gemfile.lock'
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'log/**/*'
+    - 'config/initializers/**/*'
+    - '*file'
+
+  RunRailsCops: true

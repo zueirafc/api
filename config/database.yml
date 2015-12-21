@@ -14,9 +14,3 @@ development:
 test:
   <<: *default
   database: zueira_test
-
-production:
-  <<: *default
-  database: api_production
-  username: api
-  password: <%= ENV['API_DATABASE_PASSWORD'] %>

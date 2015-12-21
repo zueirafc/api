@@ -1,26 +1,22 @@
 class WelcomeController < ApplicationController
+  before_action :make_a_hash
+
   def index
-    current_uri = request.original_url
-
-    @welcome =
-    {
-      name: 'ZueiraFCAPI',
-      for: 'ZueiraFC',
-      current_version: {
-        version: 'v1',
-        codename: 'Galatasaray',
-        status: 'development'
-      },
-      who?: [{ name: 'Bruno Casali', contact: '@brunoocasali', email: 'brunoocasali@gmail.com' }],
-      start:
-        {
-          docs: 'no docs, for a while',
-          why: 'So that Zueira NEVER ends.',
-          end_points: %W(#{current_uri}api/v1/),
-          home_page: 'https://github.com/zueirafc/api'
-        }
-    }
-
     respond_with @welcome
+  end
+
+  private
+
+  def make_a_hash
+    @welcome =
+    { name: 'ZueiraFCAPI', for: 'ZueiraFC',
+      current_version: { version: 'v1', codename: 'Galatasaray',
+                         status: 'development' },
+      who?: [{ name: 'Bruno Casali', contact: '@brunoocasali',
+               email: 'brunoocasali@gmail.com' }],
+      start: { docs: 'no docs, for a while', why: 'So that Zueira NEVER ends.',
+               end_points: %W(#{request.original_url}api/v1/),
+               home_page: 'https://github.com/zueirafc/api' }
+    }
   end
 end

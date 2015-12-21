@@ -12,6 +12,15 @@ gem 'passenger'
 gem 'active_model_serializers'
 
 group :test, :development do
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-migrate'
+  gem 'guard-livereload'
+  gem 'guard-rubocop'
+  gem 'guard-zeus'
+  gem 'zeus'
+  gem 'thor'
+  
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'forgery'
