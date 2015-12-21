@@ -7,11 +7,22 @@ services:
 build:
     steps:
         - bundle-install
+
+        - rails-database-yml:
+            service: postgresql
+
+        - script:
+            name: Set up database
+            code: bundle exec rake db:schema:load RAILS_ENV=test
+
         - script:
             name: rspec
             code: bundle exec rspec
 
 deploy:
     steps:
-        - heroku-deploy:
-            key-name: herokudeployment
+      - heroku-deploy:
+          key-name: herokudeployment
+      - script:
+          name: Update database
+          code: heroku run rake db:migrate --app zueira-fc
