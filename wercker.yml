@@ -1,9 +1,37 @@
-ruby: 2.2.3
+# ruby: 2.2.3
+# box: phusion/passenger-ruby22
+#
+# services:
+#   - postgres
+#
+# build:
+#     steps:
+#         - bundle-install
+#
+#         - rails-database-yml:
+#             service: postgresql
+#
+#         - script:
+#             name: Set up database
+#             code: bundle exec rake db:schema:load RAILS_ENV=test
+#
+#         - script:
+#             name: rspec
+#             code: bundle exec rspec
+#
+# deploy:
+#     steps:
+#       - heroku-deploy:
+#           key-name: herokudeployment
+#       - script:
+#           name: Update database
+#           code: heroku run rake db:migrate --app zueira-fc
+#
+#
+
 box: phusion/passenger-ruby22
-
 services:
-  - postgres
-
+    - wercker/postgresql
 build:
     steps:
         - bundle-install
@@ -12,7 +40,14 @@ build:
             service: postgresql
 
         - script:
-            name: Set up database
+            name: echo ruby information
+            code: |
+                echo "ruby version $(ruby --version) running!"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
+
+        - script:
+            name: Set up db
             code: bundle exec rake db:schema:load RAILS_ENV=test
 
         - script:
@@ -21,8 +56,11 @@ build:
 
 deploy:
     steps:
-      - heroku-deploy:
-          key-name: herokudeployment
-      - script:
-          name: Update database
-          code: heroku run rake db:migrate --app zueira-fc
+        - heroku-deploy:
+            install-toolbelt: true
+        - script:
+            name: Migrate DB
+            code: heroku run rake db:migrate --app zueira-fc
+        - script:
+            name: Update assets
+            code: heroku run rake add_static_assets --app zueira-fc
