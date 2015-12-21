@@ -13,6 +13,7 @@ else
   SimpleCov.start 'rails'
 end
 
+require 'rails/all'
 require 'rspec/rails'
 require 'factory_girl'
 require 'forgery'
