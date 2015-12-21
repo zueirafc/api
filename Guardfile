@@ -41,8 +41,15 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: 'zeus rspec', all_on_start: false,
-              all_after_pass: false, results_file: 'tmp/guard_rspec_results.txt' do
+rspec_options = {
+  results_file: './tmp/guard_rspec_results.txt', # << add this option to match above path in custom_plan.rb
+  cmd: "zeus rspec",
+  all_after_pass: false,
+  failed_mode: :focus
+}
+
+guard :rspec, rspec_options do
+
   require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 

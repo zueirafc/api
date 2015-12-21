@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20151221124422) do
 
   add_index "users", ["club_id"], name: "index_users_on_club_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "microposts", "users"
   add_foreign_key "post_references", "microposts"

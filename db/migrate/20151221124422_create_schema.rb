@@ -22,7 +22,7 @@ class CreateSchema < ActiveRecord::Migration
     end
 
     add_index :users, :email, unique: true
-    add_index :users, :username
+    add_index :users, :username, unique: true
 
     add_foreign_key :users, :clubs, column: :club_id
 

@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Club, type: :model do
-  context 'associations' do
-    xit { is_expected.to belong_to(:x) }
-  end
-
   context 'model validations' do
     it { is_expected.to validate_presence_of(:shield) }
     it { is_expected.to validate_presence_of(:full_name) }
@@ -19,10 +15,6 @@ RSpec.describe Club, type: :model do
     it { is_expected.to have_db_column(:full_name).of_type(:string) }
     it { is_expected.to have_db_column(:short_name).of_type(:string) }
     it { is_expected.to have_db_column(:shield).of_type(:string) }
-  end
-
-  context 'table indexes' do
-    xit { is_expected.to have_db_index(:x) }
   end
 
   context 'factories' do

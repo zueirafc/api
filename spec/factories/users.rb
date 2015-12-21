@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :user do
-    username { Forgery('lorem_ipsum').words(2) }
-    email { Forgery('lorem_ipsum').words(2) }
-    name { Forgery('lorem_ipsum').words(2) }
-    password { Forgery('lorem_ipsum').words(2) }
+    username { Forgery('internet').user_name }
+    email { Forgery('internet').email_address }
+    name { Forgery('name').full_name }
+    password { Forgery('basic').password }
     image { Forgery('lorem_ipsum').words(2) }
 
     association :club, factory: :club
