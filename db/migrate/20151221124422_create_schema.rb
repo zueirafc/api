@@ -21,6 +21,9 @@ class CreateSchema < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+    add_index :users, :email, unique: true
+    add_index :users, :username
+
     add_foreign_key :users, :clubs, column: :club_id
 
     create_table :roles do |t|
@@ -39,12 +42,13 @@ class CreateSchema < ActiveRecord::Migration
     end
 
     create_table :relationships do |t|
-      t.references :follower, index: true, foreign_key: true
-      t.references :followed, index: true, foreign_key: true
+      t.integer :follower_id, index: true
+      t.integer :followed_id, index: true
+
+      t.timestamps null: false
     end
 
-    add_foreign_key :relationships, :users, column: :follower_id
-    add_foreign_key :relationships, :users, column: :followed_id
+    add_index :relationships, [:follower_id, :followed_id], unique: true
 
     create_table :tags do |t|
       t.references :club, index: true

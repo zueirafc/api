@@ -1,15 +1,15 @@
 FactoryGirl.define do
-  factory :club do
+  factory :club, class: 'Club' do
     shield { Forgery('lorem_ipsum').words(2) }
-    official_website { Forgery('internet').address }
-    official_facebook_page { Forgery('internet').address }
-    official_twitter_page { Forgery('internet').address }
+    official_website { Forgery('internet').domain_name }
+    official_facebook_page { Forgery('internet').domain_name }
+    official_twitter_page { Forgery('internet').domain_name }
     short_name { Forgery('lorem_ipsum').words(2) }
     full_name { Forgery('lorem_ipsum').words(2) }
     initials { Forgery('lorem_ipsum').words(1) }
   end
 
-  factory :invalid_club do
+  factory :invalid_club, parent: :club do
     shield nil
     official_website nil
     official_facebook_page nil

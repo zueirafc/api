@@ -9,7 +9,7 @@ FactoryGirl.define do
     association :club, factory: :club
   end
 
-  factory :invalid_user do
+  factory :invalid_user, parent: :user do
     username nil
     email nil
     name nil

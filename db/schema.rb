@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20151221124422) do
   end
 
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
@@ -84,10 +85,8 @@ ActiveRecord::Schema.define(version: 20151221124422) do
   add_index "taggeds", ["tag_id"], name: "index_taggeds_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.integer  "club_id"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "club_id"
+    t.string  "name"
   end
 
   add_index "tags", ["club_id"], name: "index_tags_on_club_id", using: :btree
@@ -104,6 +103,8 @@ ActiveRecord::Schema.define(version: 20151221124422) do
   end
 
   add_index "users", ["club_id"], name: "index_users_on_club_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   add_foreign_key "microposts", "users"
   add_foreign_key "post_references", "microposts"

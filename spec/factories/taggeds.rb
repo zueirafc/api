@@ -4,7 +4,7 @@ FactoryGirl.define do
     association :tag, factory: :tag
   end
 
-  factory :invalid_tagged do
+  factory :invalid_tagged, parent: :tagged do
     micropost nil
     tag nil
   end

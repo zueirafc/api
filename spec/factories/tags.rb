@@ -5,7 +5,7 @@ FactoryGirl.define do
     association :club, factory: :club
   end
 
-  factory :invalid_tag do
+  factory :invalid_tag, parent: :tag do
     name nil
 
     club nil

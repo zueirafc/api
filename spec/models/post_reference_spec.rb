@@ -22,7 +22,7 @@ RSpec.describe PostReference, type: :model do
   end
 
   context 'factories' do
-    it { expect(build(:post)).to be_valid }
-    it { expect(build(:invalid_post)).to_not be_valid }
+    it { expect(build(:post_reference)).to be_valid }
+    it { expect(build(:invalid_post_reference)).to_not be_valid }
   end
 end

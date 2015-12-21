@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
   context 'table fields' do
     it { is_expected.to have_db_column(:username).of_type(:string) }
     it { is_expected.to have_db_column(:image).of_type(:string) }
-    it { is_expected.to have_db_column(:emal).of_type(:string) }
+    it { is_expected.to have_db_column(:email).of_type(:string) }
     it { is_expected.to have_db_column(:password).of_type(:string) }
 
     it { is_expected.to have_db_column(:club_id).of_type(:integer) }

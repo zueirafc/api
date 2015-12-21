@@ -4,7 +4,7 @@ FactoryGirl.define do
     association :user, factory: :user
   end
 
-  factory :invalid_post_reference do
+  factory :invalid_post_reference, parent: :post_reference do
     micropost nil
     user nil
   end

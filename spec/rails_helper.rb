@@ -13,9 +13,30 @@ else
   SimpleCov.start 'rails'
 end
 
-require 'spec_helper'
-require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
+require 'factory_girl'
+require 'forgery'
+require 'shoulda/matchers'
+require 'database_cleaner'
+require 'spec_helper'
+
+require File.expand_path('../../config/environment', __FILE__)
+
+# for faster rspec start, run: SKIP_MIGRATION=1 rspec
+if ENV['SKIP_MIGRATION']
+  puts 'MIGRATION SKIPPED!'
+else
+  ActiveRecord::Migration.maintain_test_schema!
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+
+    with.library :active_record
+    with.library :active_model
+  end
+end
 
 ActiveRecord::Migration.maintain_test_schema!
 

@@ -16,5 +16,7 @@ module Api
     config.time_zone = 'Brasilia'
     config.i18n.default_locale = :'pt-BR'
     config.active_record.raise_in_transactional_callbacks = true
+
+    I18n.config.enforce_available_locales = false
   end
 end
