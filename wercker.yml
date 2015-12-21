@@ -35,21 +35,10 @@ services:
 build:
     steps:
         - bundle-install
-
-        - rails-database-yml:
-            service: postgresql
-
+        - rails-database-yml
         - script:
-            name: echo ruby information
-            code: |
-                echo "ruby version $(ruby --version) running!"
-                echo "from location $(which ruby)"
-                echo -p "gem list: $(gem list)"
-
-        - script:
-            name: Set up db
-            code: bundle exec rake db:schema:load RAILS_ENV=test
-
+            name: db migrate
+            code: bundle exec rake db:migrate
         - script:
             name: rspec
             code: bundle exec rspec
