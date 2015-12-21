@@ -8,4 +8,14 @@ FactoryGirl.define do
 
     association :club, factory: :club
   end
+
+  factory :invalid_user do
+    username nil
+    email nil
+    name nil
+    password nil
+    image nil
+
+    club nil
+  end
 end

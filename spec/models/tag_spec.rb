@@ -1,5 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'associations' do
+    it { is_expected.to belong_to(:club) }
+  end
+
+  context 'model validations' do
+    it { is_expected.to validate_presence_of(:name) }
+
+    it { is_expected.to validate_presence_of(:club) }
+  end
+
+  context 'table fields' do
+    it { is_expected.to have_db_column(:name).of_type(:string) }
+
+    it { is_expected.to have_db_column(:club_id).of_type(:integer) }
+  end
+
+  context 'table indexes' do
+    it { is_expected.to have_db_index(:club_id) }
+  end
+
+  context 'factories' do
+    it { expect(build(:tag)).to be_valid }
+    it { expect(build(:invalid_tag)).to_not be_valid }
+  end
 end
