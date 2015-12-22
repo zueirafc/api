@@ -1,0 +1,26 @@
+language: ruby
+rvm:
+- 2.2.3
+addons:
+  code_climate:
+    repo_token: 6e5a235286984355ab069bffbfec81866ddd30f498c326bbc21507873a8125fa
+  postgresql: 9.4
+env:
+- DB=postgres
+script:
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec spec/
+before_script:
+- cp config/database.travis.yml config/database.yml
+- psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: eGO08txmrnaMBdnoYTzzKnA4nAz8OFwpzZH8y04ZjXbj595joNhOoTWAnmqRnuXqRfGxXmx4/nNUdxNOrFYyxNdZSMI76VhZeVepS0LBQwltpM30IwR2G9gupcDe4z9WXlbaCobGaI/MLaBm4Milsr1pvVhhfpFIo9Q+4oM/NBXOUGqnq7/RCbItxvGdCXri50LechH1c62TkbM8bN4K03H4JbrEdk422eumVkPgq7O6ti/I5omqOc69IVuBPjH6CDn5iF1Kr38ULUk1X6We1tnpA/zM0SiJ3mmk4wIx2nBbzWuX6awuWYwOo7Zowg0NZj/zH82QBDWVhFPmwSbXfgbFnslv00eSNKL8BU5VxeGyPYinGl0IZ6fB7oId+AbkRDba1yXidxi2eMdpYSl3P5cNQfyKA/vvLzBp97D2Vz7NBYisyCyoSi+sl7k5hVGy8fqHG3OqGs/nNzo/z9LrCFoX3kpt9+77TWJbXvjuQWgwV3+APrlxu8EJNwDIM25pFRA+0+m9atQ7PdJlLbY5lhC4rrDn0iZWYxqQYlX8J5FG9TJtTtfUzuCMlOVBaSKiPkdStgb/NpPS30A+ZgPbMH7cbJ1SAvY3SpuTTTJSiCJ9dikJGau29qmQ3oHKRhi3Z6oAKeoxbBHz7lmomhHPgcHYtdHs+fdH7qsY4qH7ndM=
+  app: zueira-fc
+  on:
+    repo: zueirafc/api
+  run:
+  - rake db:create db:migrate
+  - restart
