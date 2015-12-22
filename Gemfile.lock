@@ -22,8 +22,10 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_model_serializers (0.9.3)
-      activemodel (>= 3.2)
+    active_model_serializers (0.10.0.rc3)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
     activejob (4.2.5)
       activesupport (= 4.2.5)
       globalid (>= 0.3.0)
@@ -131,6 +133,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5)
@@ -231,7 +234,7 @@ PLATFORMS
 
 DEPENDENCIES
   acl9
-  active_model_serializers
+  active_model_serializers (= 0.10.0.rc3)
   codeclimate-test-reporter
   database_cleaner
   factory_girl_rails
@@ -244,6 +247,7 @@ DEPENDENCIES
   guard-zeus
   passenger
   pg
+  rack-cors
   rails (= 4.2.5)
   rails-api
   rails_12factor

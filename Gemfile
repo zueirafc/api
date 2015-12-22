@@ -9,7 +9,8 @@ gem 'acl9'
 gem 'pg'
 gem 'responders'
 gem 'passenger'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '0.10.0.rc3'
+gem 'rack-cors'
 
 group :test, :development do
   gem 'guard'
