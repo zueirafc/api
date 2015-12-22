@@ -1,8 +1,8 @@
 ruby: 2.2.3
-box: phusion/passenger-ruby22
+box: wercker/ruby
 
 services:
-  - postgres
+  - wercker/postgresql
 
 build:
     steps:
@@ -12,9 +12,12 @@ build:
             service: postgresql
 
         - script:
-            - RAILS_ENV=test bundle exec rake db:migrate --trace
-            - RAILS_ENV=test bundle exec rake db:test:prepare
-            - RAILS_ENV=test bundle exec rspec spec/
+            name: Set up database
+            code: bundle exec rake db:schema:load RAILS_ENV=test
+
+        - script:
+            name: rspec
+            code: bundle exec rspec
 
 deploy:
     steps:
