@@ -3,8 +3,10 @@ FactoryGirl.define do
     username { Forgery('internet').user_name }
     email { Forgery('internet').email_address }
     name { Forgery('name').full_name }
-    password { Forgery('basic').password }
+    password { 'my password is much bigger!' }
     image { Forgery('lorem_ipsum').words(2) }
+    provider { Forgery('lorem_ipsum').words(2) }
+    uid { Forgery('basic').password }
 
     association :club, factory: :club
   end

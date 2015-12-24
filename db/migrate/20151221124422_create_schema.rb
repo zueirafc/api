@@ -10,7 +10,7 @@ class CreateSchema < ActiveRecord::Migration
       t.string :initials
     end
 
-    create_table(:users) do |t|
+    create_table :users do |t|
       t.string :provider, :null => false, :default => "email"
       t.string :uid, :null => false, :default => ""
       t.string :encrypted_password, :null => false, :default => ""
