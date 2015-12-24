@@ -12,6 +12,11 @@ gem 'passenger'
 gem 'active_model_serializers', '0.10.0.rc3'
 gem 'rack-cors'
 
+# authentication
+gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
+
 group :test, :development do
   gem 'guard'
   gem 'guard-rspec', require: false
