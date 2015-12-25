@@ -29,15 +29,9 @@ module Api
           expect(response.body['short_name']).to eq(club['short_name'])
           expect(response.body['initials']).to eq(club['initials'])
           expect(response.body['full_name']).to eq(club['full_name'])
-          expect do
-            response.body['official_website']
-          end.to eq(club['official_website'])
-          expect do
-            response.body['official_facebook_page']
-          end.to eq(club['official_facebook_page'])
-          expect do
-            response.body['official_twitter_page']
-          end.to eq(club['official_twitter_page'])
+          expect(response.body['official_website']).to eq(club['official_website'])
+          expect(response.body['official_facebook_page']).to eq(club['official_facebook_page'])
+          expect(response.body['official_twitter_page']).to eq(club['official_twitter_page'])
         end
       end
 
