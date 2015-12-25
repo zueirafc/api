@@ -15,6 +15,8 @@ script:
 before_script:
 - cp config/database.travis.yml config/database.yml
 - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+after_script:
+- rm config/database.yml
 deploy:
   provider: heroku
   api_key:
@@ -23,5 +25,5 @@ deploy:
   on:
     repo: zueirafc/api
   run:
-  - rake db:create db:migrate
+  - rake db:migrate
   - restart
