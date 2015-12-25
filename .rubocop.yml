@@ -4,6 +4,10 @@ Documentation:
 Metrics/LineLength:
   Max: 80
 
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/controllers/**/*.rb'
+
 AllCops:
   Exclude:
     - 'Gemfile.lock'

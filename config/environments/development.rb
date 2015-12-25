@@ -11,4 +11,13 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   config.action_mailer.default_url_options = { host: 'localhost' }
+
+  config.app_generators.scaffold_controller :responders_controller
+
+  config.generators do |g|
+    g.test_framework :rspec,
+                     view_specs: false,
+                     request_specs: false,
+                     routing_specs: false
+  end
 end
