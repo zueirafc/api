@@ -16,6 +16,7 @@ module Api
         end
       end
 
+      # rubocop:disable Metrics/LineLength
       describe 'GET #show' do
         it 'returns a club passed by param' do
           club = create :club, valid_attributes
