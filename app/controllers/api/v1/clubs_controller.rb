@@ -6,11 +6,11 @@ module Api
       def index
         @clubs = Club.all
 
-        respond_with @clubs
+        respond_with :api, :v1, @clubs
       end
 
       def show
-        respond_with @club
+        respond_with :api, :v1, @club
       end
 
       def create
