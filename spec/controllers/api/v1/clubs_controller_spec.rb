@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/LineLength
 module Api
   module V1
     RSpec.describe ClubsController, type: :controller do
@@ -16,7 +17,6 @@ module Api
         end
       end
 
-      # rubocop:disable Metrics/LineLength
       describe 'GET #show' do
         it 'returns a club passed by param' do
           club = create :club, valid_attributes
@@ -75,7 +75,10 @@ module Api
 
       describe 'PUT #update' do
         context 'with valid params' do
-          let(:new_attributes) { attributes_for :club }
+          let(:new_attributes) do
+            attributes_for :club,
+                           shield: fixture_file_upload(File.join(Rails.root, 'spec/support/clubs/shield-new.png'))
+          end
 
           it 'updates the requested club' do
             club = create :club, valid_attributes
@@ -85,7 +88,6 @@ module Api
 
             expect(club.short_name).to eq(new_attributes[:short_name])
             expect(club.full_name).to eq(new_attributes[:full_name])
-            expect(club.shield).to eq(new_attributes[:shield])
             expect(response).to be_success
           end
 

@@ -12,6 +12,10 @@ gem 'passenger'
 gem 'active_model_serializers', '0.10.0.rc3'
 gem 'rack-cors'
 
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'carrierwave-base64'
+
 # authentication
 gem 'devise_token_auth'
 # gem 'omniauth-facebook'
