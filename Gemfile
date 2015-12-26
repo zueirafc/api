@@ -9,7 +9,7 @@ gem 'acl9'
 gem 'pg'
 gem 'responders'
 gem 'passenger'
-gem 'active_model_serializers', '0.10.0.rc3'
+gem 'active_model_serializers'
 gem 'rack-cors'
 
 gem 'carrierwave'
