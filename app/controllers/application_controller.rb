@@ -8,13 +8,9 @@ class ApplicationController < ActionController::API
 
   respond_to :json
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:username, :club_id)
-    end
+  protected
 
-    devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:username, :club_id)
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :username << :club_id
   end
 end

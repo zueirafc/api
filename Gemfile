@@ -22,6 +22,7 @@ gem 'devise_token_auth'
 # gem 'omniauth-google-oauth2'
 
 group :test, :development do
+  gem 'pry-rails'
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'guard-migrate'
