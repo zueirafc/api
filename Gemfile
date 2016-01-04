@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 gem 'rails-api'
 
+gem 'enumerate_it'
 gem 'acl9'
 gem 'pg'
 gem 'responders'
