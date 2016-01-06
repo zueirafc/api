@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221124422) do
+ActiveRecord::Schema.define(version: 20160106011631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,14 +26,52 @@ ActiveRecord::Schema.define(version: 20151221124422) do
     t.string "initials"
   end
 
-  create_table "microposts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "contact_categories", force: :cascade do |t|
+    t.string  "name",   null: false
+    t.integer "status", null: false
   end
 
+  add_index "contact_categories", ["status"], name: "index_contact_categories_on_status", using: :btree
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "email",               null: false
+    t.string   "name",                null: false
+    t.integer  "status",              null: false
+    t.text     "message",             null: false
+    t.integer  "contact_category_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "contacts", ["contact_category_id"], name: "index_contacts_on_contact_category_id", using: :btree
+  add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
+
+  create_table "microposts", force: :cascade do |t|
+    t.integer  "user_id",                      null: false
+    t.integer  "source_id"
+    t.text     "text",                         null: false
+    t.boolean  "all_targets",  default: false, null: false
+    t.boolean  "all_trollers", default: false, null: false
+    t.integer  "status",                       null: false
+    t.integer  "shared",       default: 0
+    t.boolean  "is_shared",    default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "microposts", ["status"], name: "index_microposts_on_status", using: :btree
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id", using: :btree
+
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "email"
+    t.boolean  "is_accepted_partner"
+    t.integer  "status"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "newsletters", ["email"], name: "index_newsletters_on_email", unique: true, using: :btree
+  add_index "newsletters", ["status"], name: "index_newsletters_on_status", using: :btree
 
   create_table "post_references", force: :cascade do |t|
     t.integer  "micropost_id"
@@ -123,6 +161,7 @@ ActiveRecord::Schema.define(version: 20151221124422) do
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "contacts", "contact_categories"
   add_foreign_key "microposts", "users"
   add_foreign_key "post_references", "microposts"
   add_foreign_key "post_references", "users"

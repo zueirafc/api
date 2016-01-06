@@ -77,8 +77,14 @@ class CreateSchema < ActiveRecord::Migration
     add_foreign_key :synonymous_clubs, :clubs, column: :club_id
 
     create_table :microposts do |t|
-      t.references :user, index: true
-      t.text :text
+      t.references :user, index: true, null: false
+      t.references :source, null: true
+      t.text :text, null: false
+      t.boolean :all_targets, null: false, default: false
+      t.boolean :all_trollers, null: false, default: false
+      t.integer :status, index: true, null: false
+      t.integer :shared, default: 0
+      t.boolean :is_shared, default: false
 
       t.timestamps null: false
     end
