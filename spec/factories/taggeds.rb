@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :tagged do
     association :micropost, factory: :micropost
-    association :tag, factory: :tag
+    association :synonymous_club, factory: :synonymous_club
   end
 
   factory :invalid_tagged, parent: :tagged do
     micropost nil
-    tag nil
+    synonymous_club nil
   end
 end

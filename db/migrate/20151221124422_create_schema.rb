@@ -69,12 +69,12 @@ class CreateSchema < ActiveRecord::Migration
 
     add_index :relationships, [:follower_id, :followed_id], unique: true
 
-    create_table :tags do |t|
+    create_table :synonymous_clubs do |t|
       t.references :club, index: true
       t.string :name
     end
 
-    add_foreign_key :tags, :clubs, column: :club_id
+    add_foreign_key :synonymous_clubs, :clubs, column: :club_id
 
     create_table :microposts do |t|
       t.references :user, index: true
@@ -97,12 +97,12 @@ class CreateSchema < ActiveRecord::Migration
 
     create_table :taggeds do |t|
       t.references :micropost, index: true
-      t.references :tag, index: true
+      t.references :synonymous_club, index: true
 
       t.timestamps null: false
     end
 
     add_foreign_key :taggeds, :microposts, column: :micropost_id
-    add_foreign_key :taggeds, :tags, column: :tag_id
+    add_foreign_key :taggeds, :synonymous_clubs, column: :synonymous_club_id
   end
 end

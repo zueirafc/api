@@ -74,22 +74,22 @@ ActiveRecord::Schema.define(version: 20151221124422) do
   add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
   add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
-  create_table "taggeds", force: :cascade do |t|
-    t.integer  "micropost_id"
-    t.integer  "tag_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "taggeds", ["micropost_id"], name: "index_taggeds_on_micropost_id", using: :btree
-  add_index "taggeds", ["tag_id"], name: "index_taggeds_on_tag_id", using: :btree
-
-  create_table "tags", force: :cascade do |t|
+  create_table "synonymous_clubs", force: :cascade do |t|
     t.integer "club_id"
     t.string  "name"
   end
 
-  add_index "tags", ["club_id"], name: "index_tags_on_club_id", using: :btree
+  add_index "synonymous_clubs", ["club_id"], name: "index_synonymous_clubs_on_club_id", using: :btree
+
+  create_table "taggeds", force: :cascade do |t|
+    t.integer  "micropost_id"
+    t.integer  "synonymous_club_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "taggeds", ["micropost_id"], name: "index_taggeds_on_micropost_id", using: :btree
+  add_index "taggeds", ["synonymous_club_id"], name: "index_taggeds_on_synonymous_club_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(version: 20151221124422) do
   add_foreign_key "microposts", "users"
   add_foreign_key "post_references", "microposts"
   add_foreign_key "post_references", "users"
+  add_foreign_key "synonymous_clubs", "clubs"
   add_foreign_key "taggeds", "microposts"
-  add_foreign_key "taggeds", "tags"
-  add_foreign_key "tags", "clubs"
+  add_foreign_key "taggeds", "synonymous_clubs"
   add_foreign_key "users", "clubs"
 end

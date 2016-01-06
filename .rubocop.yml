@@ -17,6 +17,7 @@ AllCops:
     - 'tmp/**/*'
     - 'vendor/**/*'
     - 'log/**/*'
+    - 'lib/templates/**/*'
     - 'config/initializers/**/*'
     - '*file'
 

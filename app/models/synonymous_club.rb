@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class SynonymousClub < ActiveRecord::Base
   belongs_to :club
 
   validates :name, presence: true
