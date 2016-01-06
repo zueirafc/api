@@ -37,7 +37,6 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'forgery'
   gem 'shoulda-matchers'
-  gem 'spring'
   gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', require: nil

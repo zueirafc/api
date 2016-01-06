@@ -6,6 +6,12 @@ RSpec.describe Medium, type: :model do
   end
 
   context 'model validations' do
+    it { is_expected.to validate_presence_of(:micropost) }
+
+    it :kind do
+      is_expected.to validate_presence_of(:kind)
+      is_expected.to validate_inclusion_of(:kind).in_array(MediumKind.list)
+    end
   end
 
   context 'table fields' do

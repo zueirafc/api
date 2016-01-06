@@ -8,7 +8,7 @@ RSpec.describe ContactCategory, type: :model do
   context 'model validations' do
     it { is_expected.to validate_presence_of(:name) }
 
-    it do
+    it :status do
       is_expected.to validate_presence_of(:status)
       is_expected.to validate_inclusion_of(:status).in_array(CommonStatus.list)
     end

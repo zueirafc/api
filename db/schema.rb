@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106022823) do
+ActiveRecord::Schema.define(version: 20160106025430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20160106022823) do
   add_index "contacts", ["contact_category_id"], name: "index_contacts_on_contact_category_id", using: :btree
   add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
   add_index "contacts", ["status"], name: "index_contacts_on_status", using: :btree
+
+  create_table "media", force: :cascade do |t|
+    t.integer  "micropost_id"
+    t.string   "file"
+    t.integer  "kind"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "media", ["kind"], name: "index_media_on_kind", using: :btree
+  add_index "media", ["micropost_id"], name: "index_media_on_micropost_id", using: :btree
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id",                      null: false
@@ -175,6 +186,7 @@ ActiveRecord::Schema.define(version: 20160106022823) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "contacts", "contact_categories"
+  add_foreign_key "media", "microposts"
   add_foreign_key "microposts", "sources"
   add_foreign_key "microposts", "users"
   add_foreign_key "post_references", "microposts"

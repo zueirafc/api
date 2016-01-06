@@ -1,8 +1,15 @@
 FactoryGirl.define do
   factory :medium do
-    micropost nil
-file "MyString"
-kind 1
+    file { Forgery('name').company_name }
+    kind { MediumKind.list.sample }
+
+    association :micropost, factory: :micropost
   end
 
+  factory :invalid_medium, parent: :medium do
+    file nil
+    kind nil
+
+    micropost nil
+  end
 end
