@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :newsletter do
     email { Forgery('internet').email_address }
-    is_accepted_partner {Forgery('basic').boolean}
+    is_accepted_partner { Forgery('basic').boolean }
 
     status { CommonStatus.list.sample }
   end
