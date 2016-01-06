@@ -14,8 +14,12 @@ build:
         code: bundle exec rake db:schema:load RAILS_ENV=test
 
     - script:
-        name: rspec
+        name: RSpec
         code: bundle exec rspec
+
+    - script:
+        name: Rubocop (static code analyzer)
+        code: bundle exec rubocop -D
 
 deploy:
     steps:
