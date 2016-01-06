@@ -27,6 +27,12 @@ RSpec.describe Contact, type: :model do
   end
 
   context 'table indexes' do
+    it { is_expected.to have_db_index(:status) }
     it { is_expected.to have_db_index(:contact_category_id) }
+  end
+
+  context 'factories' do
+    it { expect(build(:contact)).to be_valid }
+    it { expect(build(:invalid_contact)).to_not be_valid }
   end
 end

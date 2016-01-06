@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160106011631) do
 
   add_index "contacts", ["contact_category_id"], name: "index_contacts_on_contact_category_id", using: :btree
   add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
+  add_index "contacts", ["status"], name: "index_contacts_on_status", using: :btree
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id",                      null: false

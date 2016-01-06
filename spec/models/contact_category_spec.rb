@@ -6,6 +6,12 @@ RSpec.describe ContactCategory, type: :model do
   end
 
   context 'model validations' do
+    it { is_expected.to validate_presence_of(:name) }
+
+    it do
+      is_expected.to validate_presence_of(:status)
+      is_expected.to validate_inclusion_of(:status).in_array(CommonStatus.list)
+    end
   end
 
   context 'table fields' do
@@ -14,5 +20,11 @@ RSpec.describe ContactCategory, type: :model do
   end
 
   context 'table indexes' do
+    it { is_expected.to have_db_index(:status) }
+  end
+
+  context 'factories' do
+    it { expect(build(:contact_category)).to be_valid }
+    it { expect(build(:invalid_contact_category)).to_not be_valid }
   end
 end

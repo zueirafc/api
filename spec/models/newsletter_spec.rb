@@ -21,4 +21,9 @@ RSpec.describe Newsletter, type: :model do
     it { is_expected.to have_db_index(:email).unique }
     it { is_expected.to have_db_index(:status) }
   end
+
+  context 'factories' do
+    it { expect(build(:newsletter)).to be_valid }
+    it { expect(build(:invalid_newsletter)).to_not be_valid }
+  end
 end
