@@ -12,7 +12,7 @@ RSpec.describe Contact, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:message) }
 
-    it do
+    it :status do
       is_expected.to validate_presence_of(:status)
       is_expected.to validate_inclusion_of(:status).in_array(ContactStatus.list)
     end

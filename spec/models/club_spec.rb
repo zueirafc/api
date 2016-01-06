@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Club, type: :model do
+  context 'associations' do
+    it { is_expected.to have_many(:sources) }
+  end
+  
   context 'model validations' do
     it { is_expected.to validate_presence_of(:shield) }
     it { is_expected.to validate_presence_of(:full_name) }

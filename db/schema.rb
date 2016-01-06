@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106011631) do
+ActiveRecord::Schema.define(version: 20160106022823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,18 @@ ActiveRecord::Schema.define(version: 20160106011631) do
   add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
   add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
+  create_table "sources", force: :cascade do |t|
+    t.string  "name",    null: false
+    t.string  "key",     null: false
+    t.integer "kind",    null: false
+    t.integer "status",  null: false
+    t.integer "club_id"
+  end
+
+  add_index "sources", ["club_id"], name: "index_sources_on_club_id", using: :btree
+  add_index "sources", ["kind"], name: "index_sources_on_kind", using: :btree
+  add_index "sources", ["status"], name: "index_sources_on_status", using: :btree
+
   create_table "synonymous_clubs", force: :cascade do |t|
     t.integer "club_id"
     t.string  "name"
@@ -163,9 +175,11 @@ ActiveRecord::Schema.define(version: 20160106011631) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "contacts", "contact_categories"
+  add_foreign_key "microposts", "sources"
   add_foreign_key "microposts", "users"
   add_foreign_key "post_references", "microposts"
   add_foreign_key "post_references", "users"
+  add_foreign_key "sources", "clubs"
   add_foreign_key "synonymous_clubs", "clubs"
   add_foreign_key "taggeds", "microposts"
   add_foreign_key "taggeds", "synonymous_clubs"
