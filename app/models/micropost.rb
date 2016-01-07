@@ -3,6 +3,8 @@ class Micropost < ActiveRecord::Base
   belongs_to :source
 
   has_many :media
+  has_many :targets
+  has_many :trollers
 
   validates :text, :shared, :user, presence: true
 

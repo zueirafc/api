@@ -6,6 +6,8 @@ RSpec.describe Micropost, type: :model do
     it { is_expected.to belong_to(:source) }
 
     it { is_expected.to have_many(:media) }
+    it { is_expected.to have_many(:targets) }
+    it { is_expected.to have_many(:trollers) }
   end
 
   context 'model validations' do

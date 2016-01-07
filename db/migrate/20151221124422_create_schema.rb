@@ -94,6 +94,7 @@ class CreateSchema < ActiveRecord::Migration
     create_table :post_references do |t|
       t.references :micropost, index: true
       t.references :user, index: true
+      t.references :referenceable, polymorphic: true, index: true
 
       t.timestamps null: false
     end
