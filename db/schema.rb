@@ -45,14 +45,33 @@ ActiveRecord::Schema.define(version: 20160107160416) do
 
   add_index "contacts", ["contact_category_id"], name: "index_contacts_on_contact_category_id", using: :btree
   add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
+  add_index "contacts", ["status"], name: "index_contacts_on_status", using: :btree
 
-  create_table "microposts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "media", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "kind",         null: false
+    t.integer  "micropost_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
+  add_index "media", ["kind"], name: "index_media_on_kind", using: :btree
+  add_index "media", ["micropost_id"], name: "index_media_on_micropost_id", using: :btree
+
+  create_table "microposts", force: :cascade do |t|
+    t.integer  "user_id",                      null: false
+    t.integer  "source_id"
+    t.text     "text",                         null: false
+    t.boolean  "all_targets",  default: false, null: false
+    t.boolean  "all_trollers", default: false, null: false
+    t.integer  "status",                       null: false
+    t.integer  "shared",       default: 0
+    t.boolean  "is_shared",    default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "microposts", ["status"], name: "index_microposts_on_status", using: :btree
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id", using: :btree
 
   create_table "newsletters", force: :cascade do |t|
@@ -68,13 +87,14 @@ ActiveRecord::Schema.define(version: 20160107160416) do
 
   create_table "post_references", force: :cascade do |t|
     t.integer  "micropost_id"
-    t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "referenceable_id"
+    t.string   "referenceable_type"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "post_references", ["micropost_id"], name: "index_post_references_on_micropost_id", using: :btree
-  add_index "post_references", ["user_id"], name: "index_post_references_on_user_id", using: :btree
+  add_index "post_references", ["referenceable_id", "referenceable_type"], name: "idx_post_references_as_polimorphic_referenceable", using: :btree
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -104,6 +124,18 @@ ActiveRecord::Schema.define(version: 20160107160416) do
 
   add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
   add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
+
+  create_table "sources", force: :cascade do |t|
+    t.string  "name",    null: false
+    t.string  "key",     null: false
+    t.integer "kind",    null: false
+    t.integer "status",  null: false
+    t.integer "club_id"
+  end
+
+  add_index "sources", ["club_id"], name: "index_sources_on_club_id", using: :btree
+  add_index "sources", ["kind"], name: "index_sources_on_kind", using: :btree
+  add_index "sources", ["status"], name: "index_sources_on_status", using: :btree
 
   create_table "synonymous_clubs", force: :cascade do |t|
     t.integer "club_id"
@@ -177,9 +209,11 @@ ActiveRecord::Schema.define(version: 20160107160416) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "contacts", "contact_categories"
+  add_foreign_key "media", "microposts"
+  add_foreign_key "microposts", "sources"
   add_foreign_key "microposts", "users"
   add_foreign_key "post_references", "microposts"
-  add_foreign_key "post_references", "users"
+  add_foreign_key "sources", "clubs"
   add_foreign_key "synonymous_clubs", "clubs"
   add_foreign_key "taggeds", "microposts"
   add_foreign_key "taggeds", "synonymous_clubs"

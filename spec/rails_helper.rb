@@ -31,7 +31,7 @@ else
   ActiveRecord::Migration.maintain_test_schema!
 end
 
-FactoryGirl.definition_file_paths = %W(spec/support/factories)
+FactoryGirl.definition_file_paths = %w(spec/support/factories)
 FactoryGirl.reload
 
 require File.expand_path('../../config/environment', __FILE__)

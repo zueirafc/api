@@ -93,14 +93,15 @@ class CreateSchema < ActiveRecord::Migration
 
     create_table :post_references do |t|
       t.references :micropost, index: true
-      t.references :user, index: true
-      t.references :referenceable, polymorphic: true, index: true
+      t.references :referenceable, polymorphic: true
 
       t.timestamps null: false
     end
 
+    add_index :post_references, [:referenceable_id, :referenceable_type],
+               name: 'idx_post_references_as_polimorphic_referenceable'
+
     add_foreign_key :post_references, :microposts, column: :micropost_id
-    add_foreign_key :post_references, :users, column: :user_id
 
     create_table :taggeds do |t|
       t.references :micropost, index: true
