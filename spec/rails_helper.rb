@@ -10,7 +10,10 @@ else
     coverage_dir File.join('.', 'tmp', 'code_analysis', 'coverage')
   end
 
-  SimpleCov.start 'rails'
+  SimpleCov.start 'rails' do
+    add_filter '/test/'
+    add_filter '/lib/'
+  end
 end
 
 require 'rails/all'
@@ -21,14 +24,17 @@ require 'shoulda/matchers'
 require 'database_cleaner'
 require 'spec_helper'
 
-require File.expand_path('../../config/environment', __FILE__)
-
 # for faster rspec start, run: SKIP_MIGRATION=1 rspec
 if ENV['SKIP_MIGRATION']
   puts 'MIGRATION SKIPPED!'
 else
   ActiveRecord::Migration.maintain_test_schema!
 end
+
+FactoryGirl.definition_file_paths = %w(spec/support/factories)
+FactoryGirl.reload
+
+require File.expand_path('../../config/environment', __FILE__)
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

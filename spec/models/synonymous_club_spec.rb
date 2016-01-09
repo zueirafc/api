@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Tag, type: :model do
+RSpec.describe SynonymousClub, type: :model do
   context 'associations' do
     it { is_expected.to belong_to(:club) }
   end
@@ -22,7 +22,7 @@ RSpec.describe Tag, type: :model do
   end
 
   context 'factories' do
-    it { expect(build(:tag)).to be_valid }
-    it { expect(build(:invalid_tag)).to_not be_valid }
+    it { expect(build(:synonymous_club)).to be_valid }
+    it { expect(build(:invalid_synonymous_club)).to_not be_valid }
   end
 end

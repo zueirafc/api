@@ -1,0 +1,9 @@
+pt-BR:
+  enumerations:
+    source_kind:
+      facebook_page: Página do Facebook
+      twitter_user: Usuário do Twitter
+      twitter_hashtag: Hastag do Twitter
+      atom_feed: ATOM Feed
+      rss_feed: RSS Feed
+      instagram_user: Usuário do Instagram

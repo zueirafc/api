@@ -30,5 +30,10 @@ RSpec.describe <%= class_name %>, type: :model do
       <%- end -%>
     <%- end -%>
   end
+
+  context 'factories' do
+    it { expect(build(:<%= class_name.to_s.underscore %>)).to be_valid }
+    it { expect(build(:invalid_<%= class_name.to_s.underscore %>)).to_not be_valid }
+  end
 end
 <% end -%>

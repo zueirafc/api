@@ -1,0 +1,5 @@
+pt-BR:
+  enumerations:
+    contact_status:
+      read: Lido
+      unread: Não Lido

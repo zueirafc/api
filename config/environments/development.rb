@@ -15,6 +15,8 @@ Rails.application.configure do
   config.app_generators.scaffold_controller :responders_controller
 
   config.generators do |g|
+    g.factory_girl dir: 'spec/support/factories'
+
     g.test_framework :rspec,
                      view_specs: false,
                      request_specs: false,

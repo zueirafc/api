@@ -5,6 +5,7 @@ ruby '2.3.0'
 gem 'rails', '4.2.5'
 gem 'rails-api'
 
+gem 'enumerate_it'
 gem 'acl9'
 gem 'pg'
 gem 'responders'
@@ -44,7 +45,6 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'forgery'
   gem 'shoulda-matchers'
-  gem 'spring'
   gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', require: nil

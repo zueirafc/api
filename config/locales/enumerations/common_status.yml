@@ -1,0 +1,5 @@
+pt-BR:
+  enumerations:
+    common_status: &common_status
+      inactive: Inativo
+      active: Ativo

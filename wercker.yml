@@ -1,15 +1,20 @@
-ruby: 2.3.0
-box: phusion/passenger-ruby22
+box: ruby:2.3
 services:
   - postgres
 build:
   steps:
+    - script:
+        name: bundle config
+        code: bundle config build.nokogiri --use-system-libraries
+
     - bundle-install
     - rails-database-yml
     - script:
+        name: Set up db
         code: bundle exec rake db:schema:load RAILS_ENV=test
 
     - script:
+        name: RSpec
         code: bundle exec rspec
 
     - script:
