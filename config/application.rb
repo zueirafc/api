@@ -16,5 +16,10 @@ module Api
     config.active_record.raise_in_transactional_callbacks = true
 
     I18n.config.enforce_available_locales = false
+
+    config.middleware.use config.session_store, config.session_options
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
   end
 end
