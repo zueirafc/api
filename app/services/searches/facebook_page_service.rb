@@ -1,5 +1,5 @@
 module Searches
-  class FacebookService
+  class FacebookPageService
     class << self
       def find_posts_for(event)
         params = { count: 100, max_tag_id: event.medias.last.try(&:id) }
