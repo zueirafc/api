@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable # , :omniauthable
+         :trackable, :validatable, :omniauthable
 
   belongs_to :club
 

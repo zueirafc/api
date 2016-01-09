@@ -6,7 +6,7 @@
 [![Code Climate](https://codeclimate.com/github/zueirafc/api/badges/gpa.svg)](https://codeclimate.com/github/zueirafc/api)
 [![Issue Count](https://codeclimate.com/github/zueirafc/api/badges/issue_count.svg)](https://codeclimate.com/github/zueirafc/api)
 [![Test Coverage](https://codeclimate.com/github/zueirafc/api/badges/coverage.svg)](https://codeclimate.com/github/zueirafc/api/coverage)
-[![Deployed at Heroku](https://img.shields.io/badge/deployed-heroku-blue.svg)](http://zueirafc.herokuapp.com/)
+[![Deployed at Heroku](https://img.shields.io/badge/deployed-heroku-blue.svg)](http://zueira-api.herokuapp.com/)
 
 
-Made by: [@brunoocasali](github.com/brunoocasali)
+Made by: [@brunoocasali](github.com/brunoocasali) and :shipit:

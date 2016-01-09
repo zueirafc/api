@@ -69,16 +69,22 @@ class CreateSchema < ActiveRecord::Migration
 
     add_index :relationships, [:follower_id, :followed_id], unique: true
 
-    create_table :tags do |t|
+    create_table :synonymous_clubs do |t|
       t.references :club, index: true
       t.string :name
     end
 
-    add_foreign_key :tags, :clubs, column: :club_id
+    add_foreign_key :synonymous_clubs, :clubs, column: :club_id
 
     create_table :microposts do |t|
-      t.references :user, index: true
-      t.text :text
+      t.references :user, index: true, null: false
+      t.references :source, null: true
+      t.text :text, null: false
+      t.boolean :all_targets, null: false, default: false
+      t.boolean :all_trollers, null: false, default: false
+      t.integer :status, index: true, null: false
+      t.integer :shared, default: 0
+      t.boolean :is_shared, default: false
 
       t.timestamps null: false
     end
@@ -87,22 +93,24 @@ class CreateSchema < ActiveRecord::Migration
 
     create_table :post_references do |t|
       t.references :micropost, index: true
-      t.references :user, index: true
+      t.references :referenceable, polymorphic: true
 
       t.timestamps null: false
     end
 
+    add_index :post_references, [:referenceable_id, :referenceable_type],
+               name: 'idx_post_references_as_polimorphic_referenceable'
+
     add_foreign_key :post_references, :microposts, column: :micropost_id
-    add_foreign_key :post_references, :users, column: :user_id
 
     create_table :taggeds do |t|
       t.references :micropost, index: true
-      t.references :tag, index: true
+      t.references :synonymous_club, index: true
 
       t.timestamps null: false
     end
 
     add_foreign_key :taggeds, :microposts, column: :micropost_id
-    add_foreign_key :taggeds, :tags, column: :tag_id
+    add_foreign_key :taggeds, :synonymous_clubs, column: :synonymous_club_id
   end
 end

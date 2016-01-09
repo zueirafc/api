@@ -1,0 +1,6 @@
+pt-BR:
+  enumerations:
+    medium_kind:
+      gif: GIF
+      image: Imagem
+      video: Vídeo

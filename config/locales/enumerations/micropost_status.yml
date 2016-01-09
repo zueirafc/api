@@ -1,0 +1,7 @@
+pt-BR:
+  enumerations:
+    micropost_status:
+      deleted: Deletado
+      banned: Banido
+      active: Ativo
+      pending: Pendente
