@@ -1,8 +1,8 @@
 module Searches
   class TwitterHashtagService
     class << self
-      def find_tweets_for(event, client = $twitter_client)
-        last = event.tweets.last.try(&:id)
+      def find_tweets_for(source, client = $twitter_client)
+        last = source.last.last.try(&:id)
 
         client.search("#{event.tag} -rt", result_type: :recent)
           .each_with_index do |tweet, i|
