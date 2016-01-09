@@ -12,6 +12,10 @@ build:
     - script:
         code: bundle exec rspec
 
+    - script:
+        name: Rubocop (static code analyzer)
+        code: bundle exec rubocop -D
+
 deploy:
     steps:
       - heroku-deploy:
