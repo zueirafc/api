@@ -19,8 +19,8 @@ gem 'carrierwave-base64'
 
 # authentication
 gem 'devise_token_auth'
-# gem 'omniauth-facebook'
-# gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 group :test, :development do
   gem 'pry-rails'
