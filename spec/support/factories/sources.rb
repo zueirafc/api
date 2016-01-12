@@ -7,6 +7,10 @@ FactoryGirl.define do
     status { CommonStatus.list.sample }
 
     association :club, factory: :club
+
+    trait :active do
+      status CommonStatus::ACTIVE
+    end
   end
 
   factory :invalid_source, parent: :source do

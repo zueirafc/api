@@ -8,6 +8,7 @@ else
 
   SimpleCov.configure do
     coverage_dir File.join('.', 'tmp', 'code_analysis', 'coverage')
+    minimum_coverage 90
   end
 
   SimpleCov.start 'rails' do

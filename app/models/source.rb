@@ -7,7 +7,5 @@ class Source < ActiveRecord::Base
   has_enumeration_for :kind, with: SourceKind, required: true
   has_enumeration_for :status, with: CommonStatus, required: true
 
-  def last
-    microposts.last
-  end
+  delegate :last, to: :microposts
 end
