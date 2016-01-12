@@ -4,7 +4,7 @@ module Searches
       def find_tweets_for(source, client = $twitter_client)
         last = source.last.last.try(&:id)
 
-        client.search("from:SOURCE_KEY -rt", result_type: :recent)
+        client.search('from:SOURCE_KEY -rt', result_type: :recent)
           .each_with_index do |tweet, i|
           break if tweet.id.to_s.eql?(last) || i.eql?(100)
 
