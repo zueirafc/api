@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  include DeviseTokenAuth::Concerns::User
+  devise :database_authenticatable, :registerable, :recoverable, :trackable,
+         :validatable, :omniauthable
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :omniauthable
+  include DeviseTokenAuth::Concerns::User
 
   belongs_to :club
 

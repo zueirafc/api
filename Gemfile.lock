@@ -74,7 +74,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise_token_auth (0.1.36)
+    devise_token_auth (0.1.37.beta4)
       devise (~> 3.5.2)
       rails (~> 4.2)
     diff-lcs (1.2.5)
@@ -266,7 +266,7 @@ GEM
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
-    rspec-mocks (3.4.0)
+    rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-rails (3.4.0)
@@ -287,7 +287,7 @@ GEM
       tins (<= 1.6.0)
     ruby-progressbar (1.7.5)
     shellany (0.0.1)
-    shoulda-matchers (3.0.1)
+    shoulda-matchers (3.1.0)
       activesupport (>= 4.0.0)
     simple_oauth (0.3.1)
     simplecov (0.11.1)
@@ -339,7 +339,7 @@ DEPENDENCIES
   cloudinary
   codeclimate-test-reporter
   database_cleaner
-  devise_token_auth
+  devise_token_auth (= 0.1.37.beta4)
   dotenv
   enumerate_it
   factory_girl_rails

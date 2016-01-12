@@ -3,8 +3,7 @@ module Searches
     class << self
       def find_tweets_for(source)
         last = source.last.try(&:id)
-        # params = "#{source.key} -rt"
-        params = 'from:Greenpeace #forests Pandas -rt'
+        params = "#{source.key} -rt"
 
         TwitterProvider.client.search(params).each_with_index do |tweet, i|
           break if reached_limit? tweet.id, last, i

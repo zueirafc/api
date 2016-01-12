@@ -13,12 +13,19 @@ module Searches
     let(:source) { create :source, source_params }
 
     describe '.find_tweets_for' do
-      it 'needs to return the crawled items from web' do
+      it 'needs to return the maximum of crawled items from web' do
         expect(source.microposts.count).to eq(0)
 
         subject.find_tweets_for(source)
 
         expect(source.microposts.count).to eq(100)
+      end
+
+      it 'need to log if an error happens' do
+        message = /--- ERROR at TwitterHashtagService:/
+        expect(Rails.logger).to receive(:info).with(message)
+
+        subject.find_tweets_for(source)
       end
     end
 
@@ -48,44 +55,6 @@ module Searches
         end
       end
 
-      context 'when tweet is invalid' do
-        it 'does not create a Item' do
-          last = subject.make_a_item_by(invalid_tweet)
-
-          expect(last).to be_nil
-        end
-      end
-    end
-
-    xdescribe '.make_an_author_by' do
-      let(:tweet) do
-        Twitter::Tweet.new(id: '596008529309278208', text: 'a text tweet',
-                           user: { id: 2_345_643,
-                                   profile_url: 'http://twitter.com/brunoocasali',
-                                   screen_name: 'brunoocasali',
-                                   name: 'Bruno Casali' })
-      end
-      let(:invalid_tweet) { nil }
-
-      context 'when tweet is valid' do
-        it 'create a new valid Item' do
-          author = subject.make_an_author_by(tweet.user)
-
-          expect(author).to be_a(Author)
-          expect(author).to_not be_nil
-          expect(author.id).to eq(tweet.user.id)
-          expect(author.screen_name).to eq("@#{tweet.user.screen_name}")
-          expect(author.service).to eq(ServiceKind::TWITTER)
-        end
-      end
-
-      # context 'when tweet is invalid' do
-      #   it 'does not create a Item' do
-      #     last = subject.make_an_author_by(invalid_tweet)
-      #
-      #     expect(last).to be_nil
-      #   end
-      # end
     end
   end
 end

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   # rubocop:disable Metrics/LineLength
   factory :club, class: 'Club' do
-    shield { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/clubs/shield-old.jpg')) }
+    shield { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/images/clubs/shield-old.jpg')) }
     official_website { Forgery('internet').domain_name }
     official_facebook_page { Forgery('internet').domain_name }
     official_twitter_page { Forgery('internet').domain_name }

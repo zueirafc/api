@@ -19,7 +19,7 @@ gem 'cloudinary'
 gem 'carrierwave-base64'
 
 # authentication
-gem 'devise_token_auth'
+gem 'devise_token_auth', '0.1.37.beta4'
 gem 'omniauth-facebook'
 
 # searches

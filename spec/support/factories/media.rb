@@ -1,14 +1,13 @@
 FactoryGirl.define do
+  # rubocop:disable Metrics/LineLength
   factory :medium do
-    file { Forgery('name').company_name }
-    kind { MediumKind.list.sample }
+    file { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/images/media/docker.png')) }
 
     association :micropost, factory: :micropost
   end
 
   factory :invalid_medium, parent: :medium do
     file nil
-    kind nil
 
     micropost nil
   end

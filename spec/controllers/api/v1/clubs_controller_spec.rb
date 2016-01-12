@@ -77,7 +77,7 @@ module Api
         context 'with valid params' do
           let(:new_attributes) do
             attributes_for :club,
-                           shield: fixture_file_upload(File.join(Rails.root, 'spec/support/clubs/shield-new.png'))
+                           shield: fixture_file_upload(File.join(Rails.root, 'spec/support/images/clubs/shield-new.png'))
           end
 
           it 'updates the requested club' do
