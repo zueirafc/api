@@ -1,4 +1,5 @@
 require 'rails_helper'
+# require 'support/uris/registered_uris'
 
 module Searches
   RSpec.describe TwitterHashtagService, type: :service do
@@ -8,16 +9,16 @@ module Searches
       it { is_expected.to respond_to(:find_tweets_for) }
     end
 
+    let(:source_params) { { key: '#ruby', kind: SourceKind::TWITTER_HASHTAG } }
+    let(:source) { create :source, source_params }
+
     describe '.find_tweets_for' do
-      xit 'needs to return the crawled items from web' do
-        event = create :event, hash_tag: '#justin',
-                               services: [ServiceKind::TWITTER]
+      it 'needs to return the crawled items from web' do
+        expect(source.microposts.count).to eq(0)
 
-        expect(event.items.count).to eq(0)
+        subject.find_tweets_for(source)
 
-        subject.find_tweets_for(event)
-
-        expect(event.items.count).to eq(100)
+        expect(source.microposts.count).to eq(100)
       end
     end
 

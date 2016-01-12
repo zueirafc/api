@@ -3,7 +3,8 @@ module Searches
     class << self
       def find_tweets_for(source)
         last = source.last.try(&:id)
-        params = "#{source.key} -rt"
+        # params = "#{source.key} -rt"
+        params = 'from:Greenpeace #forests Pandas -rt'
 
         TwitterProvider.client.search(params).each_with_index do |tweet, i|
           break if reached_limit? tweet.id, last, i
@@ -31,14 +32,18 @@ module Searches
                                   source: source,
                                   status: MicropostStatus::PENDING
 
+          post.trollers << Troller.new(trollerable: source.club)
+
           attach_content_to post, from: tweet
         end
       end
 
       def attach_content_to(post, from:)
         from.media.each do |item|
-          medium = Medium.new micropost: post
-          medium.remote_file_url = item.media_url_https
+          Medium.create do |m|
+            m.micropost = post
+            m.remote_file_url = item.media_url_https.to_s
+          end
         end
       end
     end

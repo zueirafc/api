@@ -1,4 +1,11 @@
 Devise.setup do |config|
-  config.secret_key = 'f1783f4875d87567bb0587749efa76293b35effff111ba4ce38e871b45ec76009587eeaa1f61e26f74f4831662cdea458ea98367fc4c34b23df09033f8638b16'
+  # The e-mail address that mail will appear to be sent from
+  # If absent, mail is sent from "please-change-me-at-config-initializers-devise@example.com"
+  config.mailer_sender = 'arbitragem@zueirafc.com'
+
+  # If using rails-api, you may want to tell devise to not use ActionDispatch::Flash
+  # middleware b/c rails-api does not include it.
+  # See: http://stackoverflow.com/q/19600905/806956
+  config.navigational_formats = [:json]
   config.authentication_keys = [:email, :username]
 end

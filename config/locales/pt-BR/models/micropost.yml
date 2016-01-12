@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      micropost:
+        one: Postagem
+        other: Postagens
+    attributes:
+      micropost:
+        user: Autor
+        source: Fonte
+        text: Texto
+        all_targets: Contra Todos
+        all_trollers: Todos Contra
+        status: Situação
+        shared: Compartilhamentos
+        is_shared: Compartilhado?
+        provider_id: ID Original

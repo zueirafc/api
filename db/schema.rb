@@ -49,17 +49,15 @@ ActiveRecord::Schema.define(version: 20160112020847) do
 
   create_table "media", force: :cascade do |t|
     t.string   "file"
-    t.integer  "kind",         null: false
     t.integer  "micropost_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "media", ["kind"], name: "index_media_on_kind", using: :btree
   add_index "media", ["micropost_id"], name: "index_media_on_micropost_id", using: :btree
 
   create_table "microposts", force: :cascade do |t|
-    t.integer  "user_id",                      null: false
+    t.integer  "user_id"
     t.integer  "source_id"
     t.text     "text",                         null: false
     t.boolean  "all_targets",  default: false, null: false
@@ -73,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160112020847) do
   end
 
   add_index "microposts", ["provider_id", "source_id"], name: "index_microposts_on_provider_id_and_source_id", unique: true, using: :btree
+  add_index "microposts", ["source_id"], name: "index_microposts_on_source_id", using: :btree
   add_index "microposts", ["status"], name: "index_microposts_on_status", using: :btree
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id", using: :btree
 
@@ -190,10 +189,6 @@ ActiveRecord::Schema.define(version: 20160112020847) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
     t.string   "name"
     t.string   "email"
     t.string   "username"
