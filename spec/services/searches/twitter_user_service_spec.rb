@@ -5,6 +5,7 @@ module Searches
     subject { described_class }
 
     context 'class methods' do
+      it { is_expected.to respond_to(:make_a_item_by) }
       it { is_expected.to respond_to(:find_tweets_for) }
     end
 
@@ -21,7 +22,7 @@ module Searches
       end
     end
 
-    xdescribe '.make_a_item_by' do
+    describe '.make_a_item_by' do
       let(:tweet) do
         Twitter::Tweet.new(id: '596008529309278208', text: 'a text tweet',
                            user: { id: '2345643',
@@ -56,7 +57,7 @@ module Searches
       end
     end
 
-    xdescribe '.make_an_author_by' do
+    describe '.make_an_author_by' do
       let(:tweet) do
         Twitter::Tweet.new(id: '596008529309278208', text: 'a text tweet',
                            user: { id: 2_345_643,

@@ -5,6 +5,7 @@ FactoryGirl.define do
     all_trollers { Forgery('basic').boolean }
     is_shared { Forgery('basic').boolean }
     shared { Forgery('basic').number }
+    provider_id { Forgery('basic').password }
 
     status { MicropostStatus.list.sample }
 

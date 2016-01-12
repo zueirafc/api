@@ -1,36 +1,45 @@
 module Searches
   class TwitterHashtagService
     class << self
-      def find_tweets_for(source, client = $twitter_client)
-        last = source.last.last.try(&:id)
+      def find_tweets_for(source)
+        last = source.last.try(&:id)
+        params = "#{source.key} -rt"
 
-        client.search("#{event.tag} -rt", result_type: :recent)
-          .each_with_index do |tweet, i|
-          break if tweet.id.to_s.eql?(last) || i.eql?(100)
+        TwitterProvider.client.search(params).each_with_index do |tweet, i|
+          break if reached_limit? tweet.id, last, i
 
           begin
-            ActiveRecord::Base.transaction do
-              event.items << make_a_item_by(tweet)
-            end
+            make_a_item_using!(tweet, source)
           rescue => e
-            Rails.logger.info "----- ERROR at twitter: #{e.message} -----\n"
+            Rails.logger.info "--- ERROR at #{self.class}: #{e.message} ---\n"
           end
         end
       end
 
-      def make_a_item_by(tweet)
+      private
+
+      def reached_limit?(id, last, index)
+        id.to_s.eql?(last) || index.eql?(100)
+      end
+
+      def make_a_item_using!(tweet, source)
         return unless tweet
 
-        # item = Item.new(id: tweet.id,
-        #                 text: tweet.text,
-        #                 status: ItemStatus::LISTED,
-        #                 author: make_an_author_by(tweet.user),
-        #                 service: ServiceKind::TWITTER)
+        ActiveRecord::Base.transaction do
+          post = Micropost.create provider_id: tweet.id,
+                                  text: tweet.text,
+                                  source: source,
+                                  status: MicropostStatus::PENDING
 
-        item.remote_image_url =
-          tweet.media[0].media_url_https if tweet.media.present?
+          attach_content_to post, from: tweet
+        end
+      end
 
-        item
+      def attach_content_to(post, from:)
+        from.media.each do |item|
+          medium = Medium.new micropost: post
+          medium.remote_file_url = item.media_url_https
+        end
       end
     end
   end

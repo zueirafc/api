@@ -78,7 +78,7 @@ class CreateSchema < ActiveRecord::Migration
 
     create_table :microposts do |t|
       t.references :user, index: true, null: false
-      t.references :source, null: true
+      t.references :source, null: true, index: true
       t.text :text, null: false
       t.boolean :all_targets, null: false, default: false
       t.boolean :all_trollers, null: false, default: false

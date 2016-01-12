@@ -9,6 +9,8 @@ else
   SimpleCov.configure do
     coverage_dir File.join('.', 'tmp', 'code_analysis', 'coverage')
     minimum_coverage 90
+    add_group 'Services', 'app/services'
+    add_group 'Serializers', 'app/serializers'
   end
 
   SimpleCov.start 'rails' do
@@ -23,6 +25,7 @@ require 'factory_girl'
 require 'forgery'
 require 'shoulda/matchers'
 require 'database_cleaner'
+require 'fakeweb'
 require 'spec_helper'
 
 # for faster rspec start, run: SKIP_MIGRATION=1 rspec

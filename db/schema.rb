@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107160416) do
+ActiveRecord::Schema.define(version: 20160112020847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,13 +64,15 @@ ActiveRecord::Schema.define(version: 20160107160416) do
     t.text     "text",                         null: false
     t.boolean  "all_targets",  default: false, null: false
     t.boolean  "all_trollers", default: false, null: false
-    t.integer  "status",                       null: false
+    t.integer  "status",       default: 0,     null: false
     t.integer  "shared",       default: 0
     t.boolean  "is_shared",    default: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "provider_id"
   end
 
+  add_index "microposts", ["provider_id", "source_id"], name: "index_microposts_on_provider_id_and_source_id", unique: true, using: :btree
   add_index "microposts", ["status"], name: "index_microposts_on_status", using: :btree
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id", using: :btree
 

@@ -9,7 +9,7 @@ FactoryGirl.define do
     association :club, factory: :club
 
     trait :active do
-      status CommonStatus::ACTIVE
+      status { CommonStatus::ACTIVE }
     end
   end
 

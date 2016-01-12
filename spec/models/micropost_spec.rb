@@ -11,8 +11,8 @@ RSpec.describe Micropost, type: :model do
   end
 
   context 'model validations' do
-    it { is_expected.to validate_presence_of(:user) }
     it { is_expected.to validate_presence_of(:text) }
+    it { is_expected.to validate_presence_of(:provider_id) }
 
     it :status do
       is_expected.to validate_presence_of(:status)
@@ -22,12 +22,34 @@ RSpec.describe Micropost, type: :model do
   end
 
   context 'table fields' do
-    it { is_expected.to have_db_column(:text).of_type(:text) }
-
+    it { is_expected.to have_db_column(:text).of_type(:text).with_options(null: false) }
+    it do
+      is_expected.to have_db_column(:all_targets)
+        .of_type(:boolean).with_options(null: false, default: false)
+    end
+    it do
+      is_expected.to have_db_column(:all_trollers)
+        .of_type(:boolean).with_options(null: false, default: false)
+    end
+    it do
+      is_expected.to have_db_column(:is_shared)
+        .of_type(:boolean).with_options(default: false)
+    end
+    it do
+      is_expected.to have_db_column(:shared)
+        .of_type(:integer).with_options(default: 0)
+    end
+    it do
+      is_expected.to have_db_column(:status)
+        .of_type(:integer).with_options(default: 0)
+    end
     it { is_expected.to have_db_column(:user_id).of_type(:integer) }
+    it { is_expected.to have_db_column(:source_id).of_type(:integer) }
   end
 
   context 'table indexes' do
+    it { is_expected.to have_db_index(:status) }
+
     it { is_expected.to have_db_index(:user_id) }
   end
 

@@ -94,7 +94,7 @@ guard :rspec, rspec_options do
   end
 end
 
-guard :rubocop, all_on_start: false, cli: '-a' do
+guard :rubocop, all_on_start: false, cli: '-aD' do
   watch(/.+\.rb$/)
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end

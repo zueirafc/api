@@ -79,6 +79,13 @@ module Searches
 
             expect(@base).to receive(:find_by_instagram_user!).with(no_args)
           end
+
+          it 'need calls proper service' do
+            @source.update!(kind: SourceKind::INSTAGRAM_USER)
+
+            expect(InstagramUserService).to receive(:find_media_items_for)
+              .with(@source)
+          end
         end
       end
 
@@ -88,6 +95,13 @@ module Searches
             @source.update!(kind: SourceKind::TWITTER_HASHTAG)
 
             expect(@base).to receive(:find_by_twitter_hashtag!).with(no_args)
+          end
+
+          it 'need calls proper service' do
+            @source.update!(kind: SourceKind::TWITTER_HASHTAG)
+
+            expect(TwitterHashtagService).to receive(:find_tweets_for)
+              .with(@source)
           end
         end
       end
