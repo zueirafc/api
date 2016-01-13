@@ -15,9 +15,7 @@ module Searches
     end
 
     describe '.find_tweets_for' do
-      before do
-        FakeWeb.register_uri(:get, /api.twitter.com/, body: json)
-      end
+      before { FakeWeb.register_uri(:get, /api.twitter.com/, body: json) }
 
       it 'needs to return the maximum of crawled items from web' do
         expect(source.microposts.count).to eq(0)
@@ -32,6 +30,21 @@ module Searches
         expect(Rails.logger).to receive(:info).with(message).at_least(:once)
 
         subject.find_tweets_for(source)
+      end
+
+      it 'add troller from source' do
+        subject.find_tweets_for(source)
+
+        club = source.club
+        club_from_post = source.last.trollers.first.trollerable
+
+        expect(club).to eq(club_from_post)
+      end
+
+      it 'attach to post media' do
+        subject.find_tweets_for(source)
+
+        expect(source.microposts.map(&:media).compact.count).to be > 1
       end
     end
   end
