@@ -8,10 +8,10 @@ module Searches
       it { is_expected.to respond_to(:find_tweets_for) }
     end
 
-    let(:source_params) { { key: '@thoughtworks', kind: SourceKind::TWITTER_USER } }
-    let(:source) { create :source, source_params }
+    let(:params) { { key: '@thoughtworks', kind: SourceKind::TWITTER_USER } }
+    let(:source) { create :source, params }
     let(:json) do
-      File.read("#{Rails.root}/spec/support/jsons/twitter/search-user.json")
+      File.read("#{Rails.root}/spec/support/requests/twitter/search-user.json")
     end
 
     describe '.find_tweets_for' do

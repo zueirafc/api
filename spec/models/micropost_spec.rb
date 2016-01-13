@@ -22,7 +22,10 @@ RSpec.describe Micropost, type: :model do
   end
 
   context 'table fields' do
-    it { is_expected.to have_db_column(:text).of_type(:text).with_options(null: false) }
+    it do
+      is_expected.to have_db_column(:text).of_type(:text)
+        .with_options(null: false)
+    end
     it do
       is_expected.to have_db_column(:all_targets)
         .of_type(:boolean).with_options(null: false, default: false)

@@ -29,8 +29,7 @@ module Searches
                                   source: source,
                                   status: MicropostStatus::PENDING
 
-          post.trollers << Troller.new(trollerable: source.club)
-
+          attach_troller_to post, from: source
           attach_content_to post, from: tweet
         end
       end
@@ -42,6 +41,10 @@ module Searches
             m.remote_file_url = item.media_url_https.to_s
           end
         end
+      end
+
+      def attach_troller_to(post, from:)
+        post.trollers << Troller.new(trollerable: from.club)
       end
     end
   end

@@ -11,7 +11,7 @@ module Searches
     let(:source_params) { { key: '#ruby', kind: SourceKind::TWITTER_HASHTAG } }
     let(:source) { create :source, source_params }
     let(:json) do
-      File.read("#{Rails.root}/spec/support/jsons/twitter/search.json")
+      File.read("#{Rails.root}/spec/support/requests/twitter/search.json")
     end
 
     describe '.find_tweets_for' do

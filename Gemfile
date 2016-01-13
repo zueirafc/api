@@ -26,6 +26,7 @@ gem 'omniauth-facebook'
 gem 'twitter'
 gem 'instagram'
 gem 'koala', '~> 2.0'
+gem 'feedjira'
 
 gem 'clockwork'
 
