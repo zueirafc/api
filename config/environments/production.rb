@@ -18,7 +18,7 @@ Rails.application.configure do
   config.i18n.available_locales = ['pt-BR', :en]
 
   config.action_mailer.default_url_options = { host: host }
-  config.routes.default_url_options = { host: host }
+  Rails.application.routes.default_url_options = { host: host }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true

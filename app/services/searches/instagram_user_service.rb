@@ -1,7 +1,6 @@
 module Searches
   class InstagramUserService
     class << self
-      # TODO: Deal with access token!
       def find_media_items_for(_event)
         params = { count: 100, max_tag_id: source.last.try(&:provider_id) }
 
