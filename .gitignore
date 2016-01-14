@@ -15,7 +15,7 @@ pickle-email-*.html
 
 config/initializers/secret_token.rb
 
-## Environment normalisation:
+## Envir onment normalisation:
 /.bundle
 /vendor/bundle
 .rvmrc

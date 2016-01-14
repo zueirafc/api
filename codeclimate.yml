@@ -13,12 +13,10 @@ engines:
       languages:
       - ruby
       - javascript
-      - python
-      - php
   fixme:
-    enabled: true
+    enabled: false
   rubocop:
-    enabled: true
+    enabled: false
 ratings:
   paths:
   - Gemfile.lock
