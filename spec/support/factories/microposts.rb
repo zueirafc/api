@@ -5,6 +5,8 @@ FactoryGirl.define do
     all_trollers { Forgery('basic').boolean }
     is_shared { Forgery('basic').boolean }
     shared { Forgery('basic').number }
+    provider_id { Forgery('basic').password }
+    provider_url { Forgery('internet').domain_name }
 
     status { MicropostStatus.list.sample }
 
@@ -18,6 +20,8 @@ FactoryGirl.define do
     all_trollers nil
     is_shared nil
     shared nil
+    provider_id nil
+    provider_url nil
 
     status nil
 

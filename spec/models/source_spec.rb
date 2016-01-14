@@ -40,4 +40,24 @@ RSpec.describe Source, type: :model do
     it { expect(build(:source)).to be_valid }
     it { expect(build(:invalid_source)).to_not be_valid }
   end
+
+  context 'instance methods' do
+    context 'respond_to methods' do
+      let(:source) { build(:source) }
+
+      it { is_expected.to respond_to :last }
+    end
+
+    describe '#last' do
+      let(:micropost) { create :micropost }
+      let(:source) { micropost.source }
+      let(:micropost_2) { create :micropost, source: source }
+
+      it 'needs to return the last micropost' do
+        expect(source.microposts).to eq([micropost, micropost_2])
+
+        expect(source.last).to eq(micropost_2)
+      end
+    end
+  end
 end

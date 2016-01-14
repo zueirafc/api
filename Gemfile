@@ -13,14 +13,22 @@ gem 'passenger'
 gem 'active_model_serializers'
 gem 'rack-cors'
 
+# image upload
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'carrierwave-base64'
 
 # authentication
-gem 'devise_token_auth'
+gem 'devise_token_auth', '0.1.37.beta4'
 gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
+
+# searches
+gem 'twitter'
+gem 'instagram'
+gem 'koala', '~> 2.0'
+gem 'feedjira'
+
+gem 'clockwork'
 
 group :test, :development do
   gem 'pry-rails'
@@ -33,9 +41,11 @@ group :test, :development do
   gem 'zeus'
   gem 'thor'
 
+  gem 'dotenv'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'forgery'
+  gem 'fakeweb', require: false
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'simplecov', require: false
