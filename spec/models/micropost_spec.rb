@@ -23,6 +23,10 @@ RSpec.describe Micropost, type: :model do
 
   context 'table fields' do
     it do
+      is_expected.to have_db_column(:provider_id).of_type(:string)
+        .with_options(null: false)
+    end
+    it do
       is_expected.to have_db_column(:text).of_type(:text)
         .with_options(null: false)
     end
@@ -46,6 +50,9 @@ RSpec.describe Micropost, type: :model do
       is_expected.to have_db_column(:status)
         .of_type(:integer).with_options(default: 0)
     end
+
+    it { is_expected.to have_db_column(:provider_url).of_type(:string) }
+    it { is_expected.to have_db_column(:title).of_type(:string) }
     it { is_expected.to have_db_column(:user_id).of_type(:integer) }
     it { is_expected.to have_db_column(:source_id).of_type(:integer) }
   end

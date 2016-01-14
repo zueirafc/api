@@ -1,6 +1,8 @@
 class AddProviderIdToMicroposts < ActiveRecord::Migration
   def change
-    add_column :microposts, :provider_id, :string
+    add_column :microposts, :provider_id, :string, null: false
+    add_column :microposts, :provider_url, :string
+    add_column :microposts, :title, :string
 
     change_column :microposts, :status, :integer, default: 0
     change_column :microposts, :user_id, :integer, null: true
