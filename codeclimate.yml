@@ -33,4 +33,4 @@ ratings:
   - "**.module"
   - "**.php"
   - "**.py"
-exclude_paths: []
+exclude_paths: [db/migrate/schema.db]
