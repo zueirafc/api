@@ -15,8 +15,9 @@ gem 'rack-cors'
 
 # image upload
 gem 'carrierwave'
-gem 'cloudinary'
 gem 'carrierwave-base64'
+gem 'fog-aws'
+gem 'mini_magick'
 
 # authentication
 gem 'devise_token_auth', '0.1.37.beta4'

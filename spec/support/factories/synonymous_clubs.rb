@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :synonymous_club do
-    name { "#{Forgery('lorem_ipsum').words(1).downcase}" }
+    name { Forgery('lorem_ipsum').words(1).downcase.to_s }
 
     association :club, factory: :club
   end

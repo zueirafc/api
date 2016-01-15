@@ -9,6 +9,7 @@ Metrics/ModuleLength:
     - 'spec/controllers/**/*.rb'
 
 AllCops:
+  TargetRubyVersion: 2.3
   Exclude:
     - 'Gemfile.lock'
     - 'bin/**/*'
@@ -21,4 +22,5 @@ AllCops:
     - 'config/initializers/**/*'
     - '*file'
 
-  RunRailsCops: true
+Rails:
+  Enabled: true

@@ -35,7 +35,7 @@ else
   ActiveRecord::Migration.maintain_test_schema!
 end
 
-FakeWeb.allow_net_connect = false
+FakeWeb.allow_net_connect = %r{^https?://codeclimate.com}
 FactoryGirl.definition_file_paths = %w(spec/support/factories)
 FactoryGirl.reload
 
