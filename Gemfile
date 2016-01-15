@@ -16,7 +16,7 @@ gem 'rack-cors'
 # image upload
 gem 'carrierwave'
 gem 'carrierwave-base64'
-gem 'fog'
+gem 'carrierwave-aws'
 gem 'mini_magick'
 
 # authentication
