@@ -14,10 +14,10 @@ gem 'active_model_serializers'
 gem 'rack-cors'
 
 # image upload
-gem 'carrierwave'
+gem 'carrierwave', '0.10.0'
 gem 'carrierwave-base64'
-gem 'carrierwave-aws'
 gem 'mini_magick'
+gem 'fog'
 
 # authentication
 gem 'devise_token_auth', '0.1.37.beta4'
