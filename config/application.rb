@@ -15,6 +15,8 @@ module Api
     config.i18n.default_locale = :'pt-BR'
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.exceptions_app = routes
+
     I18n.config.enforce_available_locales = false
 
     config.middleware.use config.session_store, config.session_options

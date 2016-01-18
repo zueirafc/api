@@ -1,4 +1,4 @@
-host = 'zueirafc.herokuapp.com'
+host = 'zueirafc.com'
 
 Rails.application.configure do
   config.cache_classes = true
