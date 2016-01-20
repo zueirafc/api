@@ -1,6 +1,9 @@
 module Api
   module V1
     class MicropostsController < ApplicationController
+      include DynamicActionable
+      make_list_actions_by MicropostStatus, Micropost
+
       before_action :set_micropost, only: [:show, :update, :destroy]
 
       def index

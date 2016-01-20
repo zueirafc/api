@@ -17,6 +17,56 @@ module Api
         end
       end
 
+      context 'dynamic methods' do
+        describe 'GET #active' do
+          it 'returns a collection of microposts' do
+            micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+            micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
+
+            get :active, format: :json
+
+            expect(assigns(:microposts)).to include(micropost)
+            expect(assigns(:microposts)).to_not include(micropost2)
+          end
+        end
+
+        describe 'GET #pending' do
+          it 'returns a collection of microposts' do
+            micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::PENDING)
+            micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
+
+            get :pending, format: :json
+
+            expect(assigns(:microposts)).to include(micropost)
+            expect(assigns(:microposts)).to_not include(micropost2)
+          end
+        end
+
+        describe 'GET #banned' do
+          it 'returns a collection of microposts' do
+            micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
+            micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+
+            get :banned, format: :json
+
+            expect(assigns(:microposts)).to include(micropost)
+            expect(assigns(:microposts)).to_not include(micropost2)
+          end
+        end
+
+        describe 'GET #deleted' do
+          it 'returns a collection of microposts' do
+            micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::DELETED)
+            micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+
+            get :deleted, format: :json
+
+            expect(assigns(:microposts)).to include(micropost)
+            expect(assigns(:microposts)).to_not include(micropost2)
+          end
+        end
+      end
+
       describe 'GET #show' do
         it 'returns a complete micropost passed by param' do
           micropost = create :micropost, valid_attributes
