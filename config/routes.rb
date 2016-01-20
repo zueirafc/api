@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
         scope except: [:new, :edit] do
           resources :clubs
+          resources :microposts
         end
       end
     end

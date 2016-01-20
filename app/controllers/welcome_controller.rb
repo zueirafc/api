@@ -9,6 +9,7 @@ class WelcomeController < ApplicationController
 
   # rubocop:disable Metrics/MethodLength
   def make_a_hash
+    # Rails.application.routes.routes
     @welcome =
       {
         name: 'ZueiraFCAPI',
@@ -25,8 +26,7 @@ class WelcomeController < ApplicationController
         start: {
           docs: 'no docs, for a while',
           why: 'So that Zueira NEVER ends.',
-          end_points: %W(#{request.original_url}api/v1/clubs
-                         #{request.original_url}api/v1/users),
+          end_points: 'TODO',
           home_page: 'https://github.com/zueirafc/api'
         }
       }

@@ -7,6 +7,7 @@ FactoryGirl.define do
     shared { Forgery('basic').number }
     provider_id { Forgery('basic').password }
     provider_url { Forgery('internet').domain_name }
+    title { Forgery('lorem_ipsum').words(5) }
 
     status { MicropostStatus.list.sample }
 
@@ -22,6 +23,7 @@ FactoryGirl.define do
     shared nil
     provider_id nil
     provider_url nil
+    title nil
 
     status nil
 

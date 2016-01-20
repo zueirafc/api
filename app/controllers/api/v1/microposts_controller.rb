@@ -40,7 +40,10 @@ module Api
       end
 
       def micropost_params
-        params[:micropost]
+        params.require(:micropost)
+              .permit :user_id, :source_id, :text, :all_targets, :all_trollers,
+                      :status, :shared, :is_shared, :provider_id, :provider_url,
+                      :title
       end
     end
   end
