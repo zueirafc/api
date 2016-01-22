@@ -9,7 +9,7 @@ module DynamicActionable
 
       list.keys.each do |method_name|
         define_method method_name do
-          query = klass.send(method_name)
+          query = klass.send(method_name).send(:page, params[:page])
           instance_name = "@#{klass.name.underscore.pluralize}"
 
           instance_variable_set(instance_name, query)

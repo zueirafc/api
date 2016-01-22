@@ -7,9 +7,11 @@ module Api
       before_action :set_micropost, only: [:show, :update, :destroy]
 
       def index
-        @microposts = Micropost.all
+        @microposts = Micropost.all.page(params[:page])
 
-        respond_with :api, :v1, @microposts
+        # respond_with :api, :v1, @microposts
+        paginate_with @microposts
+        # paginate json: @microposts
       end
 
       def show
