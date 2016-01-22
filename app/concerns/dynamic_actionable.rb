@@ -4,23 +4,19 @@ module DynamicActionable
   end
 
   module ClassMethods
+    # rubocop:disable Metrics/AbcSize
     def make_list_actions_by(list, klass)
-      fail('Não é um EnumerateIt::Base') unless list < EnumerateIt::Base
+      fail('Não é um enum') unless list < EnumerateIt::Base
 
       list.keys.each do |method_name|
         define_method method_name do
+          query = klass.send(method_name).page(params[:page])
           instance_name = "@#{klass.name.underscore.pluralize}"
 
-          instance_variable_set(instance_name, write_query(klass, method_name))
+          instance_variable_set(instance_name, query)
           respond_with :api, :v1, instance_variable_get(instance_name)
         end
       end
-    end
-
-    private
-
-    def write_query(klass, method_name)
-      klass.send(method_name).send(:page, params[:page])
     end
   end
 end
