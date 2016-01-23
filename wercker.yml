@@ -9,6 +9,7 @@ build:
 
     - bundle-install
     - rails-database-yml
+
     - script:
         name: Set up db
         code: bundle exec rake db:schema:load RAILS_ENV=test
