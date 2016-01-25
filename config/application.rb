@@ -12,10 +12,10 @@ Bundler.require(*Rails.groups)
 module Api
   class Application < Rails::Application
     config.time_zone = 'Brasilia'
-    config.i18n.default_locale = :'pt-BR'
+    # config.i18n.default_locale = :'pt-BR'
     config.active_record.raise_in_transactional_callbacks = true
 
-    I18n.config.enforce_available_locales = false
+    # I18n.config.enforce_available_locales = false
 
     config.middleware.use config.session_store, config.session_options
     config.middleware.use Rack::MethodOverride

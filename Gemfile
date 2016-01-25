@@ -5,13 +5,18 @@ ruby '2.3.0'
 gem 'rails', '4.2.5'
 gem 'rails-api'
 
-gem 'enumerate_it'
-gem 'acl9'
+# infrastructure
 gem 'pg'
-gem 'responders'
 gem 'passenger'
-gem 'active_model_serializers'
 gem 'rack-cors'
+
+# data manipulation
+gem 'enumerate_it'
+gem 'active_model_serializers'
+gem 'responders'
+
+gem 'kaminari'
+gem 'api-pagination'
 
 # image upload
 gem 'carrierwave', '0.10.0'
@@ -22,6 +27,7 @@ gem 'fog'
 # authentication
 gem 'devise_token_auth', '0.1.37.beta4'
 gem 'omniauth-facebook'
+gem 'acl9'
 
 # searches
 gem 'twitter'
@@ -40,7 +46,6 @@ group :test, :development do
   gem 'guard-rubocop'
   gem 'guard-zeus'
   gem 'zeus'
-  gem 'thor'
 
   gem 'dotenv'
   gem 'rspec-rails'
