@@ -17,7 +17,7 @@ module Searches
     def find_by_facebook_page!; end
 
     def find_by_rss_feed!
-
+      RSSFeedService.find_microposts_by(source)
     end
 
     def find_by_twitter_user!
