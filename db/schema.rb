@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112020847) do
+ActiveRecord::Schema.define(version: 20160122213837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,17 +76,6 @@ ActiveRecord::Schema.define(version: 20160112020847) do
   add_index "microposts", ["source_id"], name: "index_microposts_on_source_id", using: :btree
   add_index "microposts", ["status"], name: "index_microposts_on_status", using: :btree
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id", using: :btree
-
-  create_table "newsletters", force: :cascade do |t|
-    t.string   "email"
-    t.boolean  "is_accepted_partner"
-    t.integer  "status"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "newsletters", ["email"], name: "index_newsletters_on_email", unique: true, using: :btree
-  add_index "newsletters", ["status"], name: "index_newsletters_on_status", using: :btree
 
   create_table "post_references", force: :cascade do |t|
     t.integer  "micropost_id"

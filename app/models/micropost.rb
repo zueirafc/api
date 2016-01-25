@@ -10,5 +10,6 @@ class Micropost < ActiveRecord::Base
   validates :shared, presence: true
   validates :text, presence: true
 
-  has_enumeration_for :status, with: MicropostStatus, required: true
+  has_enumeration_for :status, with: MicropostStatus, required: true,
+                               create_scopes: true
 end
