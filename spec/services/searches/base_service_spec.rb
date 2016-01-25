@@ -72,23 +72,6 @@ module Searches
         end
       end
 
-      context 'when kind is SourceKind::INSTAGRAM_USER' do
-        describe '#find_by_instagram_user' do
-          it 'calls the starter of right service' do
-            @source.update!(kind: SourceKind::INSTAGRAM_USER)
-
-            expect(@base).to receive(:find_by_instagram_user!).with(no_args)
-          end
-
-          it 'need calls proper service' do
-            @source.update!(kind: SourceKind::INSTAGRAM_USER)
-
-            expect(InstagramUserService).to receive(:find_media_items_for)
-              .with(@source)
-          end
-        end
-      end
-
       context 'when kind is SourceKind::TWITTER_HASHTAG' do
         describe '#find_by_twitter_hashtag' do
           it 'calls the starter of right service' do
