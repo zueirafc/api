@@ -5,7 +5,8 @@ class Source < ActiveRecord::Base
   validates :name, :key, presence: true
 
   has_enumeration_for :kind, with: SourceKind, required: true
-  has_enumeration_for :status, with: CommonStatus, required: true
+  has_enumeration_for :status, with: CommonStatus, required: true,
+                               create_scopes: true
 
   delegate :last, to: :microposts
 end

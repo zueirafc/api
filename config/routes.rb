@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
         scope except: [:new, :edit] do
           resources :clubs
+          resources :sources do
+            get :inactive, :active, on: :collection
+          end
+
           resources :microposts do
             get :deleted, :pending, :banned, :active, on: :collection
             post :delete, :ban, :activate, on: :member
