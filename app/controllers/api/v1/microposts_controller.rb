@@ -4,9 +4,9 @@ module Api
       include DynamicActionable
 
       make_list_actions_by MicropostStatus, Micropost
-      make_post_actions_by MicropostStatus, Micropost
 
-      before_action :set_micropost, only: [:show, :update, :destroy, :active]
+      before_action :set_micropost,
+                    only: [:show, :update, :destroy, :activate, :delete, :ban]
 
       def index
         @microposts = Micropost.all.page(params[:page])
@@ -34,6 +34,24 @@ module Api
 
       def destroy
         @micropost.destroy
+
+        respond_with :api, :v1, @micropost
+      end
+
+      def activate
+        Actions::MicropostService.new(@micropost).activate!
+
+        respond_with :api, :v1, @micropost
+      end
+
+      def delete
+        Actions::MicropostService.new(@micropost).delete!
+
+        respond_with :api, :v1, @micropost
+      end
+
+      def ban
+        Actions::MicropostService.new(@micropost).ban!
 
         respond_with :api, :v1, @micropost
       end

@@ -69,13 +69,33 @@ module Api
         end
 
         describe '.make_post_actions_by' do
-          describe 'POST #active' do
-            it 'modify a instance of microposts' do
-              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
+          describe 'POST #activate' do
+            it 'modify a instance of micropost' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::PENDING)
 
-              post :active, micropost: { id: micropost.to_param }, format: :json
+              post :activate, id: micropost.to_param, format: :json
 
               expect(assigns(:micropost)).to be_active
+            end
+          end
+
+          describe 'POST #ban' do
+            it 'modify a instance of micropost' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+
+              post :ban, id: micropost.to_param, format: :json
+
+              expect(assigns(:micropost)).to be_banned
+            end
+          end
+
+          describe 'POST #delete' do
+            it 'modify a instance of micropost' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+
+              post :delete, id: micropost.to_param, format: :json
+
+              expect(assigns(:micropost)).to be_deleted
             end
           end
         end
