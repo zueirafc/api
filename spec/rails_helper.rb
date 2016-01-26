@@ -1,22 +1,17 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-if ENV['CODECLIMATE_REPO_TOKEN']
-  require 'codeclimate-test-reporter'
-  CodeClimate::TestReporter.start
-else
-  require 'simplecov'
+require 'simplecov'
 
-  SimpleCov.configure do
-    coverage_dir File.join('.', 'tmp', 'code_analysis', 'coverage')
-    minimum_coverage 90
-    add_group 'Services', 'app/services'
-    add_group 'Serializers', 'app/serializers'
-  end
+SimpleCov.configure do
+  coverage_dir File.join('.', 'tmp', 'code_analysis', 'coverage')
+  minimum_coverage 90
+  add_group 'Services', 'app/services'
+  add_group 'Serializers', 'app/serializers'
+end
 
-  SimpleCov.start 'rails' do
-    add_filter '/test/'
-    add_filter '/lib/'
-  end
+SimpleCov.start 'rails' do
+  add_filter '/test/'
+  add_filter '/lib/'
 end
 
 require 'rails/all'
@@ -35,7 +30,6 @@ else
   ActiveRecord::Migration.maintain_test_schema!
 end
 
-FakeWeb.allow_net_connect = %r{^https?://codeclimate.com}
 FactoryGirl.definition_file_paths = %w(spec/support/factories)
 FactoryGirl.reload
 
@@ -54,6 +48,15 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
+
+  config.before(:each, type: :controller) do
+    @api ||= ApiKey.create!
+
+    credentials = ActionController::HttpAuthentication::Token
+                  .encode_credentials(@api.access_token)
+
+    request.env['HTTP_AUTHORIZATION'] = credentials
+  end
 
   config.before(:suite) { DatabaseCleaner.clean_with :truncation }
   config.before(:each) { DatabaseCleaner.strategy = :transaction }

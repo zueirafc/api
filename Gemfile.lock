@@ -58,8 +58,6 @@ GEM
     clockwork (1.2.0)
       activesupport
       tzinfo
-    codeclimate-test-reporter (0.4.8)
-      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     concurrent-ruby (1.0.0)
     database_cleaner (1.5.1)
@@ -455,7 +453,6 @@ DEPENDENCIES
   carrierwave (= 0.10.0)
   carrierwave-base64
   clockwork
-  codeclimate-test-reporter
   database_cleaner
   devise_token_auth (= 0.1.37.beta4)
   dotenv

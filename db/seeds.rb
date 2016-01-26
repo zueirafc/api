@@ -2,6 +2,8 @@
 # rubocop:disable Style/AsciiComments
 
 if Rails.env.production?
+  ApiKey.create!
+
   # Clubs:
   json_clubs = [
     { official_website: 'corinthians.com.br', remote_shield_url: 'https://upload.wikimedia.org/wikipedia/pt/archive/b/b4/20140627022350!Corinthians_simbolo.png', official_facebook_page: 'facebook.com/corinthians', short_name: 'Corinthians', full_name: 'Sport Club Corinthians Paulista', initials: 'SCCP' },

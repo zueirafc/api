@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  skip_before_filter :restrict_access
   before_action :make_a_hash
 
   def index
