@@ -2,16 +2,16 @@ module Api
   module V1
     class MicropostsController < ApplicationController
       include DynamicActionable
-      make_list_actions_by MicropostStatus, Micropost
 
-      before_action :set_micropost, only: [:show, :update, :destroy]
+      make_list_actions_by MicropostStatus, Micropost
+      make_post_actions_by MicropostStatus, Micropost
+
+      before_action :set_micropost, only: [:show, :update, :destroy, :active]
 
       def index
         @microposts = Micropost.all.page(params[:page])
 
-        # respond_with :api, :v1, @microposts
-        paginate_with @microposts
-        # paginate json: @microposts
+        respond_with :api, :v1, @microposts
       end
 
       def show

@@ -11,5 +11,5 @@ class Micropost < ActiveRecord::Base
   validates :text, presence: true
 
   has_enumeration_for :status, with: MicropostStatus, required: true,
-                               create_scopes: true
+                               create_scopes: true, create_helpers: true
 end

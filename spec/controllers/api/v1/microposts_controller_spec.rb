@@ -18,51 +18,65 @@ module Api
       end
 
       context 'dynamic methods' do
-        describe 'GET #active' do
-          it 'returns a collection of microposts' do
-            micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
-            micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
+        describe '.make_list_actions_by' do
+          describe 'GET #active' do
+            it 'returns a collection of microposts' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+              micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
 
-            get :active, format: :json
+              get :active, format: :json
 
-            expect(assigns(:microposts)).to include(micropost)
-            expect(assigns(:microposts)).to_not include(micropost2)
+              expect(assigns(:microposts)).to include(micropost)
+              expect(assigns(:microposts)).to_not include(micropost2)
+            end
+          end
+
+          describe 'GET #pending' do
+            it 'returns a collection of microposts' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::PENDING)
+              micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
+
+              get :pending, format: :json
+
+              expect(assigns(:microposts)).to include(micropost)
+              expect(assigns(:microposts)).to_not include(micropost2)
+            end
+          end
+
+          describe 'GET #banned' do
+            it 'returns a collection of microposts' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
+              micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+
+              get :banned, format: :json
+
+              expect(assigns(:microposts)).to include(micropost)
+              expect(assigns(:microposts)).to_not include(micropost2)
+            end
+          end
+
+          describe 'GET #deleted' do
+            it 'returns a collection of microposts' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::DELETED)
+              micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+
+              get :deleted, format: :json
+
+              expect(assigns(:microposts)).to include(micropost)
+              expect(assigns(:microposts)).to_not include(micropost2)
+            end
           end
         end
 
-        describe 'GET #pending' do
-          it 'returns a collection of microposts' do
-            micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::PENDING)
-            micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
+        describe '.make_post_actions_by' do
+          describe 'POST #active' do
+            it 'modify a instance of microposts' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
 
-            get :pending, format: :json
+              post :active, micropost: { id: micropost.to_param }, format: :json
 
-            expect(assigns(:microposts)).to include(micropost)
-            expect(assigns(:microposts)).to_not include(micropost2)
-          end
-        end
-
-        describe 'GET #banned' do
-          it 'returns a collection of microposts' do
-            micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::BANNED)
-            micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
-
-            get :banned, format: :json
-
-            expect(assigns(:microposts)).to include(micropost)
-            expect(assigns(:microposts)).to_not include(micropost2)
-          end
-        end
-
-        describe 'GET #deleted' do
-          it 'returns a collection of microposts' do
-            micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::DELETED)
-            micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
-
-            get :deleted, format: :json
-
-            expect(assigns(:microposts)).to include(micropost)
-            expect(assigns(:microposts)).to_not include(micropost2)
+              expect(assigns(:micropost)).to be_active
+            end
           end
         end
       end

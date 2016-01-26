@@ -11,10 +11,8 @@ Rails.application.routes.draw do
         scope except: [:new, :edit] do
           resources :clubs
           resources :microposts do
-            get :active, on: :collection
-            get :banned, on: :collection
-            get :pending, on: :collection
-            get :deleted, on: :collection
+            get :deleted, :pending, :banned, :active , on: :collection
+            post :delete, :ban, :activate, on: :member
           end
         end
       end
