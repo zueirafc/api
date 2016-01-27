@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
   def make_a_hash
     @welcome =
       {
-        name: 'ZueiraFCAPI',
+        name: 'Zueira F.C. API',
         for: 'Zueira Futebol Clube',
         current_version: {
           version: 'v1',
