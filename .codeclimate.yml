@@ -1,8 +1,10 @@
 languages:
   Ruby: true
-  JavaScript: false
-  PHP: false
 engines:
+  rubocop:
+    enabled: false
+  fixme:
+    enabled: false
   brakeman:
     enabled: true
   bundler-audit:
@@ -12,23 +14,9 @@ engines:
     config:
       languages:
       - ruby
-      - javascript
-  fixme:
-    enabled: false
-  rubocop:
-    enabled: false
 ratings:
   paths:
   - Gemfile.lock
   - "**.erb"
-  - "**.haml"
   - "**.rb"
-  - "**.rhtml"
-  - "**.slim"
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
 exclude_paths: [db/migrate/schema.db]
