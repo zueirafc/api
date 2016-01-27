@@ -5,8 +5,11 @@ Rails.application.routes.draw do
     get 'welcome', action: :index, controller: :welcome
 
     # Error Handling
-    get '/404' => 'errors#not_found'
-    get '/500' => 'errors#internal_server_error'
+    scope via: :all do
+      match '/404' => 'errors#not_found'
+      match '/500' => 'errors#internal_server_error'
+      match '/401' => 'errors#unauthorized'
+    end
 
     namespace :api do
       namespace :v1 do
