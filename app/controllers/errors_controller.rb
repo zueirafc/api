@@ -15,7 +15,7 @@ class ErrorsController < ApplicationController
 
   private
 
-  def make_a_error(status: , message: )
+  def make_a_error(status:, message:)
     { error: { status: status, message: message } }
   end
 end

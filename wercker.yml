@@ -7,7 +7,6 @@ build:
         name: bundle config
         code: bundle config build.nokogiri --use-system-libraries
 
-    - internal/store-container
     - bundle-install
     - rails-database-yml
 
