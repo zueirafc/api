@@ -59,11 +59,9 @@
             "allowed_params":[
               {
                 "micropost":[
-                  "organizer_id",
-                  "start_at",
-                  "finish_at",
-                  "name",
-                  "event_center_id"
+                  "user_id", "source_id", "text", "all_targets", "all_trollers",
+                  "status", "shared", "is_shared", "provider_id",
+                  "provider_url", "title"
                 ]
               }
             ]
@@ -101,8 +99,9 @@
             "allowed_params":[
               {
                 "club":[
-                  "image",
-                  "event_center_id"
+                  "shield", "official_website", "full_name",
+                  "official_facebook_page", "short_name", "initials",
+                  "official_twitter_pag"
                 ]
               }
             ]
@@ -140,8 +139,7 @@
             "allowed_params":[
               {
                 "source":[
-                  "place_id",
-                  "name"
+                  "name", "key", "kind", "status", "club_id"
                 ]
               }
             ]
