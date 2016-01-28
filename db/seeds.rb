@@ -45,6 +45,7 @@ if Rails.env.production?
     { name: 'O Pior Time Do Brasil', key: 'https://www.facebook.com/OPiorTimeDoBrasil/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     { name: 'Humor Esportivo (lance)', key: 'http://humoresportivo.lance.com.br/feed/', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
     { name: 'Futirinhas', key: 'http://feeds.feedburner.com/FutirinhasFutebolClube?format=xml', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
+    { name: 'br4sileir4o M1l Gr4u', key: 'https://www.facebook.com/br4sileir4oM1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
 
     { name: 'Vaaai Corinthians', key: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('COR') },
     { name: '5ant0s m1l Gr4u', key: 'https://www.facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAN') },
@@ -55,7 +56,6 @@ if Rails.env.production?
     { name: 'Cruzeiro da Zoeira Oficial', key: 'https://www.facebook.com/CruzeirodaZoeiraOficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
     { name: 'Cap M1L GR4U', key: 'https://www.facebook.com/CapM1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CAP') },
     { name: 'Colorado De Nascimento', key: 'https://www.facebook.com/ColoradoDeNascimento/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('INT') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
     # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
     # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
     # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
