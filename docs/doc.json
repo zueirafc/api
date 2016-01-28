@@ -36,6 +36,26 @@
                 "points":"/"
               },
               {
+                "action":"active",
+                "method":"GET",
+                "points":"/active"
+              },
+              {
+                "action":"pending",
+                "method":"GET",
+                "points":"/pending"
+              },
+              {
+                "action":"banned",
+                "method":"GET",
+                "points":"/banned"
+              },
+              {
+                "action":"deleted",
+                "method":"GET",
+                "points":"/deleted"
+              },
+              {
                 "action":"create",
                 "method":"POST",
                 "points":"/"
@@ -43,7 +63,22 @@
               {
                 "action":"show",
                 "method":"GET",
-                "points":"/show/:id"
+                "points":"/:id"
+              },
+              {
+                "action":"delete",
+                "method":"POST",
+                "points":"/:id/delete"
+              },
+              {
+                "action":"ban",
+                "method":"POST",
+                "points":"/:id/ban"
+              },
+              {
+                "action":"activate",
+                "method":"POST",
+                "points":"/:id/activate"
               },
               {
                 "action":"update",
