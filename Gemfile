@@ -55,7 +55,6 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'simplecov', require: false
-  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :production do

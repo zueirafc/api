@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  skip_before_action :restrict_access
   before_action :make_a_hash
 
   def index
@@ -8,26 +9,32 @@ class WelcomeController < ApplicationController
   private
 
   # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/LineLength
   def make_a_hash
-    # Rails.application.routes.routes
     @welcome =
       {
-        name: 'ZueiraFCAPI',
+        name: 'Zueira F.C. API',
         for: 'Zueira Futebol Clube',
         current_version: {
           version: 'v1',
           codename: 'Galatasaray',
           status: 'development'
         },
-        who?: [{
-          name: 'Bruno Casali',
-          contact: '@brunoocasali',
-          email: 'brunoocasali@gmail.com' }],
+        who?: {
+          team: {
+            contact: 'hackers@zueirafc.com',
+            members: [{
+              name: 'Bruno Casali',
+              contact: '@brunoocasali',
+              email: 'brunoocasali@gmail.com'
+            }]
+          }
+        },
         start: {
           docs: 'no docs, for a while',
-          why: 'So that Zueira NEVER ends.',
-          end_points: 'TODO',
-          home_page: 'https://github.com/zueirafc/api'
+          why: 'We need to keep the zueira in our hearts to cheer this moody life',
+          license: 'MIT',
+          source: 'https://github.com/zueirafc/api'
         }
       }
   end
