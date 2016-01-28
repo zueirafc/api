@@ -1,4 +1,3 @@
-# Be sure to restart your server when you modify this file.
+params = [:password, :shield, :file, :token, :access_token]
 
-# Configure sensitive parameters which will be filtered from the log file.
-Rails.application.config.filter_parameters += [:password, :shield, :file]
+Rails.application.config.filter_parameters += params
