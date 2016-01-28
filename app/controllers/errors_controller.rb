@@ -13,6 +13,6 @@ class ErrorsController < ApplicationController
     respond_with error: {
       status: 401,
       message: 'Invalid API key, pass by "token" param or by header.'
-    }, params: { error: 'unauthorized'}
+    }, params: { error: 'unauthorized' }
   end
 end

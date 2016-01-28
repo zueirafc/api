@@ -54,7 +54,7 @@ RSpec.configure do |config|
     credentials = ActionController::HttpAuthentication::Token
                   .encode_credentials(@api.access_token)
 
-    request.headers["HTTP_AUTHORIZATION"] = credentials
+    request.headers['HTTP_AUTHORIZATION'] = credentials
   end
 
   config.before(:suite) { DatabaseCleaner.clean_with :truncation }
