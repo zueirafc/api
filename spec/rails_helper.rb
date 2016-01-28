@@ -51,11 +51,10 @@ RSpec.configure do |config|
 
   config.before(:each, type: :controller) do
     @api ||= ApiKey.create!
-
     credentials = ActionController::HttpAuthentication::Token
                   .encode_credentials(@api.access_token)
 
-    request.env['HTTP_AUTHORIZATION'] = credentials
+    request.headers["HTTP_AUTHORIZATION"] = credentials
   end
 
   config.before(:suite) { DatabaseCleaner.clean_with :truncation }

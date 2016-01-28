@@ -3,9 +3,10 @@ class ApplicationController < ActionController::API
   include ActionController::ImplicitRender
   include ActionController::Serialization
   include Acl9::ControllerExtensions
+  include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :restrict_access
+  before_filter :restrict_access
 
   respond_to :json
 
@@ -16,7 +17,9 @@ class ApplicationController < ActionController::API
   end
 
   def restrict_access
-    restrict_access_by_url || restrict_access_by_header
+    return true if restrict_access_by_url || restrict_access_by_header
+
+    redirect_to '/401?error=unauthorized' if params[:error].nil?
   end
 
   def restrict_access_by_header
@@ -27,16 +30,5 @@ class ApplicationController < ActionController::API
 
   def restrict_access_by_url
     ApiKey.exists?(access_token: params[:token])
-  end
-
-  protected
-
-  def authenticate_with_http_token(realm = "Application")
-    self.headers["WWW-Authenticate"] = %(Token realm="#{realm.gsub(/"/, "")}")
-
-    respond_with error: {
-      status: 500,
-      message: 'Invalid API key, pass by "token" param or by header.'
-    }
   end
 end

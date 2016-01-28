@@ -39,7 +39,7 @@ if Rails.env.production?
   json_clubs.each { |params| Club.create(params) unless Club.find_by_short_name(params[:short_name]) }
 
   _json_sources = [
-    # atlético pr / mg
+    # atlético mg
     { name: 'Vaaai Corinthians', key: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('COR') },
     { name: 'Futirinhas', key: 'http://feeds.feedburner.com/FutirinhasFutebolClube?format=xml', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
     { name: '5ant0s m1l Gr4u', key: 'https://www.facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAN') },
@@ -48,7 +48,7 @@ if Rails.env.production?
     { name: 'Gremio Da Zueira', key: 'https://www.facebook.com/GremioDaZueira/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('GRE') },
     { name: 'cruzeiro do humor oficial', key: 'https://www.facebook.com/cruzeirodohumoroficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
     { name: 'Cruzeiro da Zoeira Oficial', key: 'https://www.facebook.com/CruzeirodaZoeiraOficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') }
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
+    { name: 'Cap M1L GR4U', key: 'https://www.facebook.com/CapM1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CAP') },
     # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
     # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
     # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
