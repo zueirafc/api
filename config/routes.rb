@@ -5,8 +5,11 @@ Rails.application.routes.draw do
     get 'welcome', action: :index, controller: :welcome
 
     # Error Handling
-    get '/404' => 'errors#not_found'
-    get '/500' => 'errors#internal_server_error'
+    scope via: :all do
+      match '/404' => 'errors#not_found'
+      match '/500' => 'errors#internal_server_error'
+      match '/401' => 'errors#unauthorized'
+    end
 
     namespace :api do
       namespace :v1 do
@@ -14,11 +17,13 @@ Rails.application.routes.draw do
 
         scope except: [:new, :edit] do
           resources :clubs
+          resources :sources do
+            get :inactive, :active, on: :collection
+          end
+
           resources :microposts do
-            get :active, on: :collection
-            get :banned, on: :collection
-            get :pending, on: :collection
-            get :deleted, on: :collection
+            get :deleted, :pending, :banned, :active, on: :collection
+            post :delete, :ban, :activate, on: :member
           end
         end
       end
