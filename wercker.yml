@@ -28,4 +28,4 @@ deploy:
           key-name: DEPLOYMENT_KEY
           install-toolbelt: true
           retry: true
-          run: rake db:migrate --app $HEROKU_APP_NAME
+          run: rake db:migrate -a $HEROKU_APP_NAME
