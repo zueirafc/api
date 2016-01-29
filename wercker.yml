@@ -3,10 +3,6 @@ services:
   - postgres
 build:
   steps:
-    - script:
-        name: bundle config
-        code: bundle config build.nokogiri --use-system-libraries
-
     - bundle-install
     - rails-database-yml
 
