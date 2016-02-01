@@ -24,7 +24,7 @@ module Searches
 
         subject.find_posts_for(source)
 
-        expect(source.microposts.count).to eq(4)
+        expect(source.microposts.count).to eq(5)
       end
 
       it 'need to log if an error happens' do

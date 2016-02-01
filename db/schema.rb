@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126023128) do
+ActiveRecord::Schema.define(version: 20160201030252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160126023128) do
     t.string   "provider_id",                  null: false
     t.string   "provider_url"
     t.string   "title"
+    t.date     "created_time"
   end
 
   add_index "microposts", ["provider_id", "source_id"], name: "index_microposts_on_provider_id_and_source_id", unique: true, using: :btree
