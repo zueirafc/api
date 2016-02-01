@@ -2,7 +2,7 @@
 # rubocop:disable Style/AsciiComments
 
 if Rails.env.production?
-  ApiKey.create!
+  ApiKey.create! unless ApiKey.any?
 
   # Clubs:
   json_clubs = [
