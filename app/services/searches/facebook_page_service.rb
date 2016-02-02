@@ -2,13 +2,10 @@
 module Searches
   class FacebookPageService
     class << self
-      FIELDS = %w(id object_id message link created_time full_picture).freeze
-      KEYS = "posts?fields=#{FIELDS.join(',')}".freeze
-
       def find_posts_for(source)
         last = source.last.try(&:provider_id)
 
-        FacebookProvider.client.get_connections(source.key, KEYS).take(100)
+        FacebookProvider.client.get_connections(source.key, KEYS)
                         .select { |e| e.key? 'object_id' }.each do |post|
           break if reached_limit? post['id'], last
 
@@ -21,6 +18,9 @@ module Searches
       end
 
       private
+
+      FIELDS = %w(id object_id message link created_time full_picture).freeze
+      KEYS = "posts?fields=#{FIELDS.join(',')}".freeze
 
       def reached_limit?(id, last)
         id.to_s.eql?(last)
