@@ -25,7 +25,7 @@ gem 'mini_magick'
 gem 'fog'
 
 # authentication
-gem 'devise_token_auth', '0.1.37.beta4'
+gem 'devise_token_auth', '0.1.31'
 gem 'omniauth-facebook'
 gem 'acl9'
 
