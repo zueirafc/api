@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :restrict_access, unless: :devise_auth_token_controller?
+  # before_action :restrict_access, unless: :devise_auth_token_controller?
 
   respond_to :json
 
