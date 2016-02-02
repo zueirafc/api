@@ -21,4 +21,19 @@ RSpec.describe ErrorsController, type: :controller do
       expect(response.body).to eq(message.to_json)
     end
   end
+
+  describe 'GET #unauthorized' do
+    it 'returns http success' do
+      message = {
+        error: {
+          status: 401,
+          message: "Invalid API key, pass by 'token' param or by header."
+        }
+      }
+      get :unauthorized, format: :json
+
+      expect(response).to have_http_status(:success)
+      expect(response.body).to eq(message.to_json)
+    end
+  end
 end
