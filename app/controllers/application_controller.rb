@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :restrict_access
+  before_action :restrict_access, unless: :devise_auth_token_controller?
 
   respond_to :json
 
@@ -30,5 +30,9 @@ class ApplicationController < ActionController::API
 
   def restrict_access_by_url
     ApiKey.exists?(access_token: params[:token])
+  end
+
+  def devise_auth_token_controller?
+    params[:controller].match(/devise_auth_token/).nil?
   end
 end
