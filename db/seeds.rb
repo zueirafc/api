@@ -6,9 +6,9 @@ if Rails.env.production?
 
   # Clubs:
   json_clubs = [
-    { official_website: 'corinthians.com.br', remote_shield_url: 'https://upload.wikimedia.org/wikipedia/pt/archive/b/b4/20140627022350!Corinthians_simbolo.png', official_facebook_page: 'facebook.com/corinthians', short_name: 'Corinthians', full_name: 'Sport Club Corinthians Paulista', initials: 'SCCP' },
-    { official_website: 'palmeiras.com.br', remote_shield_url: 'http://vignette2.wikia.nocookie.net/futebol/images/f/f1/Escudo-do-palmeiras.png/revision/latest?cb=20140719202448', official_facebook_page: 'facebook.com/sePalmeiras', short_name: 'Palmeiras', full_name: 'Sociedade Esportiva Palmeiras', initials: 'SEP' },
-    { official_website: 'santosfc.com.br', remote_shield_url: 'https://wikioso.org/wp-content/uploads/2013/04/escudo-do-santos.png', official_facebook_page: 'facebook.com/santosfc', short_name: 'Santos', full_name: 'Santos Futebol Clube', initials: 'SFC' },
+    { official_website: 'corinthians.com.br', remote_shield_url: 'https://upload.wikimedia.org/wikipedia/pt/archive/b/b4/20140627022350!Corinthians_simbolo.png', official_facebook_page: 'facebook.com/corinthians', short_name: 'Corinthians', full_name: 'Sport Club Corinthians Paulista', initials: 'COR' },
+    { official_website: 'palmeiras.com.br', remote_shield_url: 'http://vignette2.wikia.nocookie.net/futebol/images/f/f1/Escudo-do-palmeiras.png/revision/latest?cb=20140719202448', official_facebook_page: 'facebook.com/sePalmeiras', short_name: 'Palmeiras', full_name: 'Sociedade Esportiva Palmeiras', initials: 'PAL' },
+    { official_website: 'santosfc.com.br', remote_shield_url: 'https://wikioso.org/wp-content/uploads/2013/04/escudo-do-santos.png', official_facebook_page: 'facebook.com/santosfc', short_name: 'Santos', full_name: 'Santos Futebol Clube', initials: 'SAN' },
     { official_website: 'saopaulofc.com.br', remote_shield_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SaoPauloFC.svg/2000px-SaoPauloFC.svg.png', official_facebook_page: 'facebook.com/saopaulofc', short_name: "São Paulo", full_name: "São Paulo Futebol Clube", initials: 'SAO' },
     { official_website: 'gremio.com.br', remote_shield_url: 'http://www.vectorportal.com/img_novi/gremio_3692.jpg', official_facebook_page: 'facebook.com/MeuGremio', short_name: "Grêmio", full_name: "Grêmio Foot-Ball Porto Alegrense", initials: 'GRE' },
     { official_website: 'atletico.com.br', remote_shield_url: 'http://www.vectorportal.com/img_novi/atleticomineiro_3684.jpg', official_facebook_page: 'facebook.com/clubeatleticomineiro', short_name: "Atlético-MG", full_name: "Clube Atlético Mineiro", initials: 'CAM' },
@@ -38,9 +38,8 @@ if Rails.env.production?
 
   json_clubs.each { |params| Club.create(params) unless Club.find_by_short_name(params[:short_name]) }
 
-  _json_sources = [
-    # atlético mg / coxa / bambis
-
+  # atlético mg / coxa / bambis
+  json_sources = [
     { name: 'bola fora zoeira', key: '1472258476385462', root_url: 'facebook.com/bolaforazoeira', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     { name: 'O Pior Time Do Brasil', key: '1595557890727584', root_url: 'facebook.com/OPiorTimeDoBrasil', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     { name: 'Humor Esportivo (lance)', key: 'http://humoresportivo.lance.com.br/feed', root_url: 'humoresportivo.lance.com.br', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
@@ -57,34 +56,8 @@ if Rails.env.production?
     { name: 'Cruzeiro da Zoeira Oficial', key: '700764236624458', root_url: 'facebook.com/CruzeirodaZoeiraOficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
     { name: 'Cap M1L GR4U', key: '538026016313060', root_url: 'facebook.com/CapM1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CAP') },
     { name: 'Colorado De Nascimento', key: '136892513112124', root_url: 'facebook.com/ColoradoDeNascimento/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('INT') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
   ]
 
-  # json_sources.each { |params| }
+  json_sources.each { |params| Source.create(params) unless Source.find_by_key(params[:key]) }
 end
