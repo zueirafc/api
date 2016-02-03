@@ -57,6 +57,7 @@ module Api
           expect(response.body['kind']).to eq(source['kind'])
           expect(response.body['key']).to eq(source['key'])
           expect(response.body['status']).to eq(source['status'])
+          expect(response.body['root_url']).to eq(source['root_url'])
         end
       end
 

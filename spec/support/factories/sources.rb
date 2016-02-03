@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :source do
     name { Forgery('name').company_name }
+    root_url { rand(999999) }
     key { Forgery('internet').domain_name }
 
     kind { SourceKind.list.sample }
@@ -15,6 +16,7 @@ FactoryGirl.define do
 
   factory :invalid_source, parent: :source do
     name nil
+    root_url nil
     key nil
 
     kind nil
