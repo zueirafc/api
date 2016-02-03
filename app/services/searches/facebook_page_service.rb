@@ -49,14 +49,14 @@ module Searches
                                        status: MicropostStatus::PENDING
 
           attach_troller_to micropost, from: source
-          attach_content_to micropost
+          attach_content_to micropost, from: post
         end
       end
 
-      def attach_content_to(post)
+      def attach_content_to(post, from:)
         Medium.create do |m|
           m.micropost = post
-          m.remote_file_url = post['full_picture']
+          m.remote_file_url = from['full_picture']
         end
       end
 

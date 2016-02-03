@@ -46,7 +46,7 @@ if Rails.env.production?
     { name: 'Humor Esportivo (lance)', key: 'http://humoresportivo.lance.com.br/feed', root_url: 'humoresportivo.lance.com.br', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
     { name: 'Futirinhas', key: 'http://feeds.feedburner.com/FutirinhasFutebolClube?format=xml', root_url: 'http://futirinhas.com', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
     { name: 'br4sileir4o M1l Gr4u', key: '583337698395496', root_url: 'facebook.com/br4sileir4oM1lGr4u', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
-    { name: 'br4sileir4o M1l Gr4u', key: '150877315053016', root_url: 'facebook.com/FuteDaDepressao', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    { name: 'Fute Da Depressao', key: '150877315053016', root_url: 'facebook.com/FuteDaDepressao', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
 
     { name: 'Vaaai Corinthians', key: '1425809977730393', root_url: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('COR') },
     { name: '5ant0s m1l Gr4u', key: '446543278773121', root_url: 'facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAN') },
