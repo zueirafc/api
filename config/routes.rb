@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     end
 
     mount_devise_token_auth_for 'User', at: 'api/v1/auth', controllers: {
-          omniauth_callbacks: 'api/v1/omniauth_callbacks'
-        }
+      omniauth_callbacks: 'api/v1/omniauth'
+    }
 
     namespace :api do
       namespace :v1 do
