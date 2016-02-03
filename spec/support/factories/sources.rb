@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :source do
     name { Forgery('name').company_name }
-    root_url { rand(999999) }
+    root_url { rand(999_999) }
     key { Forgery('internet').domain_name }
 
     kind { SourceKind.list.sample }
