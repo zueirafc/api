@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   include ActionController::Serialization
   include ActionController::HttpAuthentication::Token::ControllerMethods
-  # include Acl9::ControllerExtensions
+  include Acl9::ControllerExtensions
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :restrict_access
@@ -24,13 +24,11 @@ class ApplicationController < ActionController::API
 
   def restrict_access_by_header
     authenticate_with_http_token do |token|
-      true
-      # ApiKey.exists?(access_token: token)
+      ApiKey.exists?(access_token: token)
     end
   end
 
   def restrict_access_by_url
-    true
-    # ApiKey.exists?(access_token: params[:token])
+    ApiKey.exists?(access_token: params[:token])
   end
 end
