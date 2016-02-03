@@ -14,16 +14,11 @@ module Api
     config.time_zone = 'Brasilia'
     config.i18n.default_locale = :'pt-BR'
     config.active_record.raise_in_transactional_callbacks = true
+
     config.api_only = false
 
     config.exceptions_app = routes
 
     I18n.config.enforce_available_locales = false
-
-    config.middleware.use config.session_store, config.session_options
-    config.middleware.use Rack::MethodOverride
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
-    config.middleware.use ActionDispatch::Flash
   end
 end

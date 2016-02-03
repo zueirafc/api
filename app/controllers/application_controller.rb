@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::API
+  include ::ActionController::Cookies
   include DeviseTokenAuth::Concerns::SetUserByToken
-  include ActionController::ImplicitRender
   include ActionController::Serialization
-  include Acl9::ControllerExtensions
   include ActionController::HttpAuthentication::Token::ControllerMethods
+  # include Acl9::ControllerExtensions
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :restrict_access, unless: :devise_auth_token_controller?
+  before_action :restrict_access
 
   respond_to :json
 
@@ -24,15 +24,13 @@ class ApplicationController < ActionController::API
 
   def restrict_access_by_header
     authenticate_with_http_token do |token|
-      ApiKey.exists?(access_token: token)
+      true
+      # ApiKey.exists?(access_token: token)
     end
   end
 
   def restrict_access_by_url
-    ApiKey.exists?(access_token: params[:token])
-  end
-
-  def devise_auth_token_controller?
-    params[:controller].match(/devise_auth_token/).nil?
+    true
+    # ApiKey.exists?(access_token: params[:token])
   end
 end
