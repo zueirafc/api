@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :trackable, :validatable, :omniauthable
+
   include DeviseTokenAuth::Concerns::User
 
   belongs_to :club
@@ -10,7 +13,7 @@ class User < ActiveRecord::Base
   validates :club, presence: true, unless: :facebook?
   validates :username, presence: true, uniqueness: true
 
-  after_initialize :generate_username
+  before_save :generate_username
 
   private
 
