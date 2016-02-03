@@ -7,10 +7,10 @@ require 'clockwork'
 include Clockwork
 
 handler do |job, time|
-  puts "------- Running #{job}, at #{time} -------"
+  Rails.logger.info "------- Running #{job}, at #{time} -------"
 end
 
-every 1.minutes, 'Microposts Finder' do
+every 1.minute, 'Microposts Finder' do
   ActiveRecord::Base.connection_pool.with_connection do
     Source.active.each do |source|
       Searches::BaseService.new(source).start_finder!
