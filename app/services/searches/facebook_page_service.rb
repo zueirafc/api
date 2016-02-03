@@ -7,12 +7,12 @@ module Searches
 
         FacebookProvider.client.get_connections(source.key, KEYS)
                         .select { |e| e.key? 'object_id' }.each do |post|
-          break if reached_limit? post['id'], last
+          break if reached_limit?(post['object_id'], last, source)
 
           begin
             create_micropost_using!(post, source)
           rescue => e
-            Rails.logger.info "--- ERROR at #{self}: #{e.message} ---\n"
+            Rails.logger.warn "ERROR at #{self}: #{e.message}"
           end
         end
       end
@@ -22,8 +22,8 @@ module Searches
       FIELDS = %w(id object_id message link created_time full_picture).freeze
       KEYS = "posts?fields=#{FIELDS.join(',')}".freeze
 
-      def reached_limit?(id, last)
-        id.to_s.eql?(last)
+      def reached_limit?(id, last, source)
+        id.to_s.eql?(last) || Micropost.exists?(source: source, provider_id: id)
       end
 
       def create_micropost_using!(post, source)
@@ -43,6 +43,7 @@ module Searches
       def attach_content_to(post)
         Medium.create do |m|
           m.micropost = post
+          # TODO verificar por que está sempre nula.
           m.remote_file_url = post['full_picture']
         end
       end
