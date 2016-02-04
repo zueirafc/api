@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
   end
 
   def restrict_access
-    return true if restrict_access_by_url || restrict_access_by_header
+    return true if token? || restrict_access_by_url || restrict_access_by_header
 
     redirect_to '/401?error=unauthorized' if params[:error].nil?
   end
@@ -30,5 +30,11 @@ class ApplicationController < ActionController::API
 
   def restrict_access_by_url
     ApiKey.exists?(access_token: params[:token])
+  end
+
+  def token?
+    ['devise_token_auth', 'omniauth'].each do |name|
+      controller_path.match(/#{name}/)
+    end
   end
 end
