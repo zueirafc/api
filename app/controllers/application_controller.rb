@@ -33,7 +33,7 @@ class ApplicationController < ActionController::API
   end
 
   def token?
-    ['devise_token_auth', 'omniauth'].each do |name|
+    %w(devise_token_auth omniauth).each do |name|
       controller_path.match(/#{name}/)
     end
   end
