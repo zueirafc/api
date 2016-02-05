@@ -4,13 +4,16 @@ paths = ['config/boot', 'config/environment', 'app/models/source.rb', 'app/servi
 paths.each { |path| require File.expand_path("../../#{path}", __FILE__) }
 
 require 'clockwork'
-
 include Clockwork
 
-every 2.minutes do
+handler do |job, time|
+  Rails.logger.info "------- Running #{job}, at #{time} -------"
+end
+
+every 2.hours, 'Microposts Finder' do
   ActiveRecord::Base.connection_pool.with_connection do
     Source.active.each do |source|
-      Search::Base.new(source).start_finder!
+      Searches::BaseService.new(source).start_finder!
     end
   end
 end

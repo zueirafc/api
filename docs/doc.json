@@ -19,8 +19,8 @@
     }
   },
   "start":{
-    "docs":"no docs, for a while",
     "why":"We need to keep the zueira in our hearts to cheer this moody life",
+    "docs":"We have just a endpoints list, see them below:",
     "license":"MIT",
     "endpoints":[
       {

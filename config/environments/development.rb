@@ -16,7 +16,7 @@ Rails.application.configure do
 
   config.generators do |g|
     g.factory_girl dir: 'spec/support/factories'
-
+    g.hidden_namespaces << :test_unit << :erb << :mongoid
     g.test_framework :rspec,
                      view_specs: false,
                      request_specs: false,

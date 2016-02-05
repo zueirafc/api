@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126023128) do
+ActiveRecord::Schema.define(version: 20160203031305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160126023128) do
     t.string   "provider_id",                  null: false
     t.string   "provider_url"
     t.string   "title"
+    t.date     "created_time"
   end
 
   add_index "microposts", ["provider_id", "source_id"], name: "index_microposts_on_provider_id_and_source_id", unique: true, using: :btree
@@ -124,11 +125,12 @@ ActiveRecord::Schema.define(version: 20160126023128) do
   add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
   create_table "sources", force: :cascade do |t|
-    t.string  "name",    null: false
-    t.string  "key",     null: false
-    t.integer "kind",    null: false
-    t.integer "status",  null: false
+    t.string  "name",     null: false
+    t.string  "key",      null: false
+    t.integer "kind",     null: false
+    t.integer "status",   null: false
     t.integer "club_id"
+    t.string  "root_url"
   end
 
   add_index "sources", ["club_id"], name: "index_sources_on_club_id", using: :btree

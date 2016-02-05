@@ -11,21 +11,23 @@ module Searches
     end
 
     def find_by_atom_feed!
-      AtomFeedService.find_microposts_by(source)
+      AtomFeedService.find_microposts_by source
     end
 
-    def find_by_facebook_page!; end
+    def find_by_facebook_page!
+      FacebookPageService.find_posts_for source
+    end
 
     def find_by_rss_feed!
-      RSSFeedService.find_microposts_by(source)
+      RSSFeedService.find_microposts_by source
     end
 
     def find_by_twitter_user!
-      TwitterUserService.find_tweets_for(source)
+      TwitterUserService.find_tweets_for source
     end
 
     def find_by_twitter_hashtag!
-      TwitterHashtagService.find_tweets_for(source)
+      TwitterHashtagService.find_tweets_for source
     end
   end
 end

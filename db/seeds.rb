@@ -2,13 +2,13 @@
 # rubocop:disable Style/AsciiComments
 
 if Rails.env.production?
-  ApiKey.create!
+  ApiKey.create! unless ApiKey.any?
 
   # Clubs:
   json_clubs = [
-    { official_website: 'corinthians.com.br', remote_shield_url: 'https://upload.wikimedia.org/wikipedia/pt/archive/b/b4/20140627022350!Corinthians_simbolo.png', official_facebook_page: 'facebook.com/corinthians', short_name: 'Corinthians', full_name: 'Sport Club Corinthians Paulista', initials: 'SCCP' },
-    { official_website: 'palmeiras.com.br', remote_shield_url: 'http://vignette2.wikia.nocookie.net/futebol/images/f/f1/Escudo-do-palmeiras.png/revision/latest?cb=20140719202448', official_facebook_page: 'facebook.com/sePalmeiras', short_name: 'Palmeiras', full_name: 'Sociedade Esportiva Palmeiras', initials: 'SEP' },
-    { official_website: 'santosfc.com.br', remote_shield_url: 'https://wikioso.org/wp-content/uploads/2013/04/escudo-do-santos.png', official_facebook_page: 'facebook.com/santosfc', short_name: 'Santos', full_name: 'Santos Futebol Clube', initials: 'SFC' },
+    { official_website: 'corinthians.com.br', remote_shield_url: 'https://upload.wikimedia.org/wikipedia/pt/archive/b/b4/20140627022350!Corinthians_simbolo.png', official_facebook_page: 'facebook.com/corinthians', short_name: 'Corinthians', full_name: 'Sport Club Corinthians Paulista', initials: 'COR' },
+    { official_website: 'palmeiras.com.br', remote_shield_url: 'http://vignette2.wikia.nocookie.net/futebol/images/f/f1/Escudo-do-palmeiras.png/revision/latest?cb=20140719202448', official_facebook_page: 'facebook.com/sePalmeiras', short_name: 'Palmeiras', full_name: 'Sociedade Esportiva Palmeiras', initials: 'PAL' },
+    { official_website: 'santosfc.com.br', remote_shield_url: 'https://wikioso.org/wp-content/uploads/2013/04/escudo-do-santos.png', official_facebook_page: 'facebook.com/santosfc', short_name: 'Santos', full_name: 'Santos Futebol Clube', initials: 'SAN' },
     { official_website: 'saopaulofc.com.br', remote_shield_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SaoPauloFC.svg/2000px-SaoPauloFC.svg.png', official_facebook_page: 'facebook.com/saopaulofc', short_name: "São Paulo", full_name: "São Paulo Futebol Clube", initials: 'SAO' },
     { official_website: 'gremio.com.br', remote_shield_url: 'http://www.vectorportal.com/img_novi/gremio_3692.jpg', official_facebook_page: 'facebook.com/MeuGremio', short_name: "Grêmio", full_name: "Grêmio Foot-Ball Porto Alegrense", initials: 'GRE' },
     { official_website: 'atletico.com.br', remote_shield_url: 'http://www.vectorportal.com/img_novi/atleticomineiro_3684.jpg', official_facebook_page: 'facebook.com/clubeatleticomineiro', short_name: "Atlético-MG", full_name: "Clube Atlético Mineiro", initials: 'CAM' },
@@ -38,52 +38,27 @@ if Rails.env.production?
 
   json_clubs.each { |params| Club.create(params) unless Club.find_by_short_name(params[:short_name]) }
 
-  _json_sources = [
-    # atlético mg / coxa /
+  # atlético mg / coxa / bambis
+  json_sources = [
+    { name: 'bola fora zoeira', key: '1472258476385462', root_url: 'facebook.com/bolaforazoeira', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    { name: 'O Pior Time Do Brasil', key: '1595557890727584', root_url: 'facebook.com/OPiorTimeDoBrasil', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    { name: 'Humor Esportivo (lance)', key: 'http://humoresportivo.lance.com.br/feed', root_url: 'humoresportivo.lance.com.br', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
+    { name: 'Futirinhas', key: 'http://feeds.feedburner.com/FutirinhasFutebolClube?format=xml', root_url: 'http://futirinhas.com', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
+    { name: 'br4sileir4o M1l Gr4u', key: '583337698395496', root_url: 'facebook.com/br4sileir4oM1lGr4u', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    { name: 'Fute Da Depressao', key: '150877315053016', root_url: 'facebook.com/FuteDaDepressao', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
 
-    { name: 'bola fora zoeira', key: 'https://www.facebook.com/bolaforazoeira/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
-    { name: 'O Pior Time Do Brasil', key: 'https://www.facebook.com/OPiorTimeDoBrasil/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
-    { name: 'Humor Esportivo (lance)', key: 'http://humoresportivo.lance.com.br/feed/', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
-    { name: 'Futirinhas', key: 'http://feeds.feedburner.com/FutirinhasFutebolClube?format=xml', kind: SourceKind::RSS_FEED, status: CommonStatus::ACTIVE },
-    { name: 'br4sileir4o M1l Gr4u', key: 'https://www.facebook.com/br4sileir4oM1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
-
-    { name: 'Vaaai Corinthians', key: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('COR') },
-    { name: '5ant0s m1l Gr4u', key: 'https://www.facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAN') },
-    { name: 'palmeiras mil grau', key: 'https://www.facebook.com/palmeirasmilgrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('PAL') },
-    { name: 'SÃO PAULO Da Zueira', key: 'https://www.facebook.com/SÃO-PAULO-Da-Zueira-248362678625801/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAO') },
-    { name: 'Gremio Da Zueira', key: 'https://www.facebook.com/GremioDaZueira/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('GRE') },
-    { name: 'cruzeiro do humor oficial', key: 'https://www.facebook.com/cruzeirodohumoroficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
-    { name: 'Cruzeiro da Zoeira Oficial', key: 'https://www.facebook.com/CruzeirodaZoeiraOficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
-    { name: 'Cap M1L GR4U', key: 'https://www.facebook.com/CapM1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CAP') },
-    { name: 'Colorado De Nascimento', key: 'https://www.facebook.com/ColoradoDeNascimento/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('INT') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') },
-    # { name: '', key: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
+    { name: 'Vaaai Corinthians', key: '1425809977730393', root_url: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('COR') },
+    { name: '5ant0s m1l Gr4u', key: '446543278773121', root_url: 'facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAN') },
+    { name: 'palmeiras mil grau', key: '409497435809437', root_url: 'facebook.com/palmeirasmilgrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('PAL') },
+    { name: 'SÃO PAULO Da Zueira', key: '248362678625801', root_url: 'facebook.com/SÃO-PAULO-Da-Zueira-248362678625801/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAO') },
+    { name: 'Gremio Da Zueira', key: '725993227436511', root_url: 'facebook.com/GremioDaZueira/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('GRE') },
+    { name: 'cruzeiro do humor key', oficial: '845983888820014', root_url: 'facebook.com/cruzeirodohumoroficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
+    { name: 'Cruzeiro da Zoeira Oficial', key: '700764236624458', root_url: 'facebook.com/CruzeirodaZoeiraOficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
+    { name: 'Cap M1L GR4U', key: '538026016313060', root_url: 'facebook.com/CapM1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CAP') },
+    { name: 'Colorado De Nascimento', key: '136892513112124', root_url: 'facebook.com/ColoradoDeNascimento/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('INT') },
+    { name: 'J3sus M1L Gr4u', key: '1524523077800485', root_url: 'facebook.com/J3sus-M1L-Gr4u-1524523077800485/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('PAL') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
   ]
 
-  # json_sources.each { |params| }
+  json_sources.each { |params| Source.create(params) unless Source.find_by_key(params[:key]) }
 end
