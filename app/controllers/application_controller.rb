@@ -34,7 +34,9 @@ class ApplicationController < ActionController::API
 
   def token?
     %w(devise_token_auth omniauth).each do |name|
-      controller_path.match(/#{name}/)
+      return true if controller_path.match(/#{name}/).present?
     end
+
+    false
   end
 end
