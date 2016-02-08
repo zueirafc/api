@@ -6,7 +6,7 @@ module DynamicActionable
   module ClassMethods
     # rubocop:disable Metrics/AbcSize
     def make_list_actions_by(list, klass)
-      fail('Não é um enum') unless list < EnumerateIt::Base
+      raise('Não é um enum') unless list < EnumerateIt::Base
 
       list.keys.each do |method_name|
         define_method method_name do

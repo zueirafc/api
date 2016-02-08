@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :club, presence: true, unless: :facebook?
   validates :username, presence: true, uniqueness: true
 
-  before_save :generate_username
+  before_save :generate_username, on: :create
 
   private
 

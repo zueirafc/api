@@ -13,7 +13,9 @@ class ApplicationController < ActionController::API
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :username << :club_id
+    [:sign_up, :account_update].each do |item|
+      devise_parameter_sanitizer.for(item) << :club_id << :username << :image
+    end
   end
 
   def restrict_access

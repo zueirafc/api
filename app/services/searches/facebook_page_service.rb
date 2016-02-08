@@ -25,7 +25,7 @@ module Searches
       private
 
       FIELDS = %w(id object_id message link created_time full_picture).freeze
-      KEYS = "posts?fields=#{FIELDS.join(',')}".freeze
+      KEYS = "posts?fields=#{FIELDS.join(',')}"
 
       def breakers!(id, last, source)
         if reached_limit?(id, last)
