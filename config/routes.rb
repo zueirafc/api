@@ -23,6 +23,10 @@ Rails.application.routes.draw do
             get :inactive, :active, on: :collection
           end
 
+          resources :users, only: :none, param: :email do
+            get :exists, on: :member
+          end
+
           resources :microposts do
             get :deleted, :pending, :banned, :active, on: :collection
             post :delete, :ban, :activate, on: :member
