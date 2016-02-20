@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203031305) do
+ActiveRecord::Schema.define(version: 20160220131444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,37 @@ ActiveRecord::Schema.define(version: 20160203031305) do
   add_index "contacts", ["contact_category_id"], name: "index_contacts_on_contact_category_id", using: :btree
   add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
   add_index "contacts", ["status"], name: "index_contacts_on_status", using: :btree
+
+  create_table "league_editions", force: :cascade do |t|
+    t.date     "edition_at"
+    t.integer  "status"
+    t.integer  "league_id"
+    t.integer  "champion_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "league_editions", ["champion_id"], name: "index_league_editions_on_champion_id", using: :btree
+  add_index "league_editions", ["league_id"], name: "index_league_editions_on_league_id", using: :btree
+
+  create_table "league_participants", force: :cascade do |t|
+    t.integer "club_id"
+    t.integer "edition_id"
+  end
+
+  add_index "league_participants", ["club_id"], name: "index_league_participants_on_club_id", using: :btree
+  add_index "league_participants", ["edition_id"], name: "index_league_participants_on_edition_id", using: :btree
+
+  create_table "leagues", force: :cascade do |t|
+    t.string   "name",       limit: 60, null: false
+    t.string   "country",    limit: 60, null: false
+    t.integer  "status",                null: false
+    t.string   "codename"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "leagues", ["status"], name: "index_leagues_on_status", using: :btree
 
   create_table "media", force: :cascade do |t|
     t.string   "file"
@@ -205,6 +236,10 @@ ActiveRecord::Schema.define(version: 20160203031305) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "contacts", "contact_categories"
+  add_foreign_key "league_editions", "clubs", column: "champion_id"
+  add_foreign_key "league_editions", "leagues"
+  add_foreign_key "league_participants", "clubs"
+  add_foreign_key "league_participants", "league_editions", column: "edition_id"
   add_foreign_key "media", "microposts"
   add_foreign_key "microposts", "sources"
   add_foreign_key "microposts", "users"
