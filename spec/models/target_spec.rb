@@ -25,4 +25,21 @@ RSpec.describe Target, type: :model do
     it { expect(build(:target, :with_club)).to be_valid }
     it { expect(build(:invalid_target)).to_not be_valid }
   end
+
+  context 'class methods' do
+    describe '.valid_ones' do
+      before do
+        editions = create_list :league_edition, 2
+        clubs = create_list :club, 2
+        create :league_participant, club: clubs.first, edition: editions.first
+        create :league_participant, club: clubs.last, edition: editions.last
+      end
+
+      it 'return clubs and leagues' do
+        result = { clubs: Club.all, leagues: LeagueEdition.all }
+
+        expect(described_class.valid_ones).to eq(result)
+      end
+    end
+  end
 end

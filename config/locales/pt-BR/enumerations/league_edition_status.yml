@@ -1,0 +1,5 @@
+pt-BR:
+  enumerations:
+    league_edition_status:
+      current: Atual
+      ended: Finalizado

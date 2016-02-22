@@ -11,9 +11,6 @@ module Api
         it 'returns a collection of clubs' do
           club = create :club, valid_attributes
 
-          @api = ApiKey.create
-          request.headers['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(@api.access_token)
-
           get :index, format: :json
 
           expect(assigns(:clubs)).to include(club)
