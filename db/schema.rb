@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20160220131444) do
     t.string   "provider_id",                  null: false
     t.string   "provider_url"
     t.string   "title"
-    t.date     "created_time"
+    t.datetime "created_time"
   end
 
   add_index "microposts", ["provider_id", "source_id"], name: "index_microposts_on_provider_id_and_source_id", unique: true, using: :btree
