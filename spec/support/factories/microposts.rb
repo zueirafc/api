@@ -8,6 +8,7 @@ FactoryGirl.define do
     provider_id { Forgery('basic').password }
     provider_url { Forgery('internet').domain_name }
     title { Forgery('lorem_ipsum').words(5) }
+    created_time { Forgery('date').date }
 
     status { MicropostStatus.list.sample }
 
@@ -24,9 +25,11 @@ FactoryGirl.define do
     provider_id nil
     provider_url nil
     title nil
+    created_time nil
 
     status nil
 
     user nil
+    source nil
   end
 end
