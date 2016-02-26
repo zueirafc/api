@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220131444) do
+ActiveRecord::Schema.define(version: 20160226033448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,18 +96,18 @@ ActiveRecord::Schema.define(version: 20160220131444) do
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "source_id"
-    t.text     "text",                         null: false
-    t.boolean  "all_targets",  default: false, null: false
-    t.boolean  "all_trollers", default: false, null: false
-    t.integer  "status",       default: 0,     null: false
+    t.text     "text",                                         null: false
+    t.boolean  "all_targets",  default: false,                 null: false
+    t.boolean  "all_trollers", default: false,                 null: false
+    t.integer  "status",       default: 0,                     null: false
     t.integer  "shared",       default: 0
     t.boolean  "is_shared",    default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "provider_id",                  null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.string   "provider_id",                                  null: false
     t.string   "provider_url"
     t.string   "title"
-    t.datetime "created_time"
+    t.datetime "created_time", default: '2016-02-26 03:38:55'
   end
 
   add_index "microposts", ["provider_id", "source_id"], name: "index_microposts_on_provider_id_and_source_id", unique: true, using: :btree
