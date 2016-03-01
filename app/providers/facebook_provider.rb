@@ -2,7 +2,8 @@ module FacebookProvider
   attr_reader :client
 
   def self.client
-    @client ||= Koala::Facebook::API.new ENV['FACEBOOK_ACCESS_TOKEN'],
-                                         ENV['FACEBOOK_APP_SECRET']
+    key = "#{ENV['FACEBOOK_APP_ID']}|#{ENV['FACEBOOK_APP_SECRET']}"
+
+    @client ||= Koala::Facebook::API.new(key)
   end
 end
