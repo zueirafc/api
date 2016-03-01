@@ -163,7 +163,13 @@ module Api
 
       describe 'PUT #update' do
         context 'with valid params' do
-          let(:new_attributes) { attributes_for :micropost, title: 'new name' }
+          let(:new_club) { create :club }
+          let(:new_attributes) do
+            attributes_for :micropost,
+                           title: 'new name',
+                           trollers_attributes: [{ trollerable_id: new_club.id,
+                                                   trollerable_type: 'Club' }]
+          end
 
           it 'updates the requested micropost' do
             micropost = create :micropost, valid_attributes
@@ -171,7 +177,11 @@ module Api
             put :update, id: micropost.to_param, micropost: new_attributes, format: :json
             micropost.reload
 
+            troller = micropost.trollers.first
+
             expect(micropost.title).to eq('new name')
+            expect(troller.trollerable_id).to eq(new_club.id)
+            expect(troller.trollerable_type).to eq('Club')
             expect(response).to be_success
           end
 

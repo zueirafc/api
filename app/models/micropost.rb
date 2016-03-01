@@ -10,6 +10,9 @@ class Micropost < ActiveRecord::Base
   validates :shared, presence: true
   validates :text, presence: true
 
+  accepts_nested_attributes_for :targets
+  accepts_nested_attributes_for :trollers
+
   has_enumeration_for :status, with: MicropostStatus, required: true,
                                create_scopes: true, create_helpers: true
 end
