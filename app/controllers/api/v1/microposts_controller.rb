@@ -65,8 +65,9 @@ module Api
         params.require(:micropost)
               .permit :user_id, :source_id, :text, :all_targets, :all_trollers,
                       :status, :shared, :is_shared, :provider_id, :provider_url,
-                      :title, trollers_attributes: [:trollerable_id, :trollerable_type],
-                              targets_attributes: [:targetable_id, :targetable_type]
+                      :title,
+                      trollers_attributes: [:trollerable_id, :trollerable_type],
+                      targets_attributes: [:targetable_id, :targetable_type]
       end
     end
   end
