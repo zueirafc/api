@@ -31,6 +31,18 @@ module Api
             end
           end
 
+          describe 'GET #reproved' do
+            it 'returns a collection of microposts' do
+              micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::REPROVED)
+              micropost2 = create :micropost, valid_attributes.merge(status: MicropostStatus::ACTIVE)
+
+              get :reproved, format: :json
+
+              expect(assigns(:microposts)).to include(micropost)
+              expect(assigns(:microposts)).to_not include(micropost2)
+            end
+          end
+
           describe 'GET #pending' do
             it 'returns a collection of microposts' do
               micropost = create :micropost, valid_attributes.merge(status: MicropostStatus::PENDING)

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
           end
 
           resources :microposts do
-            get :deleted, :pending, :banned, :active, on: :collection
+            get :deleted, :pending, :reproved, :banned, :active, on: :collection
             post :delete, :ban, :activate, on: :member
           end
         end
