@@ -34,6 +34,8 @@ Rails.application.routes.draw do
           resources :microposts do
             get :deleted, :pending, :reproved, :banned, :active, on: :collection
             post :delete, :ban, :activate, on: :member
+
+            resources :media, only: :destroy
           end
         end
       end
