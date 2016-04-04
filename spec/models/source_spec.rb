@@ -54,7 +54,7 @@ RSpec.describe Source, type: :model do
       let(:micropost_2) { create :micropost, source: source }
 
       it 'needs to return the last micropost' do
-        expect(source.microposts).to eq([micropost, micropost_2])
+        expect(source.microposts).to eq([micropost_2, micropost])
 
         expect(source.last).to eq(micropost_2)
       end

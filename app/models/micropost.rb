@@ -15,4 +15,6 @@ class Micropost < ActiveRecord::Base
 
   has_enumeration_for :status, with: MicropostStatus, required: true,
                                create_scopes: true, create_helpers: true
+
+  default_scope -> { order(created_at: :desc) }
 end
