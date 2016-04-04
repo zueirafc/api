@@ -8,5 +8,7 @@ class Source < ActiveRecord::Base
   has_enumeration_for :status, with: CommonStatus, required: true,
                                create_scopes: true
 
-  delegate :last, to: :microposts
+  def last
+    microposts.reorder(id: :asc).last
+  end
 end
