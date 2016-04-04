@@ -8,7 +8,7 @@ module Api
       make_list_actions_by MicropostStatus, Micropost
 
       def index
-        @microposts = paginate Micropost.all
+        @microposts = paginate Micropost.order(created_at: :desc)
 
         respond_with :api, :v1, @microposts
       end
