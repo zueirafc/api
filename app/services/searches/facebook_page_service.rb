@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
 module Searches
@@ -25,7 +24,7 @@ module Searches
       private
 
       FIELDS = %w(id object_id message link created_time full_picture).freeze
-      KEYS = "posts?fields=#{FIELDS.join(',')}"
+      KEYS = "posts?fields=#{FIELDS.join(',')}".freeze
 
       def breakers!(id, last, source)
         if reached_limit?(id, last)

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 module Api
   module V1
     class MediaController < ApplicationController
@@ -6,7 +5,7 @@ module Api
       before_action :set_medium, only: :destroy
 
       def destroy
-        @micropost.destroy
+        @medium.destroy
 
         respond_with :api, :v1, @micropost
       end
@@ -18,7 +17,7 @@ module Api
       end
 
       def set_medium
-        @micropost.media.find(params[:id])
+        @medium = @micropost.media.find(params[:id])
       end
     end
   end

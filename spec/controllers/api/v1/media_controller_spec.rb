@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'rails_helper'
 
 module Api
@@ -13,7 +12,8 @@ module Api
           expect do
             delete :destroy, format: :json, micropost_id: micropost.to_param,
                              id: medium.to_param
-          end.to change(Medium, :count).by(-1)
+          end.to change(Medium, :count).by(-1) &&
+                 change(Micropost, :count).by(0)
         end
 
         it 'redirects to the medium list' do
