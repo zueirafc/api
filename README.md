@@ -7,4 +7,4 @@
 [![Deployed at Heroku](https://img.shields.io/badge/deployed-heroku-blue.svg)](http://zueira-api.herokuapp.com/)
 
 
-Made by: [@brunoocasali](github.com/brunoocasali) and :shipit:
+Made by: [@brunoocasali](http://github.com/brunoocasali) and :shipit:
