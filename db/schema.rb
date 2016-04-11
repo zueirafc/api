@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(version: 20160408211523) do
   create_table "media", force: :cascade do |t|
     t.string   "file"
     t.integer  "micropost_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "kind"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "kind",         default: 2
     t.string   "url"
   end
 
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20160408211523) do
     t.string   "provider_id",                                  null: false
     t.string   "provider_url"
     t.string   "title"
-    t.datetime "created_time", default: '2016-03-28 13:15:43'
+    t.datetime "created_time", default: '2016-04-11 13:34:40'
   end
 
   add_index "microposts", ["provider_id", "source_id"], name: "index_microposts_on_provider_id_and_source_id", unique: true, using: :btree
