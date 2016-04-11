@@ -1,0 +1,5 @@
+pt-BR:
+  enumerations:
+    medium_kind:
+      video: Vídeo
+      photo: Foto

@@ -1,5 +1,3 @@
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/MethodLength
 module Searches
   class FacebookPageService
     class << self
@@ -10,27 +8,24 @@ module Searches
                         .select { |e| e.key? 'object_id' }.each do |post|
           condition = breakers post['object_id'], last, source
 
-          next if condition == 'next'
-          break if condition == 'break'
+          next if condition.eql? 1
+          break if condition.eql? 0
 
-          begin
-            create_micropost_using!(post, source)
-          rescue => e
-            Rails.logger.warn "ERROR at #{self}: #{e.message}"
-          end
+          create_micropost_using!(post, source)
         end
       end
 
       private
 
-      FIELDS = %w(id object_id message link created_time full_picture type).freeze
+      FIELDS = %w(id object_id message link created_time
+                  full_picture type).freeze
       KEYS = "posts?fields=#{FIELDS.join(',')}".freeze
 
       def breakers(id, last, source)
         if reached_limit?(id, last)
-          'break'
+          0
         elsif Micropost.exists?(source: source, provider_id: id)
-          'next'
+          1
         end
       end
 
@@ -64,7 +59,9 @@ module Searches
       end
 
       def get_media_video(object_id, kind)
-        "https://www.facebook.com/video/embed?video_id=#{object_id}" if kind == 'video'
+        return nil unless kind.eql? 'video'
+
+        "https://www.facebook.com/video/embed?video_id=#{object_id}"
       end
     end
   end

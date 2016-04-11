@@ -8,9 +8,9 @@ module Searches
       it { is_expected.to respond_to(:find_posts_for) }
     end
 
-    let(:params) { { key: '147225847638546', kind: SourceKind::FACEBOOK_PAGE } }
-    let(:source) { create :source, params }
-    let(:json) do
+    let!(:params) { { key: '14725847638546', kind: SourceKind::FACEBOOK_PAGE } }
+    let!(:source) { create :source, params }
+    let!(:json) do
       File.read("#{Rails.root}/spec/support/requests/fb/response.json")
     end
 
