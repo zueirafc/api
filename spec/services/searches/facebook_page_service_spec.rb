@@ -25,13 +25,6 @@ module Searches
         expect(source.microposts.count).to eq(5)
       end
 
-      xit 'need to log if an error happens' do
-        message = /--- ERROR at Searches::FacebookPageService:/
-        expect(Rails.logger).to receive(:info).with(message).at_least(:once)
-
-        subject.find_posts_for(source)
-      end
-
       it 'add troller from source' do
         subject.find_posts_for(source)
 

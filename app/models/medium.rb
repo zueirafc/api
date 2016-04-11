@@ -5,5 +5,6 @@ class Medium < ActiveRecord::Base
 
   validates :micropost, presence: true
 
-  has_enumeration_for :kind, with: MediumKind, create_helpers: true, required: true
+  has_enumeration_for :kind, with: MediumKind, create_helpers: true,
+                             required: true
 end

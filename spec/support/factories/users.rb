@@ -8,7 +8,7 @@ FactoryGirl.define do
     provider { Forgery('lorem_ipsum').words(2) }
     uid { Forgery('basic').password }
 
-    association :club, factory: :club
+    club { build(:club) }
   end
 
   factory :invalid_user, parent: :user do

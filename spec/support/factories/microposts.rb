@@ -12,8 +12,8 @@ FactoryGirl.define do
 
     status { MicropostStatus.list.sample }
 
-    association :user, factory: :user
-    association :source, factory: :source
+    user
+    source
   end
 
   factory :invalid_micropost, parent: :micropost do

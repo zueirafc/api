@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :league_participant do
-    association :edition, factory: :league_edition
-    association :club, factory: :club
+    edition { build(:league_edition) }
+    club { build(:club) }
   end
 
   factory :invalid_league_participant, parent: :league_participant do

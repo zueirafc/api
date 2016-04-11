@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :target do
-    association :micropost, factory: :micropost
+    micropost { build(:micropost) }
 
     trait :with_club do
-      association :targetable, factory: :club
+      targetable { build(:club) }
     end
   end
 

@@ -4,8 +4,8 @@ FactoryGirl.define do
 
     status { LeagueEditionStatus.list.sample }
 
-    association :league, factory: :league
-    association :champion, factory: :club
+    league { build(:league) }
+    champion { build(:club) }
   end
 
   factory :invalid_league_edition, parent: :league_edition do

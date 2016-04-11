@@ -3,9 +3,9 @@ FactoryGirl.define do
   factory :medium do
     file { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/images/media/docker.png')) }
 
-    kind { MediumKind.list.simple }
+    kind { MediumKind.list.sample }
 
-    association :micropost, factory: :micropost
+    micropost { build(:micropost) }
   end
 
   factory :invalid_medium, parent: :medium do

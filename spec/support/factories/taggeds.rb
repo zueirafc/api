@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :tagged do
-    association :micropost, factory: :micropost
-    association :synonymous_club, factory: :synonymous_club
+    micropost { build(:micropost) }
+    synonymous_club { build(:synonymous_club) }
   end
 
   factory :invalid_tagged, parent: :tagged do

@@ -3,11 +3,11 @@ FactoryGirl.define do
     association :micropost, factory: :micropost
 
     trait :with_user do
-      association :referenceable, factory: :user
+      referenceable { build(:user) }
     end
 
     trait :with_user do
-      association :referenceable, factory: :synonymous_club
+      referenceable { build(:synonymous_club) }
     end
   end
 

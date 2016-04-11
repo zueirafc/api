@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_408_204_329) do
+ActiveRecord::Schema.define(version: 20_160_408_211_523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -86,9 +86,10 @@ ActiveRecord::Schema.define(version: 20_160_408_204_329) do
   create_table 'media', force: :cascade do |t|
     t.string   'file'
     t.integer  'micropost_id'
-    t.datetime 'created_at',   null: false
-    t.datetime 'updated_at',   null: false
-    t.integer  'kind'
+    t.datetime 'created_at',               null: false
+    t.datetime 'updated_at',               null: false
+    t.integer  'kind', default: 2
+    t.string   'url'
   end
 
   add_index 'media', ['kind'], name: 'index_media_on_kind', using: :btree
@@ -108,7 +109,7 @@ ActiveRecord::Schema.define(version: 20_160_408_204_329) do
     t.string   'provider_id',                                  null: false
     t.string   'provider_url'
     t.string   'title'
-    t.datetime 'created_time', default: '2016-03-28 13:20:34'
+    t.datetime 'created_time', default: '2016-04-11 03:02:54'
   end
 
   add_index 'microposts', %w(provider_id source_id), name: 'index_microposts_on_provider_id_and_source_id', unique: true, using: :btree

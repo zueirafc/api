@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :relationship do
-    association :follower, factory: :user
-    association :followed, factory: :user
+    follower { build(:user) }
+    followed { build(:user) }
   end
 
   factory :invalid_relationship, parent: :relationship do

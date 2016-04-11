@@ -6,7 +6,7 @@ FactoryGirl.define do
 
     status { ContactStatus.list.sample }
 
-    association :category, factory: :contact_category
+    category { build(:contact_category) }
   end
 
   factory :invalid_contact, parent: :contact do

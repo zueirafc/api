@@ -2,6 +2,7 @@
   "object_id": "877991832327010",
   "message": "tem que pedir licença pra ficar na presença de Zlatan\ncurta o Futebol é Arte, Ousadia Faz Parte",
   "link": "https://www.facebook.com/Futebol.Artez.Oficial/photos/a.482505038542360.1073741828.482099478582916/877991832327010/?type=3",
+  "type": "photo",
   "created_time": "2016-02-01T01:57:03+0000",
   "full_picture":
    "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/12647232_877991832327010_4745799412937119495_n.png?oh=2651b7bcde8bdaaf724a4e4b8d9ee04f&oe=57381E4D&__gda__=1464111612_095b9a64e857244aa9b19973e38e345a"},
@@ -9,12 +10,14 @@
   "object_id": "1698124633798844",
   "message": "Procede demais isso\n\ncurta o Br4sileir4o M1l Gr4u",
   "link": "https://www.facebook.com/bolaforazoeira/photos/a.1474110779533565.1073741828.1472258476385462/1698124633798844/?type=3",
+  "type": "photo",
   "created_time": "2016-02-01T01:12:00+0000",
   "full_picture": "https://scontent.xx.fbcdn.net/hphotos-xpf1/t31.0-8/s720x720/12622071_1698124633798844_339397287648343667_o.png"},
   {"id": "1472258476385462_1698013020476672",
    "object_id": "1698013020476672",
    "message": "Ué \n\ncurta o PES da Zueira",
    "link": "https://www.facebook.com/bolaforazoeira/photos/a.1474110779533565.1073741828.1472258476385462/1698013020476672/?type=3",
+   "type": "photo",
    "created_time": "2016-01-31T16:38:50+0000",
    "full_picture":
     "https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xtp1/v/t1.0-9/12642678_1698013020476672_4862018021049229349_n.jpg?oh=f93cc9e7b11941a28b50a01be682178c&oe=5729E5CF&__gda__=1466993385_1b6a22b77ec6e530de51c93565584713"},
@@ -23,12 +26,14 @@
   "message": "COMERCIAL ÉPICO!\nMais um dos vários míticos que a Nike faz...\n\ncurta o Br4sileir4o M1l Gr4u",
   "link": "https://www.facebook.com/bolaforazoeira/videos/1698121273799180/",
   "created_time": "2016-02-01T00:25:00+0000",
+  "type": "photo",
   "full_picture":
    "https://fbcdn-vthumb-a.akamaihd.net/hvthumb-ak-xfp1/v/t15.0-10/12526185_1694094627537986_1774520320_n.jpg?oh=a02c15130e3734b14aa0a66a4a36d431&oe=572AE32B&__gda__=1462809450_534ad77cccbc32b888ae4671cefaeb5f"},
  {"id": "1472258476385462_1698124633798844",
   "object_id": "1698124633798844",
   "message": "Procede demais isso\n\ncurta o Br4sileir4o M1l Gr4u",
   "link": "https://www.facebook.com/bolaforazoeira/photos/a.1474110779533565.1073741828.1472258476385462/1698124633798844/?type=3",
+  "type": "photo",
   "created_time": "2016-02-01T01:12:00+0000",
   "full_picture": "https://scontent.xx.fbcdn.net/hphotos-xpf1/t31.0-8/s720x720/12622071_1698124633798844_339397287648343667_o.png"},
   {"id": "1472258476385462_1698113717133269",
@@ -36,5 +41,6 @@
   "message": "os jogadores na escola hahahaha muita zoeira\n\ncurta o Br4sileir4o M1l Gr4u",
   "link": "https://www.facebook.com/bolaforazoeira/videos/1698113717133269/",
   "created_time": "2016-01-31T22:06:00+0000",
+  "type": "video",
   "full_picture":
    "https://fbcdn-vthumb-a.akamaihd.net/hvthumb-ak-xtf1/v/t15.0-10/12378171_1088476951203908_1600778551_n.jpg?oh=3c9b48164ab387fd3f049912166c9a34&oe=572E007B&__gda__=1466950192_e5a896b0ddc7a64d4a4a5076ab28d087"}]

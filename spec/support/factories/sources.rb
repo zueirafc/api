@@ -7,7 +7,7 @@ FactoryGirl.define do
     kind { SourceKind.list.sample }
     status { CommonStatus.list.sample }
 
-    association :club, factory: :club
+    club { build(:club) }
 
     trait :active do
       status { CommonStatus::ACTIVE }
