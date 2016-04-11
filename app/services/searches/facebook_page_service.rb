@@ -8,7 +8,7 @@ module Searches
 
         FacebookProvider.client.get_connections(source.key, KEYS)
                         .select { |e| e.key? 'object_id' }.each do |post|
-          condition = breakers! post['object_id'], last, source
+          condition = breakers post['object_id'], last, source
 
           next if condition == 'next'
           break if condition == 'break'
@@ -23,10 +23,10 @@ module Searches
 
       private
 
-      FIELDS = %w(id object_id message link created_time full_picture).freeze
+      FIELDS = %w(id object_id message link created_time full_picture type).freeze
       KEYS = "posts?fields=#{FIELDS.join(',')}".freeze
 
-      def breakers!(id, last, source)
+      def breakers(id, last, source)
         if reached_limit?(id, last)
           'break'
         elsif Micropost.exists?(source: source, provider_id: id)
@@ -53,14 +53,18 @@ module Searches
       end
 
       def attach_content_to(post, from:)
-        Medium.create do |m|
-          m.micropost = post
-          m.remote_file_url = from['full_picture']
-        end
+        Medium.create micropost: post,
+                      remote_file_url: from['full_picture'],
+                      kind: MediumKind.value_for(from['type']),
+                      url: get_media_video(from['object_id'], from['type'])
       end
 
       def attach_troller_to(post, from:)
         post.trollers << Troller.new(trollerable: from.club)
+      end
+
+      def get_media_video(object_id, kind)
+        "https://www.facebook.com/video/embed?video_id=#{object_id}" if kind == 'video'
       end
     end
   end

@@ -1,0 +1,5 @@
+en:
+  enumerations:
+    medium_kind:
+      video: "Video"
+      photo: "Photo"
