@@ -41,7 +41,8 @@ module V1
     end
 
     def source_params
-      params.require(:source).permit(:name, :key, :kind, :status, :club_id)
+      params.require(:source)
+            .permit(:name, :key, :kind, :status, :troller_id, :target_id)
     end
   end
 end

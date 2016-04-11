@@ -29,7 +29,7 @@ module Searches
                                   source: source,
                                   status: MicropostStatus::PENDING
 
-          attach_troller_to post, from: source
+          attach_clubs_to post, from: source
           attach_content_to post, from: tweet
         end
       end
@@ -43,8 +43,9 @@ module Searches
         end
       end
 
-      def attach_troller_to(post, from:)
-        post.trollers << Troller.new(trollerable: from.club)
+      def attach_clubs_to(post, from:)
+        post.trollers << Troller.new(trollerable: from.troller)
+        post.targets << Target.new(targetable: from.target)
       end
     end
   end

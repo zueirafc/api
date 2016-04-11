@@ -35,7 +35,7 @@ module Searches
       it 'add troller from source' do
         subject.find_tweets_for(source)
 
-        club = source.club
+        club = source.troller
         club_from_post = source.last.trollers.first.trollerable
 
         expect(club).to eq(club_from_post)

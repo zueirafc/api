@@ -42,7 +42,7 @@ module Searches
                                   created_time: data['created_time'],
                                   status: MicropostStatus::PENDING
 
-          attach_troller_to post, from: source
+          attach_clubs_to post, from: source
           attach_content_to post, from: data
         end
       end
@@ -54,8 +54,9 @@ module Searches
                       url: get_media_video(from['object_id'], from['type'])
       end
 
-      def attach_troller_to(post, from:)
-        post.trollers << Troller.new(trollerable: from.club)
+      def attach_clubs_to(post, from:)
+        post.trollers << Troller.new(trollerable: from.troller)
+        post.targets << Target.new(targetable: from.target)
       end
 
       def get_media_video(object_id, kind)

@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-# rubocop:disable Metrics/LineLength
 module V1
   RSpec.describe SourcesController, type: :controller do
     let(:valid_attributes) { attributes_for(:source) }
@@ -18,15 +17,15 @@ module V1
 
     context 'dynamic methods' do
       describe '.make_list_actions_by' do
-        let!(:active_source) { create :source, status: CommonStatus::ACTIVE }
-        let!(:inactive_source) { create :source, status: CommonStatus::INACTIVE }
+        let!(:active) { create :source, status: CommonStatus::ACTIVE }
+        let!(:inactive) { create :source, status: CommonStatus::INACTIVE }
 
         describe 'GET #active' do
           it 'returns a collection of sources' do
             get :active, format: :json
 
-            expect(assigns(:sources)).to include(active_source)
-            expect(assigns(:sources)).to_not include(inactive_source)
+            expect(assigns(:sources)).to include(active)
+            expect(assigns(:sources)).to_not include(inactive)
           end
         end
 
@@ -34,8 +33,8 @@ module V1
           it 'returns a collection of sources' do
             get :inactive, format: :json
 
-            expect(assigns(:sources)).to include(inactive_source)
-            expect(assigns(:sources)).to_not include(active_source)
+            expect(assigns(:sources)).to include(inactive)
+            expect(assigns(:sources)).to_not include(active)
           end
         end
       end
@@ -51,7 +50,8 @@ module V1
         source = SourceSerializer.new(source).to_json
 
         expect(response.body['id']).to eq(source['id'])
-        expect(response.body['club_id']).to eq(source['club_id'])
+        expect(response.body['troller_id']).to eq(source['troller_id'])
+        expect(response.body['target_id']).to eq(source['target_id'])
         expect(response.body['name']).to eq(source['name'])
         expect(response.body['kind']).to eq(source['kind'])
         expect(response.body['key']).to eq(source['key'])
@@ -104,7 +104,9 @@ module V1
         it 'updates the requested source' do
           source = create :source, valid_attributes
 
-          put :update, id: source.to_param, source: new_attributes, format: :json
+          put :update, id: source.to_param, source: new_attributes,
+                       format: :json
+
           source.reload
 
           expect(source.name).to eq('nn')
