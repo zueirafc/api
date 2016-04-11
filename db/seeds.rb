@@ -55,31 +55,31 @@ if Rails.env.production?
     { name: 'Gol Contra', key: '356783301073093', root_url: 'facebook.com/contragoloficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
 
     # Specific Clubs
-    { name: 'Vaaai Corinthians', key: '1425809977730393', root_url: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('COR') },
-    { name: '5ant0s m1l Gr4u', key: '446543278773121', root_url: 'facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAN') },
-    { name: 'palmeiras mil grau', key: '409497435809437', root_url: 'facebook.com/palmeirasmilgrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('PAL') },
-    { name: 'J3sus M1L Gr4u', key: '1524523077800485', root_url: 'facebook.com/J3sus-M1L-Gr4u-1524523077800485/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('PAL') },
-    { name: 'cruzeiro do humor key', key: '845983888820014', root_url: 'facebook.com/cruzeirodohumoroficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
-    { name: 'Cruzeiro da Zoeira Oficial', key: '700764236624458', root_url: 'facebook.com/CruzeirodaZoeiraOficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CRU') },
-    { name: 'Cap M1L GR4U', key: '538026016313060', root_url: 'facebook.com/CapM1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('CAP') },
-    { name: 'Colorado De Nascimento', key: '136892513112124', root_url: 'facebook.com/ColoradoDeNascimento/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::INACTIVE, club: Club.find_by_initials('INT') },
-    { name: 'Inferno Meu Destino', key: '280101252001087', root_url: 'facebook.com/infernomeudestino/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('INT') },
-    { name: 'COMO É BOM SER COLORADO', key: '212883242147141', root_url: 'facebook.com/COMO.E.BOM.SER.COLORADO/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('INT') },
-    { name: 'SÃO PAULO Da Zueira', key: '248362678625801', root_url: 'facebook.com/SÃO-PAULO-Da-Zueira-248362678625801/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAO') },
-    { name: '5pfcM1lGr4u', key: '469310359770958', root_url: 'facebook.com/5pfcM1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('SAO') },
-    { name: 'Tr1color da D3pr355ão', key: '551182858357185', root_url: 'facebook.com/Tr1color-da-D3pr355%C3%A3o-551182858357185/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('GRE') },
-    { name: 'Gremio Da Zueira', key: '725993227436511', root_url: 'facebook.com/GremioDaZueira/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('GRE') },
-    { name: 'GremioMilGrau', key: '728847817204368', root_url: 'facebook.com/GremioMilGrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('GRE') },
-    { name: 'SempreGremioSG', key: '496873630414435', root_url: 'facebook.com/SempreGremioSG/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('GRE') },
-    { name: 'P3p Gu4rd1r0g3r', key: '644677392220311', root_url: 'facebook.com/p3p.gr/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('GRE') }
+    { name: 'Vaaai Corinthians', key: '1425809977730393', root_url: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('COR') },
+    { name: '5ant0s m1l Gr4u', key: '446543278773121', root_url: 'facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('SAN') },
+    { name: 'palmeiras mil grau', key: '409497435809437', root_url: 'facebook.com/palmeirasmilgrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('PAL') },
+    { name: 'J3sus M1L Gr4u', key: '1524523077800485', root_url: 'facebook.com/J3sus-M1L-Gr4u-1524523077800485/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('PAL') },
+    { name: 'cruzeiro do humor key', key: '845983888820014', root_url: 'facebook.com/cruzeirodohumoroficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CRU') },
+    { name: 'Cruzeiro da Zoeira Oficial', key: '700764236624458', root_url: 'facebook.com/CruzeirodaZoeiraOficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CRU') },
+    { name: 'Cap M1L GR4U', key: '538026016313060', root_url: 'facebook.com/CapM1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAP') },
+    { name: 'Colorado De Nascimento', key: '136892513112124', root_url: 'facebook.com/ColoradoDeNascimento/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::INACTIVE, troller: Club.find_by_initials('INT') },
+    { name: 'Inferno Meu Destino', key: '280101252001087', root_url: 'facebook.com/infernomeudestino/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('INT') },
+    { name: 'COMO É BOM SER COLORADO', key: '212883242147141', root_url: 'facebook.com/COMO.E.BOM.SER.COLORADO/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('INT') },
+    { name: 'SÃO PAULO Da Zueira', key: '248362678625801', root_url: 'facebook.com/SÃO-PAULO-Da-Zueira-248362678625801/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('SAO') },
+    { name: '5pfcM1lGr4u', key: '469310359770958', root_url: 'facebook.com/5pfcM1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('SAO') },
+    { name: 'Tr1color da D3pr355ão', key: '551182858357185', root_url: 'facebook.com/Tr1color-da-D3pr355%C3%A3o-551182858357185/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
+    { name: 'Gremio Da Zueira', key: '725993227436511', root_url: 'facebook.com/GremioDaZueira/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
+    { name: 'GremioMilGrau', key: '728847817204368', root_url: 'facebook.com/GremioMilGrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
+    { name: 'SempreGremioSG', key: '496873630414435', root_url: 'facebook.com/SempreGremioSG/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
+    { name: 'P3p Gu4rd1r0g3r', key: '644677392220311', root_url: 'facebook.com/p3p.gr/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') }
 
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, club: Club.find_by_initials('') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
   ]
 
   json_sources.each { |params| Source.create(params) unless Source.find_by_key(params[:key]) }

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Club, type: :model do
   context 'associations' do
-    it { is_expected.to have_many(:sources) }
+    it { is_expected.to have_many(:troller_sources) }
+    it { is_expected.to have_many(:target_sources) }
   end
 
   context 'model validations' do

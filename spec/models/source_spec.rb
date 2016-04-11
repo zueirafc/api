@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Source, type: :model do
   context 'associations' do
-    it { is_expected.to belong_to(:club) }
+    it { is_expected.to belong_to(:target) }
+    it { is_expected.to belong_to(:troller) }
+
     it { is_expected.to have_many(:microposts) }
   end
 
@@ -26,14 +28,17 @@ RSpec.describe Source, type: :model do
     it { is_expected.to have_db_column(:key).of_type(:string) }
     it { is_expected.to have_db_column(:kind).of_type(:integer) }
     it { is_expected.to have_db_column(:status).of_type(:integer) }
-    it { is_expected.to have_db_column(:club_id).of_type(:integer) }
+
+    it { is_expected.to have_db_column(:target_id).of_type(:integer) }
+    it { is_expected.to have_db_column(:troller_id).of_type(:integer) }
   end
 
   context 'table indexes' do
     it { is_expected.to have_db_index(:status) }
     it { is_expected.to have_db_index(:kind) }
 
-    it { is_expected.to have_db_index(:club_id) }
+    it { is_expected.to have_db_index(:target_id) }
+    it { is_expected.to have_db_index(:troller_id) }
   end
 
   context 'factories' do

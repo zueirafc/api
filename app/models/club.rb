@@ -1,5 +1,6 @@
 class Club < ActiveRecord::Base
-  has_many :sources
+  has_many :troller_sources, class_name: 'Source', foreign_key: :troller_id
+  has_many :target_sources, class_name: 'Source', foreign_key: :target_id
   has_many :targets
   has_many :trollers
 
