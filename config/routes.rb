@@ -23,6 +23,10 @@ Rails.application.routes.draw do
               :trollers, on: :collection
         end
 
+        resources :targets, only: :none do
+          get :most_targeted, on: :collection
+        end
+
         resources :sources do
           get :inactive,
               :active, on: :collection
