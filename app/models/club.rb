@@ -3,6 +3,7 @@ class Club < ActiveRecord::Base
   has_many :target_sources, class_name: 'Source', foreign_key: :target_id
   has_many :targets
   has_many :trollers
+  has_many :nickname_fans
 
   mount_base64_uploader :shield, ShieldUploader
 
