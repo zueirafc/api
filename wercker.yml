@@ -4,22 +4,22 @@ services:
 build:
   steps:
     - script:
-      name: Configuring Bundle
+      name: configuring bundle
       code: bundle config build.nokogiri --use-system-libraries
 
     - bundle-install
     - rails-database-yml
 
     - script:
-        name: Rubocop (static code analyzer)
+        name: rubocop (static code analyzer)
         code: bundle exec rubocop -D
 
     - script:
-        name: Setup Database
-        code: bundle exec rake db:schema:load RAILS_ENV=test
+        name: setup database
+        code: bundle exec rake db:create db:migrate RAILS_ENV=test
 
     - script:
-        name: RSpec
+        name: rspec
         code: bundle exec rspec
 
 deploy:

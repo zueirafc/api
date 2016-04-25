@@ -13,7 +13,7 @@ module DynamicActionable
           instance_name = "@#{klass.name.underscore.pluralize}"
 
           instance_variable_set(instance_name, query)
-          respond_with :api, :v1, instance_variable_get(instance_name)
+          respond_with :v1, instance_variable_get(instance_name)
         end
       end
     end

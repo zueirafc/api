@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_408_211_523) do
+ActiveRecord::Schema.define(version: 20_160_411_143_452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20_160_408_211_523) do
     t.string   'provider_id',                                  null: false
     t.string   'provider_url'
     t.string   'title'
-    t.datetime 'created_time', default: '2016-04-11 03:02:54'
+    t.datetime 'created_time', default: '2016-04-11 14:48:35'
   end
 
   add_index 'microposts', %w(provider_id source_id), name: 'index_microposts_on_provider_id_and_source_id', unique: true, using: :btree
@@ -158,17 +158,19 @@ ActiveRecord::Schema.define(version: 20_160_408_211_523) do
   add_index 'roles_users', ['user_id'], name: 'index_roles_users_on_user_id', using: :btree
 
   create_table 'sources', force: :cascade do |t|
-    t.string  'name',     null: false
-    t.string  'key',      null: false
-    t.integer 'kind',     null: false
-    t.integer 'status',   null: false
-    t.integer 'club_id'
+    t.string  'name',       null: false
+    t.string  'key',        null: false
+    t.integer 'kind',       null: false
+    t.integer 'status',     null: false
+    t.integer 'troller_id'
     t.string  'root_url'
+    t.integer 'target_id'
   end
 
-  add_index 'sources', ['club_id'], name: 'index_sources_on_club_id', using: :btree
   add_index 'sources', ['kind'], name: 'index_sources_on_kind', using: :btree
   add_index 'sources', ['status'], name: 'index_sources_on_status', using: :btree
+  add_index 'sources', ['target_id'], name: 'index_sources_on_target_id', using: :btree
+  add_index 'sources', ['troller_id'], name: 'index_sources_on_troller_id', using: :btree
 
   create_table 'synonymous_clubs', force: :cascade do |t|
     t.integer 'club_id'
@@ -246,7 +248,8 @@ ActiveRecord::Schema.define(version: 20_160_408_211_523) do
   add_foreign_key 'microposts', 'sources'
   add_foreign_key 'microposts', 'users'
   add_foreign_key 'post_references', 'microposts'
-  add_foreign_key 'sources', 'clubs'
+  add_foreign_key 'sources', 'clubs', column: 'target_id'
+  add_foreign_key 'sources', 'clubs', column: 'troller_id'
   add_foreign_key 'synonymous_clubs', 'clubs'
   add_foreign_key 'taggeds', 'microposts'
   add_foreign_key 'taggeds', 'synonymous_clubs'

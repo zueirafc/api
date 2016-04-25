@@ -7,10 +7,15 @@ FactoryGirl.define do
     kind { SourceKind.list.sample }
     status { CommonStatus.list.sample }
 
-    club { build(:club) }
+    troller { build(:club) }
+    target nil
 
     trait :active do
       status { CommonStatus::ACTIVE }
+    end
+
+    trait :targets do
+      target { build(:club) }
     end
   end
 
@@ -22,6 +27,7 @@ FactoryGirl.define do
     kind nil
     status nil
 
-    club nil
+    troller nil
+    target nil
   end
 end

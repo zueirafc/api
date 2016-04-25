@@ -1,5 +1,7 @@
 class Source < ActiveRecord::Base
-  belongs_to :club
+  belongs_to :target, class_name: 'Club'
+  belongs_to :troller, class_name: 'Club'
+
   has_many :microposts
 
   validates :name, :key, presence: true

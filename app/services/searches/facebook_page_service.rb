@@ -33,17 +33,17 @@ module Searches
         id.to_s.eql?(last)
       end
 
-      def create_micropost_using!(post, source)
+      def create_micropost_using!(data, source)
         ActiveRecord::Base.transaction do
-          micropost = Micropost.create provider_id: post['object_id'],
-                                       provider_url: post['link'],
-                                       text: post['message'],
-                                       source: source,
-                                       created_time: post['created_time'],
-                                       status: MicropostStatus::PENDING
+          post = Micropost.create provider_id: data['object_id'],
+                                  provider_url: data['link'],
+                                  text: data['message'],
+                                  source: source,
+                                  created_time: data['created_time'],
+                                  status: MicropostStatus::PENDING
 
-          attach_troller_to micropost, from: source
-          attach_content_to micropost, from: post
+          attach_clubs_to post, from: source
+          attach_content_to post, from: data
         end
       end
 
@@ -54,8 +54,9 @@ module Searches
                       url: get_media_video(from['object_id'], from['type'])
       end
 
-      def attach_troller_to(post, from:)
-        post.trollers << Troller.new(trollerable: from.club)
+      def attach_clubs_to(post, from:)
+        post.trollers << Troller.new(trollerable: from.troller)
+        post.targets << Target.new(targetable: from.target)
       end
 
       def get_media_video(object_id, kind)

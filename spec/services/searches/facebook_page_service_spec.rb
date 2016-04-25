@@ -28,7 +28,7 @@ module Searches
       it 'add troller from source' do
         subject.find_posts_for(source)
 
-        club = source.club
+        club = source.troller
         club_from_post = source.last.trollers.first.trollerable
 
         expect(club).to eq(club_from_post)
@@ -37,7 +37,13 @@ module Searches
       it 'attach to post media' do
         subject.find_posts_for(source)
 
-        expect(source.microposts.map(&:media).compact.count).to be > 1
+        expect(source.microposts.map(&:media).compact.count).to eq(5)
+      end
+
+      xit 'attach video to post' do
+        expect do
+          subject.find_posts_for(source)
+        end.to change(Medium.video, :count).by(1)
       end
     end
   end

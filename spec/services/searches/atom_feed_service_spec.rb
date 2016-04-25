@@ -15,7 +15,7 @@ module Searches
 
     describe '.find_microposts_by' do
       context 'valid request/response' do
-        let(:xml) do
+        let!(:xml) do
           File.read(Rails.root + 'spec/support/requests/feeds/atom.xml')
         end
 
@@ -34,7 +34,7 @@ module Searches
         it 'add troller from source' do
           subject.find_microposts_by(source)
 
-          club = source.club
+          club = source.troller
           club_from_post = source.last.trollers.first.trollerable
 
           expect(club).to eq(club_from_post)
