@@ -4,6 +4,7 @@ RSpec.describe Club, type: :model do
   context 'associations' do
     it { is_expected.to have_many(:troller_sources) }
     it { is_expected.to have_many(:target_sources) }
+    it { is_expected.to have_many(:nickname_fans) }
   end
 
   context 'model validations' do

@@ -1,3 +1,4 @@
+# This file will be grow! A LOT!
 # rubocop:disable Metrics/LineLength
 # rubocop:disable Style/AsciiComments
 
@@ -53,6 +54,9 @@ if Rails.env.production?
     { name: 'Z031r4 M1L GR4U FC', key: '529506403829696', root_url: 'facebook.com/Z031r4-M1L-GR4U-FC-529506403829696', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     { name: 'Fanáticos Por Futebol', key: '395733423787890', root_url: 'facebook.com/Fanaticosporfutebool/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     { name: 'Gol Contra', key: '356783301073093', root_url: 'facebook.com/contragoloficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    { name: 'Virô Piada', key: '161261117274382', root_url: 'facebook.com/pages/Vir%C3%B4-Piada/161261117274382', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
 
     # Specific Clubs
     { name: 'Vaaai Corinthians', key: '1425809977730393', root_url: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('COR') },
@@ -71,17 +75,49 @@ if Rails.env.production?
     { name: 'Gremio Da Zueira', key: '725993227436511', root_url: 'facebook.com/GremioDaZueira/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
     { name: 'GremioMilGrau', key: '728847817204368', root_url: 'facebook.com/GremioMilGrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
     { name: 'SempreGremioSG', key: '496873630414435', root_url: 'facebook.com/SempreGremioSG/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
-    { name: 'P3p Gu4rd1r0g3r', key: '644677392220311', root_url: 'facebook.com/p3p.gr/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') }
-
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
+    { name: 'P3p Gu4rd1r0g3r', key: '644677392220311', root_url: 'facebook.com/p3p.gr/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
+    { name: 'Furacão da Zuação', key: '1497239083883383', root_url: 'facebook.com/FDZ023', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAP') },
+    { name: 'Atlético PR eu te sigo em toda parte', key: '1408546999358339', root_url: 'facebook.com/atleticotof/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAP') }
     # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
     # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
   ]
 
   json_sources.each { |params| Source.create(params) unless Source.find_by_key(params[:key]) }
 
+  json_nicknames = [
+    { name: 'corintiano', ini: 'COR' }, { name: 'fiel', plural: 'fiéis', ini: 'COR' },
+    { name: 'palmeirense', ini: 'PAL' }, { name: 'palestrino', ini: 'PAL' },
+    { name: 'santista', ini: 'SAN' }, { name: 'alvinegro santista', ini: 'SAN' },
+    { name: 'são paulino', ini: 'SAO' },
+    { name: 'gremista', ini: 'GRE' },
+    { name: 'atleticano (mg)', plural: 'atleticanos (mg)', ini: 'CAM' },
+    { name: 'atleticano (pr)', plural: 'atleticanos (pr)', ini: 'CAP' },
+    { name: 'cruzeirense', ini: 'CRU' },
+    { name: 'colorado', ini: 'INT' },
+    { name: 'coxa-branca', ini: 'CFC' },
+    { name: 'sportista', ini: 'SPO' }, { name: 'leonino', ini: 'SPO' }, { name: 'rubro-negro', ini: 'SPO' },
+    { name: 'pontepretano', ini: 'PON' },
+    { name: 'flamenguista', ini: 'FLA' }, { name: 'rubro-negro', ini: 'FLA' },
+    { name: 'tricolor', ini: 'FLU' }, { name: 'pó de arroz', plural: 'pó de arrozes', ini: 'FLU' }, { name: 'tricolor das laranjeiras', plural: 'tricolor das laranjeiras', ini: 'FLU' },
+    { name: 'chapecoense', ini: 'CHA' },
+    { name: 'alvinegro', ini: 'FIG' }, { name: 'figueira', ini: 'FIG' },
+    { name: 'botafoguense', ini: 'BOT' }, { name: 'alvinegro', ini: 'BOT' },
+    { name: 'tricolor', ini: 'STA' }, { name: 'coral', plural: 'corais', ini: 'STA' },
+    { name: 'rubro-negro baiano', ini: 'VIT' }, { name: 'rubro-negros baianos', ini: 'VIT' },
+    { name: 'americanos', ini: 'AMG' },
+    { name: 'esmeraldino', ini: 'GOI' }, { name: 'alviverde', ini: 'GOI' },
+    { name: 'avaiano', ini: 'AVA' }, { name: 'azzura', ini: 'AVA' },
+    { name: 'tricolor baiano', ini: 'BAH' },
+    { name: 'tubarão', ini: 'LON' }, { name: 'tubarões', ini: 'LON' },
+    { name: 'vascaíno', ini: 'VAS' }, { name: 'cruzmaltino', ini: 'VAS' },
+    { name: 'alvirrubro', ini: 'NAU' },
+    { name: 'jequeano', ini: 'JEC' }, { name: 'tricolor catarinense', ini: 'JEC' },
+    { name: 'alvinegro cearense', plural: 'alvinegros cearenses', ini: 'CEA' }
+  ]
+
+  json_nicknames.each do |params|
+    params.merge!(status: CommonStatus::ACTIVE, club: Club.find_by_initials(params[:ini])).except!(:ini)
+
+    NicknameFan.create(params) unless NicknameFan.find_by_name_and_club_id(params[:name], params[:club]) || params[:club].nil?
+  end
 end
