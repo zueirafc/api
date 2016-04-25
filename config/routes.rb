@@ -49,6 +49,10 @@ Rails.application.routes.draw do
 
           resources :media, only: :destroy
         end
+
+        resources :nickname_fans, only: :index do
+          get :from_club, on: :member
+        end
       end
     end
   end
