@@ -58,6 +58,6 @@ group :test, :development do
   gem 'simplecov', require: false
 end
 
-group :production do
-  gem 'rails_12factor'
-end
+# group :production do
+#   gem 'rails_12factor'
+# end
