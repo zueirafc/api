@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
 
   def configure_permitted_parameters
     [:sign_up, :account_update].each do |item|
-      devise_parameter_sanitizer.for(item) << :club_id << :username << :image
+      devise_parameter_sanitizer.for(item) << :club_id << :image
     end
   end
 

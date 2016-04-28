@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   mount_base64_uploader :image, ProfileImageUploader
 
   validates :club, presence: true, unless: :facebook?
-  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true
 
   before_save :generate_username, on: :create
 
@@ -22,6 +22,6 @@ class User < ActiveRecord::Base
   end
 
   def generate_username
-    self.username = email[/[^@]+/]
+    self.username = email[/[^@]+/] if self.username.nil? && email.present?
   end
 end

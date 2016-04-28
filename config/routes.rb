@@ -11,9 +11,7 @@ Rails.application.routes.draw do
       match '/401' => 'errors#unauthorized'
     end
 
-    mount_devise_token_auth_for 'User', at: 'v1/auth', controllers: {
-      omniauth_callbacks: 'v1/omniauth'
-    }
+    mount_devise_token_auth_for 'User', at: 'v1/auth'
 
     namespace :v1 do
       scope except: [:new, :edit] do
