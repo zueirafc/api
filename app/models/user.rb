@@ -22,6 +22,6 @@ class User < ActiveRecord::Base
   end
 
   def generate_username
-    self.username = email[/[^@]+/] if self.username.nil? && email.present?
+    self.username = email[/[^@]+/] if username.nil? && email.present?
   end
 end
