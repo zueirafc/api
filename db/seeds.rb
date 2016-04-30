@@ -7,13 +7,13 @@ if Rails.env.production?
 
   # ContactCategory:
   json_categories = [
-    { name: 'Outros', email: '', status: CommonStatus::ACTIVE },
-    { name: 'Quero ser um analista', email: '', status: CommonStatus::ACTIVE },
-    { name: 'Quero que minha página esteja na lista', email: '', status: CommonStatus::ACTIVE },
-    { name: 'Quero remover minha página da lista', email: '', status: CommonStatus::ACTIVE },
-    { name: 'Dúvidas', email: '', status: CommonStatus::ACTIVE },
-    { name: 'Sugestões', email: '', status: CommonStatus::ACTIVE }
-    { name: 'Problemas Técnicos', email: '', status: CommonStatus::ACTIVE }
+    { name: 'Outros', email: 'weare@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Quero ser um analista', email: 'weare@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Quero que minha página esteja na lista', email: 'weare@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Quero remover minha página da lista', email: 'arbitragem@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Dúvidas', email: 'arbitragem@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Sugestões', email: 'hackers@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Problemas Técnicos', email: 'hackers@zueirafc.com', status: CommonStatus::ACTIVE }
   ]
 
   json_categories.each { |params| ContactCategory.create(params) unless ContactCategory.find_by_name(params[:name]) }
