@@ -17,7 +17,8 @@ module V1
       @contact.unread!
       @contact.save
 
-      ContactNotifier.new_contact_from_site(@contact).deliver_now
+      ContactNotifier
+        .new_contact_from_site(@contact).deliver_now if @contact.valid?
 
       respond_with :v1, @contact
     end
