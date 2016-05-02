@@ -5,6 +5,19 @@
 if Rails.env.production?
   ApiKey.create! unless ApiKey.any?
 
+  # ContactCategory:
+  json_categories = [
+    { name: 'Outros', email: 'weare@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Quero ser um analista', email: 'weare@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Quero que minha página esteja na lista', email: 'weare@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Quero remover minha página da lista', email: 'arbitragem@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Dúvidas', email: 'arbitragem@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Sugestões', email: 'hackers@zueirafc.com', status: CommonStatus::ACTIVE },
+    { name: 'Problemas Técnicos', email: 'hackers@zueirafc.com', status: CommonStatus::ACTIVE }
+  ]
+
+  json_categories.each { |params| ContactCategory.create(params) unless ContactCategory.find_by_name(params[:name]) }
+
   # Clubs:
   json_clubs = [
     { official_website: 'corinthians.com.br', remote_shield_url: 'https://wikioso.org/wp-content/uploads/2013/04/escudo-do-corinthians.png', official_facebook_page: 'facebook.com/corinthians', short_name: 'Corinthians', full_name: 'Sport Club Corinthians Paulista', initials: 'COR' },

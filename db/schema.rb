@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425133652) do
+ActiveRecord::Schema.define(version: 20160430042804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160425133652) do
   create_table "contact_categories", force: :cascade do |t|
     t.string  "name",   null: false
     t.integer "status", null: false
+    t.string  "email",  null: false
   end
 
   add_index "contact_categories", ["status"], name: "index_contact_categories_on_status", using: :btree

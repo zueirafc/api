@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       scope except: [:new, :edit] do
         resources :clubs
+        resources :contacts
+
         resources :micropost_participants do
           get :targets,
               :trollers, on: :collection
@@ -26,6 +28,11 @@ Rails.application.routes.draw do
         end
 
         resources :sources do
+          get :inactive,
+              :active, on: :collection
+        end
+
+        resources :contact_categories do
           get :inactive,
               :active, on: :collection
         end
