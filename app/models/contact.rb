@@ -8,5 +8,6 @@ class Contact < ActiveRecord::Base
   validates :message, presence: true
   validates :name, presence: true
 
-  has_enumeration_for :status, with: ContactStatus, required: true
+  has_enumeration_for :status, with: ContactStatus, required: true,
+                               create_helpers: true
 end

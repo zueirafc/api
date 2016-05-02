@@ -53,14 +53,7 @@ module V1
 
         category = ContactCategorySerializer.new(category).to_json
 
-        expect(response.body['id']).to eq(category['id'])
-        expect(response.body['troller_id']).to eq(category['troller_id'])
-        expect(response.body['target_id']).to eq(category['target_id'])
-        expect(response.body['name']).to eq(category['name'])
-        expect(response.body['kind']).to eq(category['kind'])
-        expect(response.body['key']).to eq(category['key'])
-        expect(response.body['status']).to eq(category['status'])
-        expect(response.body['root_url']).to eq(category['root_url'])
+        expect(response.body).to eq(category)
       end
     end
 
