@@ -80,6 +80,7 @@ if Rails.env.production?
 
     # Specific Clubs
     { name: 'Vaaai Corinthians', key: '1425809977730393', root_url: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('COR') },
+    { name: 'Corinthians Mil Grau', key: '255302374579816', root_url: 'facebook.com/C0R1NTH14N5M1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('COR') },
     { name: '5ant0s m1l Gr4u', key: '446543278773121', root_url: 'facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('SAN') },
     { name: 'palmeiras mil grau', key: '409497435809437', root_url: 'facebook.com/palmeirasmilgrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('PAL') },
     { name: 'Palmeiras De Depressão', key: '1421354958100868', root_url: 'facebook.com/PalmeirasDepre/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('PAL') },
