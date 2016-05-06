@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :restrict_access
 
-  respond_to :json
+  respond_to :html, :json
 
   protected
 
