@@ -21,7 +21,7 @@ class Micropost < ActiveRecord::Base
   has_enumeration_for :status, with: MicropostStatus, required: true,
                                create_scopes: true, create_helpers: true
 
-  default_scope -> { order(created_at: :desc) }
+  default_scope -> { order(updated_at: :desc) }
 
   ##
   # Public: Get only posts based on nickname fan of a club as troller.
