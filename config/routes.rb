@@ -18,9 +18,16 @@ Rails.application.routes.draw do
         resources :clubs
         resources :contacts
 
-        resources :micropost_participants do
-          get :targets,
-              :trollers, on: :collection
+        resources :micropost_participants, only: :none do
+          collection do
+            get :targets
+            get :trollers
+          end
+        end
+
+        resources :micropost_fights, only: :none do
+          get ':troller_nick_id/versus/:target_nick_id',
+              action: :versus, on: :collection
         end
 
         resources :targets, only: :none do
@@ -28,13 +35,17 @@ Rails.application.routes.draw do
         end
 
         resources :sources do
-          get :inactive,
-              :active, on: :collection
+          collection do
+            get :inactive
+            get :active
+          end
         end
 
         resources :contact_categories do
-          get :inactive,
-              :active, on: :collection
+          collection do
+            get :inactive
+            get :active
+          end
         end
 
         resources :users, only: :none, param: :email do
@@ -42,15 +53,19 @@ Rails.application.routes.draw do
         end
 
         resources :microposts do
-          get :deleted,
-              :pending,
-              :reproved,
-              :banned,
-              :active, on: :collection
+          collection do
+            get :deleted
+            get :pending
+            get :reproved
+            get :banned
+            get :active
+          end
 
-          post :delete,
-               :ban,
-               :activate, on: :member
+          member do
+            post :delete
+            post :ban
+            post :activate
+          end
 
           resources :media, only: :destroy
         end
