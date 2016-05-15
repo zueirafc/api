@@ -5,7 +5,7 @@ module Api
         origins '*'
         resource '*',
           headers: :any,
-          methods: [:get, :post, :delete, :put, :options, :head],
+          methods: [:get, :post, :delete, :put, :head],
           expose: ['access-token', 'expiry', 'token-type', 'uid', 'client', 'Link']
       end
     end

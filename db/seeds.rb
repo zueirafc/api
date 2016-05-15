@@ -68,19 +68,32 @@ if Rails.env.production?
     { name: 'Fanáticos Por Futebol', key: '395733423787890', root_url: 'facebook.com/Fanaticosporfutebool/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     { name: 'Gol Contra', key: '356783301073093', root_url: 'facebook.com/contragoloficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     { name: 'Virô Piada', key: '161261117274382', root_url: 'facebook.com/pages/Vir%C3%B4-Piada/161261117274382', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    { name: 'Desimpedidos do Sul', key: '889569534464793', root_url: 'facebook.com/Desimpedidosul', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    { name: 'Olé do Brasil', key: 'Oledobrasil', root_url: 'twitter.com/Oledobrasil', kind: SourceKind::TWITTER_USER, status: CommonStatus::ACTIVE },
+    { name: 'Canelada FC', key: 'Canelada_FC', root_url: 'twitter.com/Canelada_FC', kind: SourceKind::TWITTER_USER, status: CommonStatus::ACTIVE },
+    { name: 'Íbis Sport Club', key: 'ibismania', root_url: 'twitter.com/ibismania', kind: SourceKind::TWITTER_USER, status: CommonStatus::ACTIVE },
+    { name: 'Fail_Futebol', key: 'Fail_Futebol', root_url: 'twitter.com/Fail_Futebol', kind: SourceKind::TWITTER_USER, status: CommonStatus::ACTIVE },
+    { name: 'Futebol PR da Depressão', key: '1639092836369177', root_url: 'facebook.com/futebolprdepre', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
+    { name: 'Champions League do Sul', key: '490800954393941', root_url: 'facebook.com/championscls', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
     # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE },
 
     # Specific Clubs
     { name: 'Vaaai Corinthians', key: '1425809977730393', root_url: 'facebook.com/VaaaiCorinthians', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('COR') },
+    { name: 'Corinthians Mil Grau', key: '255302374579816', root_url: 'facebook.com/C0R1NTH14N5M1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('COR') },
     { name: '5ant0s m1l Gr4u', key: '446543278773121', root_url: 'facebook.com/5ant0sm1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('SAN') },
     { name: 'palmeiras mil grau', key: '409497435809437', root_url: 'facebook.com/palmeirasmilgrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('PAL') },
+    { name: 'Palmeiras De Depressão', key: '1421354958100868', root_url: 'facebook.com/PalmeirasDepre/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('PAL') },
+    { name: 'Estação 1914', key: '271800306276132', root_url: 'facebook.com/estacao1914', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('PAL') },
     { name: 'J3sus M1L Gr4u', key: '1524523077800485', root_url: 'facebook.com/J3sus-M1L-Gr4u-1524523077800485/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('PAL') },
     { name: 'cruzeiro do humor key', key: '845983888820014', root_url: 'facebook.com/cruzeirodohumoroficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CRU') },
     { name: 'Cruzeiro da Zoeira Oficial', key: '700764236624458', root_url: 'facebook.com/CruzeirodaZoeiraOficial/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CRU') },
     { name: 'Cap M1L GR4U', key: '538026016313060', root_url: 'facebook.com/CapM1LGR4U', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAP') },
     { name: 'Colorado De Nascimento', key: '136892513112124', root_url: 'facebook.com/ColoradoDeNascimento/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::INACTIVE, troller: Club.find_by_initials('INT') },
+    { name: 'Inter até morrer Oficial', key: '550839398280618', root_url: 'facebook.com/InteratemorrerOficial', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::INACTIVE, troller: Club.find_by_initials('INT') },
     { name: 'Inferno Meu Destino', key: '280101252001087', root_url: 'facebook.com/infernomeudestino/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('INT') },
+    { name: 'Colorado Zueiro', key: '347845372073060', root_url: 'facebook.com/ColoradoZueiro/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('INT') },
+    { name: 'Inter Zueiro', key: '331549370354203', root_url: 'facebook.com/interzueiro1909', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('INT') },
     { name: 'COMO É BOM SER COLORADO', key: '212883242147141', root_url: 'facebook.com/COMO.E.BOM.SER.COLORADO/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('INT') },
     { name: 'SÃO PAULO Da Zueira', key: '248362678625801', root_url: 'facebook.com/SÃO-PAULO-Da-Zueira-248362678625801/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('SAO') },
     { name: '5pfcM1lGr4u', key: '469310359770958', root_url: 'facebook.com/5pfcM1lGr4u/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('SAO') },
@@ -88,10 +101,17 @@ if Rails.env.production?
     { name: 'Gremio Da Zueira', key: '725993227436511', root_url: 'facebook.com/GremioDaZueira/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
     { name: 'GremioMilGrau', key: '728847817204368', root_url: 'facebook.com/GremioMilGrau/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
     { name: 'SempreGremioSG', key: '496873630414435', root_url: 'facebook.com/SempreGremioSG/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
+    { name: 'GRÊMIO PRA SEMPRE!', key: 'gremioprasempre', root_url: 'twitter.com/gremioprasempre', kind: SourceKind::TWITTER_USER, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
     { name: 'P3p Gu4rd1r0g3r', key: '644677392220311', root_url: 'facebook.com/p3p.gr/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('GRE') },
     { name: 'Furacão da Zuação', key: '1497239083883383', root_url: 'facebook.com/FDZ023', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAP') },
-    { name: 'Atlético PR eu te sigo em toda parte', key: '1408546999358339', root_url: 'facebook.com/atleticotof/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAP') }
-    # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
+    { name: 'Atlético PR eu te sigo em toda parte', key: '1408546999358339', root_url: 'facebook.com/atleticotof/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAP') },
+    { name: 'JEC M1L GR4U', key: '1650590388510254', root_url: 'facebook.com/JEC-M1L-GR4U-1650590388510254/', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('JEC') },
+    { name: 'JEC MIL GRAU', key: '372204459623117', root_url: 'facebook.com/JECampeao', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('JEC') },
+    { name: 'L0ndrin4 M1L GR4U', key: '283638341787637', root_url: 'facebook.com/LondrinaMilGrau', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('LON') },
+    { name: 'Torcemos contra o vento', key: '374241686012775', root_url: 'facebook.com/TorcemosContraOvento', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAM') },
+    { name: 'Tardelli Pensativo', key: '338825106222315', root_url: 'facebook.com/TardelliPensativo', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAM') },
+    { name: 'Galo Zueira', key: '322798061167145', root_url: 'facebook.com/GaloZueira', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAM') },
+    { name: 'Galo Zueiro', key: '378500665623031', root_url: 'facebook.com/galozueiro', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('CAM') }
     # { name: '', key: '', root_url: '', kind: SourceKind::FACEBOOK_PAGE, status: CommonStatus::ACTIVE, troller: Club.find_by_initials('') }
   ]
 

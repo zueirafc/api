@@ -67,4 +67,66 @@ RSpec.describe Micropost, type: :model do
     it { expect(build(:micropost)).to be_valid }
     it { expect(build(:invalid_micropost)).to_not be_valid }
   end
+
+  context 'scopes' do
+    let!(:club1) { create :club }
+    let!(:club2) { create :club }
+
+    let!(:nick1) { create :nickname_fan, club: club1 }
+    let!(:nick2) { create :nickname_fan, club: club2 }
+
+    describe '.troller_microposts_from_nick' do
+      let(:troller1) { create :troller, trollerable: club1 }
+      let(:troller11) { create :troller, trollerable: club1 }
+      let(:target1) { create :target, targetable: club1 }
+
+      let(:troller2) { create :troller, trollerable: club2 }
+      let(:target2) { create :target, targetable: club2 }
+
+      let!(:micropost) { create :micropost, trollers: [troller1] }
+      let!(:micropost2) { create :micropost, trollers: [troller11, troller2] }
+
+      it 'need to get right posts' do
+        list = described_class.troller_microposts_from_nick(nick1)
+
+        expect(list).to eq([micropost2, micropost])
+      end
+    end
+
+    describe '.target_microposts_from_nick' do
+      let(:troller1) { create :troller, trollerable: club1 }
+      let(:target1) { create :target, targetable: club1 }
+      let(:target11) { create :target, targetable: club1 }
+
+      let(:troller2) { create :troller, trollerable: club2 }
+      let(:target2) { create :target, targetable: club2 }
+
+      let!(:micropost) { create :micropost, targets: [target1] }
+      let!(:micropost2) { create :micropost, targets: [target11, target2] }
+
+      it 'need to get right posts' do
+        list = described_class.target_microposts_from_nick(nick1)
+
+        expect(list).to eq([micropost2, micropost])
+      end
+    end
+
+    describe '.versus_microposts_from_nicks' do
+      let(:troller1) { create :troller, trollerable: club1 }
+      let(:target1) { create :target, targetable: club1 }
+
+      let(:troller2) { create :troller, trollerable: club2 }
+      let(:target2) { create :target, targetable: club2 }
+
+      let!(:micropost) do
+        create :micropost, trollers: [troller1], targets: [target1, target2]
+      end
+
+      it 'need to get right posts' do
+        list = described_class.versus_microposts_from_nicks(nick1, nick2)
+
+        expect(list).to eq([micropost])
+      end
+    end
+  end
 end
