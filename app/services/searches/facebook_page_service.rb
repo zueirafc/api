@@ -51,7 +51,7 @@ module Searches
         Medium.create micropost: post,
                       remote_file_url: from['full_picture'],
                       kind: MediumKind.value_for(from['type']),
-                      url: get_media_video(from['object_id'], from['type'])
+                      url: get_media(from)
       end
 
       def attach_clubs_to(post, from:)
@@ -59,10 +59,12 @@ module Searches
         post.targets << Target.new(targetable: from.target)
       end
 
-      def get_media_video(object_id, kind)
-        return nil unless kind.eql? 'video'
-
-        "https://www.facebook.com/video/embed?video_id=#{object_id}"
+      def get_media(from)
+        if from['type'].eql? 'video'
+          "https://www.facebook.com/video/embed?video_id=#{from['object_id']}"
+        elsif from['type'].eql? 'link'
+          from['link']
+        end
       end
     end
   end
