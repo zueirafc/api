@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   include Acl9::ControllerExtensions
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :restrict_access
+  # before_action :restrict_access
 
   respond_to :html, :json
 
