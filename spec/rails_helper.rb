@@ -44,18 +44,8 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-ActiveRecord::Migration.maintain_test_schema!
-
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
-
-  config.before(:each, type: :controller) do
-    @api ||= ApiKey.create!
-    credentials = ActionController::HttpAuthentication::Token
-                  .encode_credentials(@api.access_token)
-
-    request.headers['HTTP_AUTHORIZATION'] = credentials
-  end
 
   config.before(:suite) { DatabaseCleaner.clean_with :truncation }
   config.before(:each) { DatabaseCleaner.strategy = :transaction }
@@ -63,7 +53,17 @@ RSpec.configure do |config|
   config.after(:each) { DatabaseCleaner.clean }
 
   config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: :controller
+  # config.include ControllerHelpers, type: :controller
 
   config.infer_spec_type_from_file_location!
   config.raise_errors_for_deprecations!
+
+  config.before(:each, type: :controller) do
+    @user ||= create :user
+    sign_in @user
+    request.headers.merge!(@user.create_new_auth_token)
+
+    # request.headers['HTTP_AUTHORIZATION'] = credentials
+  end
 end
