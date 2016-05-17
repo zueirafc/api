@@ -1,6 +1,7 @@
 module V1
   class SourcesController < ApplicationController
     before_action :set_source, only: [:show, :update, :destroy]
+    skip_before_action :authenticate_user!, only: [:index, :active]
 
     include DynamicActionable
     make_list_actions_by CommonStatus, Source

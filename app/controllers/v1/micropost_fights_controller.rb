@@ -1,6 +1,7 @@
 module V1
   class MicropostFightsController < ApplicationController
     before_action :set_nicknames, only: :versus
+    skip_before_action :authenticate_user!
 
     def versus
       @microposts = call_scope_based_on_parameters

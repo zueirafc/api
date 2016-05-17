@@ -11,6 +11,7 @@ Bundler.require(*Rails.groups)
 module Api
   class Application < Rails::Application
     config.app_generators.scaffold_controller :responders_controller
+    config.middleware.use Rack::Attack
 
     config.time_zone = 'Brasilia'
     config.i18n.default_locale = :'pt-BR'

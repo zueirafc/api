@@ -9,6 +9,7 @@ gem 'rails-api'
 gem 'pg'
 gem 'passenger'
 gem 'rack-cors', require: 'rack/cors'
+gem 'rack-attack'
 
 # data manipulation
 gem 'enumerate_it'
