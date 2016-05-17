@@ -3,6 +3,8 @@ module V1
     before_action :set_micropost,
                   only: [:show, :update, :destroy, :activate, :delete, :ban]
 
+    skip_before_action :authenticate_user!, only: [:index, :active]
+
     include DynamicActionable
     make_list_actions_by MicropostStatus, Micropost
 
