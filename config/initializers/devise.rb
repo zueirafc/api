@@ -1,11 +1,24 @@
 Devise.setup do |config|
-  # The e-mail address that mail will appear to be sent from
-  # If absent, mail is sent from "please-change-me-at-config-initializers-devise@example.com"
   config.mailer_sender = 'arbitragem@zueirafc.com'
 
-  # If using rails-api, you may want to tell devise to not use ActionDispatch::Flash
-  # middleware b/c rails-api does not include it.
-  # See: http://stackoverflow.com/q/19600905/806956
+  require 'devise/orm/active_record'
+
+  config.case_insensitive_keys = [:email]
+  config.strip_whitespace_keys = [:email]
+  config.skip_session_storage = [:http_auth]
+
+  config.stretches = Rails.env.test? ? 1 : 11
+
+  config.reconfirmable = true
+
+  config.expire_all_remember_me_on_sign_out = true
+
+  config.password_length = 6..128
+
+  config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+
+  config.reset_password_within = 6.hours
+
   config.navigational_formats = [:json]
-  config.authentication_keys = [:email, :username]
+  config.sign_out_via = :delete
 end
