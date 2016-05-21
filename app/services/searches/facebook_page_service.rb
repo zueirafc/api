@@ -44,27 +44,20 @@ module Searches
 
           attach_clubs_to post, from: source
           attach_content_to post, from: data
+
+          post.save!
         end
       end
 
       def attach_content_to(post, from:)
-        Medium.create micropost: post,
-                      remote_file_url: from['full_picture'],
-                      kind: MediumKind.value_for(from['type']),
-                      url: get_media(from)
+        post.media << Medium.new(remote_file_url: from['full_picture'],
+                                 kind: MediumKind.value_for(from['type']),
+                                 url: from['link'])
       end
 
       def attach_clubs_to(post, from:)
         post.trollers << Troller.new(trollerable: from.troller)
         post.targets << Target.new(targetable: from.target)
-      end
-
-      def get_media(from)
-        if from['type'].eql? 'video'
-          "https://www.facebook.com/video/embed?video_id=#{from['object_id']}"
-        elsif from['type'].eql? 'link'
-          from['link']
-        end
       end
     end
   end
