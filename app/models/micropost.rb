@@ -2,7 +2,7 @@ class Micropost < ActiveRecord::Base
   belongs_to :source
   belongs_to :user
 
-  has_many :media, dependent: :destroy
+  has_many :media, dependent: :destroy, inverse_of: :micropost
   has_many :targets, dependent: :destroy
   has_many :trollers, dependent: :destroy
 
