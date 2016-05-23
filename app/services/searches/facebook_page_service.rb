@@ -35,17 +35,22 @@ module Searches
 
       def create_micropost_using!(data, source)
         ActiveRecord::Base.transaction do
-          post = Micropost.create provider_id: data['object_id'],
-                                  provider_url: data['link'],
-                                  text: data['message'],
-                                  source: source,
-                                  created_time: data['created_time'],
-                                  status: MicropostStatus::PENDING
+          post = generate_new_by(data, source)
 
           attach_clubs_to post, from: source
           attach_content_to post, from: data
 
           post.save!
+        end
+      end
+
+      def generate_new_by(data, source)
+        source.microposts.create! do |p|
+          p.provider_id = data['object_id']
+          p.provider_url = data['link']
+          p.text = data['message']
+          p.created_time = data['created_time']
+          p.status = MicropostStatus::PENDING
         end
       end
 
@@ -56,8 +61,11 @@ module Searches
       end
 
       def attach_clubs_to(post, from:)
-        post.trollers << Troller.new(trollerable: from.troller)
-        post.targets << Target.new(targetable: from.target)
+        troller = from.troller
+        target = from.target
+
+        post.trollers << Troller.new(trollerable: troller) if troller.present?
+        post.targets << Target.new(targetable: target) if target.present?
       end
     end
   end

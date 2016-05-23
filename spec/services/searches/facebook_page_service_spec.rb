@@ -40,7 +40,7 @@ module Searches
         expect(source.microposts.map(&:media).compact.count).to eq(5)
       end
 
-      xit 'attach video to post' do
+      it 'attach video to post' do
         expect do
           subject.find_posts_for(source)
         end.to change(Medium.video, :count).by(1)
