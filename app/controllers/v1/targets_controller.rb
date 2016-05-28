@@ -14,7 +14,8 @@ module V1
 
       Target.clubs.group(:targetable_id).count.sort_by(&:last).reverse
             .take(5).each do |club_id, qtd|
-        @targets[:targets] << (ClubSerializer.new Club.find(club_id), scope: { quantity: qtd })
+        @targets[:targets] << ClubSerializer.new(Club.find(club_id),
+                                                 scope: { quantity: qtd })
       end
     end
   end
