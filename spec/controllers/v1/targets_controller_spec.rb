@@ -7,10 +7,10 @@ module V1
         target = create :target, :with_club
 
         get :most_targeted, format: :json
-        targets = assigns(:targets)[:targets]
+        first = assigns(:targets)[:targets].first
 
-        expect(targets.first[:club]).to eq(target.targetable)
-        expect(targets.first[:quantity]).to eq(1)
+        expect(first.object).to eq(target.targetable)
+        expect(first.scope[:quantity]).to eq(1)
       end
 
       it 'only 5 targets' do
@@ -28,14 +28,16 @@ module V1
 
         get :most_targeted, format: :json
         targets = assigns(:targets)[:targets]
+        first = targets.first
+        second = targets.second
 
         expect(targets.count).to eq(5)
 
-        expect(targets.first[:club]).to eq(target2.targetable)
-        expect(targets.first[:quantity]).to eq(4)
+        expect(first.object).to eq(target2.targetable)
+        expect(first.scope[:quantity]).to eq(4)
 
-        expect(targets.second[:club]).to eq(target3.targetable)
-        expect(targets.second[:quantity]).to eq(2)
+        expect(second.object).to eq(target3.targetable)
+        expect(second.scope[:quantity]).to eq(2)
       end
     end
   end
