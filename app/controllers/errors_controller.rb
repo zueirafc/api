@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def not_found
     respond_with make_a_error(status: 404, message: 'Not Found')
   end

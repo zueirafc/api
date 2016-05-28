@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    username { Forgery('internet').user_name }
+    username { "#{Forgery('internet').user_name}-#{rand(9999)}" }
     email { Forgery('internet').email_address }
     name { Forgery('name').full_name }
     password { 'my password is much bigger!' }

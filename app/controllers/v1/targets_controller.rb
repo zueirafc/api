@@ -4,7 +4,7 @@ module V1
     skip_before_action :authenticate_user!, only: :most_targeted
 
     def most_targeted
-      respond_with :v1, @targets
+      respond_with @targets
     end
 
     private
@@ -14,7 +14,8 @@ module V1
 
       Target.clubs.group(:targetable_id).count.sort_by(&:last).reverse
             .take(5).each do |club_id, qtd|
-        @targets[:targets] << { club: Club.find(club_id), quantity: qtd }
+        @targets[:targets] << ClubSerializer.new(Club.find(club_id),
+                                                 scope: { quantity: qtd })
       end
     end
   end
