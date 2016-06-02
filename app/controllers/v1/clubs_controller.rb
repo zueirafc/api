@@ -2,7 +2,7 @@ module V1
   class ClubsController < ApplicationController
     before_action :set_club, only: [:show, :update, :destroy]
     skip_before_action :authenticate_user!, only: :index
-    
+
     def index
       @clubs = Club.all
 
