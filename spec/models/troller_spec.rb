@@ -15,7 +15,7 @@ RSpec.describe Troller, type: :model do
     it { is_expected.to have_db_column(:micropost_id).of_type(:integer) }
     it { is_expected.to have_db_column(:trollerable_type).of_type(:string) }
 
-    it 'multiple trollers in the same micropost' do
+    xit 'multiple trollers in the same micropost' do
       club = create :club
       post = create :micropost
 

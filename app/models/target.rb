@@ -5,7 +5,7 @@ class Target < ActiveRecord::Base
   belongs_to :targetable, polymorphic: true
 
   validates :micropost, :targetable, presence: true
-  validates :micropost_id, uniqueness: { scope: :targetable }
+  # validates :micropost_id, uniqueness: { scope: :targetable }
 
   scope :clubs, -> { where(targetable_type: 'Club') }
 
