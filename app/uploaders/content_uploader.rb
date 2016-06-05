@@ -6,6 +6,6 @@ class ContentUploader < BaseUploader
   end
 
   def filename
-    "file_#{('a'..'z').to_a.sample(10).join}.#{file.extension}"
+    "file.#{file.extension}"
   end
 end
