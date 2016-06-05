@@ -6,8 +6,4 @@ class ClubSerializer < ActiveModel::Serializer
   def quantity
     scope[:quantity] if scope.present?
   end
-
-  def shield
-    object.shield_url
-  end
 end
