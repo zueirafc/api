@@ -50,7 +50,7 @@ module Searches
           p.provider_url = data['link']
           p.text = data['message']
           p.created_time = data['created_time']
-          p.status = MicropostStatus::PENDING
+          p.status = MicropostStatus::ACTIVE
         end
       end
 
