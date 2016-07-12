@@ -6,6 +6,7 @@ class ContentUploader < BaseUploader
   end
 
   def filename
-    "file_#{Time.now.to_i}.#{file.extension}"
+    # "file_#{('a'..'z').to_a.shuffle[0, 10].join}.#{file.extension}"
+    "file_#{model.id}.#{file.extension}"
   end
 end
